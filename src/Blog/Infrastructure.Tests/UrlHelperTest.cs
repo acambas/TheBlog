@@ -15,7 +15,7 @@ namespace Infrastructure.Tests
             // Act
             var frienlyUrl = URLHelper.ToFriendlyUrl(nonFriendlyUrl);
 
-
+            // Assert
             Assert.IsNotNull(frienlyUrl);
             Assert.IsFalse(frienlyUrl.Contains(" "));
             Assert.IsFalse(frienlyUrl.Contains("/"));
@@ -36,7 +36,7 @@ namespace Infrastructure.Tests
             // Act
             var frienlyUrl = URLHelper.ToFriendlyUrl(nonFriendlyUrl, id);
 
-
+            // Assert
             Assert.IsNotNull(frienlyUrl);
             Assert.IsTrue(frienlyUrl.EndsWith("__"));
             Assert.IsTrue(frienlyUrl.Contains("__" + id));
@@ -56,7 +56,7 @@ namespace Infrastructure.Tests
             // Act
             var frienlyUrl = URLHelper.ToFriendlyUrl(nonFriendlyUrl, id);
 
-
+            // Assert
             Assert.IsNotNull(frienlyUrl);
             Assert.IsTrue(frienlyUrl.EndsWith("__"));
             Assert.IsTrue(frienlyUrl.Contains("__" + id));
@@ -74,7 +74,7 @@ namespace Infrastructure.Tests
             // Act
             var frienlyUrl = URLHelper.ToFriendlyUrl(nonFriendlyUrl, id);
 
-
+            // Assert
             Assert.IsNotNull(frienlyUrl);
             var extractedId = URLHelper.GetIdFromString(frienlyUrl);
             Assert.AreEqual(id, extractedId);
@@ -89,7 +89,7 @@ namespace Infrastructure.Tests
 
             // Act
             var extractedId = URLHelper.GetIdFromString(url);
-
+            // Assert
         }
 
         [TestMethod]
@@ -101,7 +101,7 @@ namespace Infrastructure.Tests
 
             // Act
             var extractedId = URLHelper.GetIdFromString(nonFriendlyUrl);
-        
+            // Assert
         }
 
         [TestMethod]
@@ -113,7 +113,7 @@ namespace Infrastructure.Tests
 
             // Act
             var extractedId = URLHelper.GetIdFromString(nonFriendlyUrl);
-
+            // Assert
         }
 
     }
