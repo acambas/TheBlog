@@ -54,7 +54,6 @@ namespace Infrastructure.Tests
             var r = new Random();
             var randomNumber = r.Next(300);
             var id = randomNumber.ToString();
-
             var frienlyUrl = URLHelper.ToFriendlyUrl(nonFriendlyUrl, id);
             Assert.IsNotNull(frienlyUrl);
             var extractedId = URLHelper.GetIdFromString(frienlyUrl);
