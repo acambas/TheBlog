@@ -26,7 +26,7 @@ namespace WebInfrastructure.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            RavenSession = RavenBootstrap.Instance.Store.OpenAsyncSession();
+            RavenSession = RavenBootstrap.Store.OpenAsyncSession();
         }
 
         protected virtual async Task SaveAsync()

@@ -42,19 +42,22 @@ namespace WebInfrastructure.Db
             var parser = ConnectionStringParser<RavenConnectionStringOptions>.FromConnectionStringName("RavenDB");
             parser.Parse();
 
-            Store = new DocumentStore
-            {
-                ApiKey = parser.ConnectionStringOptions.ApiKey,
-                Url = parser.ConnectionStringOptions.Url,
-            };
-            Store = new EmbeddableDocumentStore() { RunInMemory = true};
- 
-            Store.Initialize();
+            //Store = new DocumentStore
+            //{
+            //    ApiKey = parser.ConnectionStringOptions.ApiKey,
+            //    Url = parser.ConnectionStringOptions.Url,
+            //};
+
+            RavenBootstrap.Store = new EmbeddableDocumentStore() { RunInMemory = true };
+
+            RavenBootstrap.Store.Initialize();
             var asembly = Assembly.GetCallingAssembly();
-            IndexCreation.CreateIndexes(asembly, Store);
+            IndexCreation.CreateIndexes(asembly, RavenBootstrap.Store);
+
+
         }
 
-        public DocumentStore Store;
+        public static DocumentStore Store { get; private set; }
 
     }
 }

@@ -288,7 +288,7 @@ namespace WebUi.Areas.Admin.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Admin");
+            return RedirectToAction("Index", "Home", new { Area = "" });
         }
 
         //
