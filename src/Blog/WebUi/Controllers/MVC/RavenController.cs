@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace WebUi.Controllers
 {
-    public class RavenController : Controller
+    public abstract class RavenController : Controller
     {
         protected Infrastructure.Logging.ILogger Logger { get; set; }
         protected IMapper Mapper { get; set; }

@@ -10,7 +10,9 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-
+using WebInfrastructure.IOC;
+using WebInfrastructure.Db;
+using Raven.Client.Embedded;
 namespace WebUi
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -22,6 +24,13 @@ namespace WebUi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //Ioc initialize
+            Bootstrapper.Initialise();
+
+            //Handle RavenDB
+            RavenDBInit();
+            //RavenBootstrap.Instance.BootstrapDatabase();
         }
 
         public static DocumentStore Store;
@@ -31,14 +40,16 @@ namespace WebUi
             var parser = ConnectionStringParser<RavenConnectionStringOptions>.FromConnectionStringName("RavenDB");
             parser.Parse();
 
-            Store = new DocumentStore
-            {
-                ApiKey = parser.ConnectionStringOptions.ApiKey,
-                Url = parser.ConnectionStringOptions.Url,
-            };
-
+            //Store = new DocumentStore
+            //{
+            //    ApiKey = parser.ConnectionStringOptions.ApiKey,
+            //    Url = parser.ConnectionStringOptions.Url,
+            //};
+            Store = new EmbeddableDocumentStore() { RunInMemory = true};
+ 
             Store.Initialize();
-            IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), Store);
+            var asembly = Assembly.GetCallingAssembly();
+            IndexCreation.CreateIndexes(asembly, Store);
         }
     }
 }

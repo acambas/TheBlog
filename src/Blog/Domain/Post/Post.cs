@@ -38,9 +38,6 @@ namespace Domain.Post
         public virtual DateTime? Modified
         { get; set; }
 
-        public virtual string CategoryId
-        { get; set; }
-
         public virtual ICollection<Tag.Tag> Tags
         { get; set; }
 
