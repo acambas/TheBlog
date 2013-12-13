@@ -10,7 +10,7 @@
         </a>
         <ul class="dropdown-menu">
             <li>
-                @Html.ActionLink("Admin page", "Index", "BlogAdmin", new { Area = "Admin" }, new { })
+                @Html.ActionLink("Admin page", "Index", "Admin", new { Area = "Admin" }, new { })
             </li>
             <li>
                 @using (Html.BeginForm("LogOff", "Login", FormMethod.Post, new { id = "logoutForm", area = "" }))

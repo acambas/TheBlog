@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infrastructure.Mapping;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,8 +7,14 @@ using System.Web.Mvc;
 
 namespace WebUi.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : RavenController
     {
+
+        public HomeController( Infrastructure.Logging.ILogger logger,
+            IMapper mapper)
+            : base(logger, mapper)
+        { }
+
         public ActionResult Index()
         {
             return View();

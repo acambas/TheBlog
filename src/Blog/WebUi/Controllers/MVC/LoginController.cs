@@ -14,20 +14,13 @@ using Infrastructure.Mapping;
 namespace WebUi.Controllers
 {
     [Authorize]
-    public class AccountController : RavenController
+    public class LoginController : RavenController
     {
 
-
-        public AccountController(Infrastructure.Logging.ILogger logger,
-            IMapper mapper)
-            : this(new UserManager<ApplicationUser>(new RavenUserStore<ApplicationUser>( MvcApplication.Store.OpenAsyncSession())),logger,mapper)
-        {
-        }
-
-        public AccountController(UserManager<ApplicationUser> userManager, Infrastructure.Logging.ILogger logger,
+        public LoginController(Infrastructure.Logging.ILogger logger,
             IMapper mapper): base(logger,mapper)
         {
-            UserManager = userManager;
+            UserManager = new UserManager<ApplicationUser>(new RavenUserStore<ApplicationUser>(MvcApplication.Store.OpenAsyncSession()));
         }
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
