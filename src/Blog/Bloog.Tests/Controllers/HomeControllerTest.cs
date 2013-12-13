@@ -16,11 +16,11 @@ namespace Bloog.Tests.Controllers
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(null, null);
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
-            
+
             // Assert
             Assert.IsNotNull(result);
         }
@@ -29,7 +29,7 @@ namespace Bloog.Tests.Controllers
         public void About()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(null, null);
 
             // Act
             ViewResult result = controller.About() as ViewResult;
@@ -42,7 +42,7 @@ namespace Bloog.Tests.Controllers
         public void Contact()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(null, null);
 
             // Act
             ViewResult result = controller.Contact() as ViewResult;
