@@ -47,7 +47,7 @@ namespace Bloog.Tests.Controllers
             // Act
             ViewResult result = controller.Contact() as ViewResult;
 
-            //some change
+            //some change 1
             // Assert
             Assert.IsNotNull(result);
         }
