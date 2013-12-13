@@ -1,4 +1,5 @@
 ﻿using AspNet.Identity.RavenDB.Stores;
+using Infrastructure.Config._Settings;
 using Infrastructure.Mapping;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
@@ -20,7 +21,9 @@ namespace WebUi.Areas.Admin.Controllers
         public UserManager<ApplicationUser> UserManager { get; private set; }
 
         public AccountController(Infrastructure.Logging.ILogger logger,
-            IMapper mapper): base(logger,mapper)
+            IMapper mapper,
+            IApplicationSettings appSettings)
+            : base(logger, mapper, appSettings)
         {
             UserManager = new UserManager<ApplicationUser>(new RavenUserStore<ApplicationUser>(MvcApplication.Store.OpenAsyncSession()));
         }

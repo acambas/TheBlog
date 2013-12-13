@@ -123,8 +123,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\RavenController.cs" />
-    <Compile Include="Db\RavenStore.cs" />
     <Compile Include="IOC\Bootstrapper.cs" />
     <Compile Include="Mapping\MapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

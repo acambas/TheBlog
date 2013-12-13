@@ -1,9 +1,11 @@
-﻿using Infrastructure.Mapping;
+﻿using Infrastructure.Config._Settings;
+using Infrastructure.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace WebUi.Controllers
 {
@@ -11,8 +13,9 @@ namespace WebUi.Controllers
     {
 
         public HomeController( Infrastructure.Logging.ILogger logger,
-            IMapper mapper)
-            : base(logger, mapper)
+            IMapper mapper,
+            IApplicationSettings appSettings)
+            : base(logger, mapper, appSettings)
         { }
 
         public ActionResult Index()

@@ -8,8 +8,6 @@ namespace Infrastructure.Config._Settings
 {
     public interface IApplicationSettings
     {
-        string LoggerName { get; }
         string ConnectionStringName { get; }
-        string NumberOfResultsPerPage { get; }
     }
 }

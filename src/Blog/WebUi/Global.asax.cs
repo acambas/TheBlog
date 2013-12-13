@@ -11,7 +11,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using WebInfrastructure.IOC;
-using WebInfrastructure.Db;
 using Raven.Client.Embedded;
 namespace WebUi
 {
@@ -29,8 +28,9 @@ namespace WebUi
             Bootstrapper.Initialise();
 
             //Handle RavenDB
+
             RavenDBInit();
-            //RavenBootstrap.Instance.BootstrapDatabase();
+
         }
 
         public static DocumentStore Store;

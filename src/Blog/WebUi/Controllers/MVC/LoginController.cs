@@ -11,6 +11,8 @@ using WebUi.Models;
 using AspNet.Identity.RavenDB.Stores;
 using Infrastructure.Mapping;
 
+using Infrastructure.Config._Settings;
+
 namespace WebUi.Controllers
 {
     [Authorize]
@@ -18,7 +20,9 @@ namespace WebUi.Controllers
     {
 
         public LoginController(Infrastructure.Logging.ILogger logger,
-            IMapper mapper): base(logger,mapper)
+            IMapper mapper,
+            IApplicationSettings appSettings)
+            : base(logger, mapper, appSettings)
         {
             UserManager = new UserManager<ApplicationUser>(new RavenUserStore<ApplicationUser>(MvcApplication.Store.OpenAsyncSession()));
         }
