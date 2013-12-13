@@ -40,12 +40,15 @@ namespace WebUi
             var parser = ConnectionStringParser<RavenConnectionStringOptions>.FromConnectionStringName("RavenDB");
             parser.Parse();
 
-            //Store = new DocumentStore
-            //{
-            //    ApiKey = parser.ConnectionStringOptions.ApiKey,
-            //    Url = parser.ConnectionStringOptions.Url,
-            //};
-            Store = new EmbeddableDocumentStore() { RunInMemory = true};
+            
+
+#if DEBUG
+            //Store = new EmbeddableDocumentStore() { RunInMemory = true };
+            Store = new EmbeddableDocumentStore {  ConnectionStringName = "RavenDBEmbedded" };
+#else
+            Store = new DocumentStore { ConnectionStringName = "RavenDB" };
+#endif
+            
  
             Store.Initialize();
             var asembly = Assembly.GetCallingAssembly();
