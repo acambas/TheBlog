@@ -25,7 +25,8 @@ namespace WebUi.Areas.Admin.Controllers
             IApplicationSettings appSettings)
             : base(logger, mapper, appSettings)
         {
-            UserManager = new UserManager<ApplicationUser>(new RavenUserStore<ApplicationUser>(MvcApplication.Store.OpenAsyncSession()));
+            UserManager = new UserManager<ApplicationUser>
+                (new RavenUserStore<ApplicationUser>(RavenSession));
         }
 
         //

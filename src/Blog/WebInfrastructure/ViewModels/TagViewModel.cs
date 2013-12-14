@@ -1,16 +1,14 @@
-﻿using Infrastructure.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Tag
+namespace WebInfrastructure.ViewModels
 {
-    public class Tag
+    public class TagViewModel
     {
-
         //[Required(ErrorMessage = "Name: Field is required")]
         [StringLength(500, ErrorMessage = "Name: Length should not exceed 500 characters")]
         public virtual string Name

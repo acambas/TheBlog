@@ -15,7 +15,7 @@ namespace WebUi.Controllers
         protected Infrastructure.Logging.ILogger Logger { get; set; }
         protected IMapper Mapper { get; set; }
         protected IApplicationSettings AppSettings { get; set; }
-        public IAsyncDocumentSession RavenSession { get; protected set; }
+        public IAsyncDocumentSession RavenSession { get;  set; }
 
         public RavenController(Infrastructure.Logging.ILogger logger,
             IMapper mapper,

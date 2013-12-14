@@ -4,14 +4,14 @@ using Domain.Tag;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebInfrastructure.ViewModels;
+using System.Web;
+using WebUi.Models.Blog;
 
-namespace WebInfrastructure.Mapping
+namespace WebUi.App_Start
 {
     public class MapperConfig
     {
+
         public static void ConfigureMappings()
         {
             Mapper.CreateMap<Post, PostViewModel>();
@@ -20,5 +20,6 @@ namespace WebInfrastructure.Mapping
             Mapper.CreateMap<TagViewModel, Tag>();
             Mapper.CreateMap<Tag, TagViewModel>();
         }
+
     }
 }

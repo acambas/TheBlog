@@ -10,8 +10,14 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WebInfrastructure.IOC;
+
 using Raven.Client.Embedded;
+
+using Domain;
+using Domain.Post;
+using Domain.Tag;
+using WebUi.App_Start;
+
 namespace WebUi
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -24,35 +30,49 @@ namespace WebUi
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            //Handle Mapping
+            MapperConfig.ConfigureMappings();
+
             //Ioc initialize
-            Bootstrapper.Initialise();
+            IocConfig.Initialise();
 
             //Handle RavenDB
 
-            RavenDBInit();
+            RavenDbConfig.RavenDBInit();
 
         }
 
         public static DocumentStore Store;
 
-        private static void RavenDBInit()
-        {
-            var parser = ConnectionStringParser<RavenConnectionStringOptions>.FromConnectionStringName("RavenDB");
-            parser.Parse();
+//        private static void RavenDBInit()
+//        {
+//#if DEBUG
+//            //Store = new EmbeddableDocumentStore {  ConnectionStringName = "RavenDBEmbedded" };
 
-            
+//            Store = new EmbeddableDocumentStore() { RunInMemory = true };
+//            Store.Initialize();
+//            using (var session = Store.OpenSession())
+//            {
+//                var post = new Post()
+//                {
+//                    Title = "Post 1",
+//                    ShortDescription = "asdasfsa asfasf asf asd asf asf safsa fasfsa saf",
+//                    Description = "asdasfsa asfasf asf asd asf asf safsa fasfsa saf asdasfsa asfasf asf asd asf asf safsa fasfs",
+//                    UrlSlug= "Post-1__1__",
+//                    LastEdit = DateTime.Now,
+//                    PostedOn = DateTime.Now,
+//                    Published = true,
+//                    Tags = new List<Tag> { new Tag { Name = "mvc" , UrlSlug = "mvc"}}
+//                };
 
-#if DEBUG
-            //Store = new EmbeddableDocumentStore() { RunInMemory = true };
-            Store = new EmbeddableDocumentStore {  ConnectionStringName = "RavenDBEmbedded" };
-#else
-            Store = new DocumentStore { ConnectionStringName = "RavenDB" };
-#endif
-            
- 
-            Store.Initialize();
-            var asembly = Assembly.GetCallingAssembly();
-            IndexCreation.CreateIndexes(asembly, Store);
-        }
+//                session.Store(post);
+//                session.SaveChanges();
+//            }
+//#else
+//            Store = new DocumentStore { ConnectionStringName = "RavenDB" };
+//            Store.Initialize();
+//#endif
+//            IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), Store);
+//        }
     }
 }
