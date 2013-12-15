@@ -246,7 +246,6 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
-    <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\MVC\BlogController.cs" />
     <Compile Include="Controllers\MVC\LoginController.cs" />
     <Compile Include="Controllers\MVC\HomeController.cs" />
@@ -604,7 +603,6 @@
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Unity.Mvc4.README.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
