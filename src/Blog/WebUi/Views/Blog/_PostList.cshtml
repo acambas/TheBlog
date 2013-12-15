@@ -1,0 +1,9 @@
+﻿@model IEnumerable<WebUi.Models.Blog.PostViewModel>
+
+<section>
+    @foreach (var item in Model)
+    {
+        @Html.Partial("_PostListElement", item)
+    }
+
+</section>

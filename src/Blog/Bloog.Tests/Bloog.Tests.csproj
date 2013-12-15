@@ -142,8 +142,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\RavenBaseController.cs" />
-    <Compile Include="ControllersTests\BlogTest.cs" />
+    <Compile Include="Base\RavenBaseControllerTest.cs" />
+    <Compile Include="ControllersTests\BlogControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControllersTests\HomeControllerTest.cs" />
   </ItemGroup>

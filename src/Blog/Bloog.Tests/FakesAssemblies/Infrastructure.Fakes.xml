@@ -1,0 +1,1253 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Infrastructure.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:Infrastructure.Config._Settings.Fakes.ShimApplicationSettingsFactory">
+            <summary>Shim type of Infrastructure.Config._Settings.ApplicationSettingsFactory</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.ShimApplicationSettingsFactory.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.ShimApplicationSettingsFactory.#ctor(Infrastructure.Config._Settings.ApplicationSettingsFactory)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.ShimApplicationSettingsFactory.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.ShimApplicationSettingsFactory.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.ShimApplicationSettingsFactory.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.ShimApplicationSettingsFactory.Constructor">
+            <summary>Sets the shim of ApplicationSettingsFactory.ApplicationSettingsFactory()</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.ShimApplicationSettingsFactory.GetApplicationSettings">
+            <summary>Sets the shim of ApplicationSettingsFactory.GetApplicationSettings()</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.ShimApplicationSettingsFactory.InitializeApplicationSettingsFactoryIApplicationSettings">
+            <summary>Sets the shim of ApplicationSettingsFactory.InitializeApplicationSettingsFactory(IApplicationSettings applicationSettings)</summary>
+        </member>
+        <member name="T:Infrastructure.Config._Settings.Fakes.ShimApplicationSettingsFactory.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Infrastructure.Config._Settings.Fakes.ShimWebConfigApplicationSettings">
+            <summary>Shim type of Infrastructure.Config._Settings.WebConfigApplicationSettings</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.ShimWebConfigApplicationSettings.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.ShimWebConfigApplicationSettings.#ctor(Infrastructure.Config._Settings.WebConfigApplicationSettings)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.ShimWebConfigApplicationSettings.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.ShimWebConfigApplicationSettings.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.ShimWebConfigApplicationSettings.Bind(Infrastructure.Config._Settings.IApplicationSettings)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.ShimWebConfigApplicationSettings.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.ShimWebConfigApplicationSettings.ConnectionStringNameGet">
+            <summary>Sets the shim of WebConfigApplicationSettings.get_ConnectionStringName()</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.ShimWebConfigApplicationSettings.Constructor">
+            <summary>Sets the shim of WebConfigApplicationSettings.WebConfigApplicationSettings()</summary>
+        </member>
+        <member name="T:Infrastructure.Config._Settings.Fakes.ShimWebConfigApplicationSettings.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.ShimWebConfigApplicationSettings.AllInstances.ConnectionStringNameGet">
+            <summary>Sets the shim of WebConfigApplicationSettings.get_ConnectionStringName()</summary>
+        </member>
+        <member name="T:Infrastructure.Config._Settings.Fakes.StubApplicationSettingsFactory">
+            <summary>Stub type of Infrastructure.Config._Settings.ApplicationSettingsFactory</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.StubApplicationSettingsFactory.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.StubApplicationSettingsFactory.InitializeStub">
+            <summary>Initializes a new instance of type StubApplicationSettingsFactory</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.StubApplicationSettingsFactory.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.StubApplicationSettingsFactory.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.StubApplicationSettingsFactory.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Infrastructure.Config._Settings.Fakes.StubIApplicationSettings">
+            <summary>Stub type of Infrastructure.Config._Settings.IApplicationSettings</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.StubIApplicationSettings.#ctor">
+            <summary>Initializes a new instance of type StubIApplicationSettings</summary>
+        </member>
+        <member name="F:Infrastructure.Config._Settings.Fakes.StubIApplicationSettings.ConnectionStringNameGet">
+            <summary>Sets the stub of IApplicationSettings.get_ConnectionStringName()</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.StubIApplicationSettings.i::Infrastructure#Config#_Settings#IApplicationSettings#ConnectionStringName">
+            <summary>Sets the stub of IApplicationSettings.get_ConnectionStringName()</summary>
+        </member>
+        <member name="T:Infrastructure.Config._Settings.Fakes.StubWebConfigApplicationSettings">
+            <summary>Stub type of Infrastructure.Config._Settings.WebConfigApplicationSettings</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.StubWebConfigApplicationSettings.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Config._Settings.Fakes.StubWebConfigApplicationSettings.InitializeStub">
+            <summary>Initializes a new instance of type StubWebConfigApplicationSettings</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.StubWebConfigApplicationSettings.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.StubWebConfigApplicationSettings.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Config._Settings.Fakes.StubWebConfigApplicationSettings.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Infrastructure.Database_config.Fakes.ShimBootstrapDatabaseFactory">
+            <summary>Shim type of Infrastructure.Database_config.BootstrapDatabaseFactory</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.ShimBootstrapDatabaseFactory.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.ShimBootstrapDatabaseFactory.#ctor(Infrastructure.Database_config.BootstrapDatabaseFactory)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.ShimBootstrapDatabaseFactory.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.ShimBootstrapDatabaseFactory.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.ShimBootstrapDatabaseFactory.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.ShimBootstrapDatabaseFactory.Constructor">
+            <summary>Sets the shim of BootstrapDatabaseFactory.BootstrapDatabaseFactory()</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.ShimBootstrapDatabaseFactory.Get">
+            <summary>Sets the shim of BootstrapDatabaseFactory.Get()</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.ShimBootstrapDatabaseFactory.InitializeBootstrapDatabaseIBootstrapDatabase">
+            <summary>Sets the shim of BootstrapDatabaseFactory.InitializeBootstrapDatabase(IBootstrapDatabase bootstrapDatabase)</summary>
+        </member>
+        <member name="T:Infrastructure.Database_config.Fakes.ShimBootstrapDatabaseFactory.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Infrastructure.Database_config.Fakes.ShimNullBootstrapDatabase">
+            <summary>Shim type of Infrastructure.Database_config.NullBootstrapDatabase</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.ShimNullBootstrapDatabase.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.ShimNullBootstrapDatabase.#ctor(Infrastructure.Database_config.NullBootstrapDatabase)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.ShimNullBootstrapDatabase.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.ShimNullBootstrapDatabase.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.ShimNullBootstrapDatabase.Bind(Infrastructure.Database_config.IBootstrapDatabase)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.ShimNullBootstrapDatabase.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.ShimNullBootstrapDatabase.BootstrapDatabase">
+            <summary>Sets the shim of NullBootstrapDatabase.BootstrapDatabase()</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.ShimNullBootstrapDatabase.Constructor">
+            <summary>Sets the shim of NullBootstrapDatabase.NullBootstrapDatabase()</summary>
+        </member>
+        <member name="T:Infrastructure.Database_config.Fakes.ShimNullBootstrapDatabase.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.ShimNullBootstrapDatabase.AllInstances.BootstrapDatabase">
+            <summary>Sets the shim of NullBootstrapDatabase.BootstrapDatabase()</summary>
+        </member>
+        <member name="T:Infrastructure.Database_config.Fakes.StubBootstrapDatabaseFactory">
+            <summary>Stub type of Infrastructure.Database_config.BootstrapDatabaseFactory</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.StubBootstrapDatabaseFactory.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.StubBootstrapDatabaseFactory.InitializeStub">
+            <summary>Initializes a new instance of type StubBootstrapDatabaseFactory</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.StubBootstrapDatabaseFactory.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.StubBootstrapDatabaseFactory.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.StubBootstrapDatabaseFactory.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Infrastructure.Database_config.Fakes.StubIBootstrapDatabase">
+            <summary>Stub type of Infrastructure.Database_config.IBootstrapDatabase</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.StubIBootstrapDatabase.#ctor">
+            <summary>Initializes a new instance of type StubIBootstrapDatabase</summary>
+        </member>
+        <member name="F:Infrastructure.Database_config.Fakes.StubIBootstrapDatabase.BootstrapDatabase">
+            <summary>Sets the stub of IBootstrapDatabase.BootstrapDatabase()</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.StubIBootstrapDatabase.i::Infrastructure#Database_config#IBootstrapDatabase#BootstrapDatabase">
+            <summary>Sets the stub of IBootstrapDatabase.BootstrapDatabase()</summary>
+        </member>
+        <member name="T:Infrastructure.Database_config.Fakes.StubNullBootstrapDatabase">
+            <summary>Stub type of Infrastructure.Database_config.NullBootstrapDatabase</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.StubNullBootstrapDatabase.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Database_config.Fakes.StubNullBootstrapDatabase.InitializeStub">
+            <summary>Initializes a new instance of type StubNullBootstrapDatabase</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.StubNullBootstrapDatabase.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.StubNullBootstrapDatabase.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Database_config.Fakes.StubNullBootstrapDatabase.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Infrastructure.Domain.Fakes.ShimEntityBase`1">
+            <summary>Shim type of Infrastructure.Domain.EntityBase`1</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.ShimEntityBase`1.#ctor(Infrastructure.Domain.EntityBase{`0})">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.ShimEntityBase`1.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.ShimEntityBase`1.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimEntityBase`1.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimEntityBase`1.Constructor">
+            <summary>Sets the shim of EntityBase`1.EntityBase`1()</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimEntityBase`1.IdGet">
+            <summary>Sets the shim of EntityBase`1.get_Id()</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimEntityBase`1.IdSetT0">
+            <summary>Sets the shim of EntityBase`1.set_Id(!0 value)</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimEntityBase`1.LastEditGet">
+            <summary>Sets the shim of EntityBase`1.get_LastEdit()</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimEntityBase`1.LastEditSetDateTime">
+            <summary>Sets the shim of EntityBase`1.set_LastEdit(DateTime value)</summary>
+        </member>
+        <member name="T:Infrastructure.Domain.Fakes.ShimEntityBase`1.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimEntityBase`1.AllInstances.IdGet">
+            <summary>Sets the shim of EntityBase`1.get_Id()</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimEntityBase`1.AllInstances.IdSetT0">
+            <summary>Sets the shim of EntityBase`1.set_Id(!0 value)</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimEntityBase`1.AllInstances.LastEditGet">
+            <summary>Sets the shim of EntityBase`1.get_LastEdit()</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimEntityBase`1.AllInstances.LastEditSetDateTime">
+            <summary>Sets the shim of EntityBase`1.set_LastEdit(DateTime value)</summary>
+        </member>
+        <member name="T:Infrastructure.Domain.Fakes.ShimValueObjectIsInvalidException">
+            <summary>Shim type of Infrastructure.Domain.ValueObjectIsInvalidException</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.ShimValueObjectIsInvalidException.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.ShimValueObjectIsInvalidException.#ctor(Infrastructure.Domain.ValueObjectIsInvalidException)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.ShimValueObjectIsInvalidException.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.ShimValueObjectIsInvalidException.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.ShimValueObjectIsInvalidException.Bind(System.Runtime.Serialization.ISerializable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimValueObjectIsInvalidException.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimValueObjectIsInvalidException.Constructor">
+            <summary>Sets the shim of ValueObjectIsInvalidException.ValueObjectIsInvalidException()</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimValueObjectIsInvalidException.ConstructorSerializationInfoStreamingContext">
+            <summary>Sets the shim of ValueObjectIsInvalidException.ValueObjectIsInvalidException(SerializationInfo info, StreamingContext context)</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimValueObjectIsInvalidException.ConstructorString">
+            <summary>Sets the shim of ValueObjectIsInvalidException.ValueObjectIsInvalidException(String message)</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.ShimValueObjectIsInvalidException.ConstructorStringException">
+            <summary>Sets the shim of ValueObjectIsInvalidException.ValueObjectIsInvalidException(String message, Exception inner)</summary>
+        </member>
+        <member name="T:Infrastructure.Domain.Fakes.ShimValueObjectIsInvalidException.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Infrastructure.Domain.Fakes.StubEntityBase`1">
+            <summary>Stub type of Infrastructure.Domain.EntityBase`1</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.StubEntityBase`1.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.StubEntityBase`1.InitializeStub">
+            <summary>Initializes a new instance of type StubEntityBase</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.StubEntityBase`1.Validate">
+            <summary>Sets the stub of EntityBase`1.Validate()</summary>
+        </member>
+        <member name="F:Infrastructure.Domain.Fakes.StubEntityBase`1.Validate01">
+            <summary>Sets the stub of EntityBase`1.Validate()</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.StubEntityBase`1.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.StubEntityBase`1.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.StubEntityBase`1.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException">
+            <summary>Stub type of Infrastructure.Domain.ValueObjectIsInvalidException</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.#ctor(System.String)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.AttachBackingFieldToHelpLink">
+            <summary>Attaches delegates to emulate StubValueObjectIsInvalidException.HelpLink as a property with a backing field.</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.AttachBackingFieldToSource">
+            <summary>Attaches delegates to emulate StubValueObjectIsInvalidException.Source as a property with a backing field.</summary>
+        </member>
+        <member name="F:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.DataGet">
+            <summary>Sets the stub of Exception.get_Data()</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.GetBaseException">
+            <summary>Sets the stub of Exception.GetBaseException()</summary>
+        </member>
+        <member name="F:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.GetBaseException01">
+            <summary>Sets the stub of Exception.GetBaseException()</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Sets the stub of Exception.GetObjectData(SerializationInfo info, StreamingContext context)</summary>
+        </member>
+        <member name="F:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.GetObjectDataSerializationInfoStreamingContext">
+            <summary>Sets the stub of Exception.GetObjectData(SerializationInfo info, StreamingContext context)</summary>
+        </member>
+        <member name="F:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.HelpLinkGet">
+            <summary>Sets the stub of Exception.get_HelpLink()</summary>
+        </member>
+        <member name="F:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.HelpLinkSetString">
+            <summary>Sets the stub of Exception.set_HelpLink(String value)</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.InitializeStub">
+            <summary>Initializes a new instance of type StubValueObjectIsInvalidException</summary>
+        </member>
+        <member name="F:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.MessageGet">
+            <summary>Sets the stub of Exception.get_Message()</summary>
+        </member>
+        <member name="F:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.SourceGet">
+            <summary>Sets the stub of Exception.get_Source()</summary>
+        </member>
+        <member name="F:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.SourceSetString">
+            <summary>Sets the stub of Exception.set_Source(String value)</summary>
+        </member>
+        <member name="F:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.StackTraceGet">
+            <summary>Sets the stub of Exception.get_StackTrace()</summary>
+        </member>
+        <member name="M:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.ToString">
+            <summary>Sets the stub of Exception.ToString()</summary>
+        </member>
+        <member name="F:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.ToString01">
+            <summary>Sets the stub of Exception.ToString()</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.Data">
+            <summary>Sets the stub of Exception.get_Data()</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.HelpLink">
+            <summary>Sets the stub of Exception.get_HelpLink()</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.Message">
+            <summary>Sets the stub of Exception.get_Message()</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.Source">
+            <summary>Sets the stub of Exception.get_Source()</summary>
+        </member>
+        <member name="P:Infrastructure.Domain.Fakes.StubValueObjectIsInvalidException.StackTrace">
+            <summary>Sets the stub of Exception.get_StackTrace()</summary>
+        </member>
+        <member name="T:Infrastructure.Email.Fakes.ShimEmailException">
+            <summary>Shim type of Infrastructure.Email.EmailException</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimEmailException.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimEmailException.#ctor(Infrastructure.Email.EmailException)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimEmailException.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimEmailException.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimEmailException.Bind(System.Runtime.Serialization.ISerializable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimEmailException.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimEmailException.Constructor">
+            <summary>Sets the shim of EmailException.EmailException()</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimEmailException.ConstructorSerializationInfoStreamingContext">
+            <summary>Sets the shim of EmailException.EmailException(SerializationInfo info, StreamingContext context)</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimEmailException.ConstructorString">
+            <summary>Sets the shim of EmailException.EmailException(String message)</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimEmailException.ConstructorStringException">
+            <summary>Sets the shim of EmailException.EmailException(String message, Exception inner)</summary>
+        </member>
+        <member name="T:Infrastructure.Email.Fakes.ShimEmailException.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Infrastructure.Email.Fakes.ShimEmailServiceFactory">
+            <summary>Shim type of Infrastructure.Email.EmailServiceFactory</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimEmailServiceFactory.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimEmailServiceFactory.#ctor(Infrastructure.Email.EmailServiceFactory)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimEmailServiceFactory.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimEmailServiceFactory.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimEmailServiceFactory.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimEmailServiceFactory.Constructor">
+            <summary>Sets the shim of EmailServiceFactory.EmailServiceFactory()</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimEmailServiceFactory.GetEmailService">
+            <summary>Sets the shim of EmailServiceFactory.GetEmailService()</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimEmailServiceFactory.InitializeEmailServiceFactoryIEmailService">
+            <summary>Sets the shim of EmailServiceFactory.InitializeEmailServiceFactory(IEmailService emailService)</summary>
+        </member>
+        <member name="T:Infrastructure.Email.Fakes.ShimEmailServiceFactory.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Infrastructure.Email.Fakes.ShimNullEmailService">
+            <summary>Shim type of Infrastructure.Email.NullEmailService</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimNullEmailService.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimNullEmailService.#ctor(Infrastructure.Email.NullEmailService)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimNullEmailService.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimNullEmailService.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimNullEmailService.Bind(Infrastructure.Email.IEmailService)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimNullEmailService.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimNullEmailService.Constructor">
+            <summary>Sets the shim of NullEmailService.NullEmailService()</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimNullEmailService.SendMailStringStringStringString">
+            <summary>Sets the shim of NullEmailService.SendMail(String from, String to, String subject, String body)</summary>
+        </member>
+        <member name="T:Infrastructure.Email.Fakes.ShimNullEmailService.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimNullEmailService.AllInstances.SendMailStringStringStringString">
+            <summary>Sets the shim of NullEmailService.SendMail(String from, String to, String subject, String body)</summary>
+        </member>
+        <member name="T:Infrastructure.Email.Fakes.ShimSMTPService">
+            <summary>Shim type of Infrastructure.Email.SMTPService</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimSMTPService.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimSMTPService.#ctor(Infrastructure.Email.SMTPService)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimSMTPService.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimSMTPService.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.ShimSMTPService.Bind(Infrastructure.Email.IEmailService)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimSMTPService.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimSMTPService.ConstructorILogger">
+            <summary>Sets the shim of SMTPService.SMTPService(ILogger log)</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimSMTPService.SendMailStringStringStringString">
+            <summary>Sets the shim of SMTPService.SendMail(String from, String to, String subject, String body)</summary>
+        </member>
+        <member name="T:Infrastructure.Email.Fakes.ShimSMTPService.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.ShimSMTPService.AllInstances.SendMailStringStringStringString">
+            <summary>Sets the shim of SMTPService.SendMail(String from, String to, String subject, String body)</summary>
+        </member>
+        <member name="T:Infrastructure.Email.Fakes.StubEmailException">
+            <summary>Stub type of Infrastructure.Email.EmailException</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubEmailException.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubEmailException.#ctor(System.String)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubEmailException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubEmailException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubEmailException.AttachBackingFieldToHelpLink">
+            <summary>Attaches delegates to emulate StubEmailException.HelpLink as a property with a backing field.</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubEmailException.AttachBackingFieldToSource">
+            <summary>Attaches delegates to emulate StubEmailException.Source as a property with a backing field.</summary>
+        </member>
+        <member name="F:Infrastructure.Email.Fakes.StubEmailException.DataGet">
+            <summary>Sets the stub of Exception.get_Data()</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubEmailException.GetBaseException">
+            <summary>Sets the stub of Exception.GetBaseException()</summary>
+        </member>
+        <member name="F:Infrastructure.Email.Fakes.StubEmailException.GetBaseException01">
+            <summary>Sets the stub of Exception.GetBaseException()</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubEmailException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Sets the stub of Exception.GetObjectData(SerializationInfo info, StreamingContext context)</summary>
+        </member>
+        <member name="F:Infrastructure.Email.Fakes.StubEmailException.GetObjectDataSerializationInfoStreamingContext">
+            <summary>Sets the stub of Exception.GetObjectData(SerializationInfo info, StreamingContext context)</summary>
+        </member>
+        <member name="F:Infrastructure.Email.Fakes.StubEmailException.HelpLinkGet">
+            <summary>Sets the stub of Exception.get_HelpLink()</summary>
+        </member>
+        <member name="F:Infrastructure.Email.Fakes.StubEmailException.HelpLinkSetString">
+            <summary>Sets the stub of Exception.set_HelpLink(String value)</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubEmailException.InitializeStub">
+            <summary>Initializes a new instance of type StubEmailException</summary>
+        </member>
+        <member name="F:Infrastructure.Email.Fakes.StubEmailException.MessageGet">
+            <summary>Sets the stub of Exception.get_Message()</summary>
+        </member>
+        <member name="F:Infrastructure.Email.Fakes.StubEmailException.SourceGet">
+            <summary>Sets the stub of Exception.get_Source()</summary>
+        </member>
+        <member name="F:Infrastructure.Email.Fakes.StubEmailException.SourceSetString">
+            <summary>Sets the stub of Exception.set_Source(String value)</summary>
+        </member>
+        <member name="F:Infrastructure.Email.Fakes.StubEmailException.StackTraceGet">
+            <summary>Sets the stub of Exception.get_StackTrace()</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubEmailException.ToString">
+            <summary>Sets the stub of Exception.ToString()</summary>
+        </member>
+        <member name="F:Infrastructure.Email.Fakes.StubEmailException.ToString01">
+            <summary>Sets the stub of Exception.ToString()</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubEmailException.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubEmailException.Data">
+            <summary>Sets the stub of Exception.get_Data()</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubEmailException.HelpLink">
+            <summary>Sets the stub of Exception.get_HelpLink()</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubEmailException.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubEmailException.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubEmailException.Message">
+            <summary>Sets the stub of Exception.get_Message()</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubEmailException.Source">
+            <summary>Sets the stub of Exception.get_Source()</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubEmailException.StackTrace">
+            <summary>Sets the stub of Exception.get_StackTrace()</summary>
+        </member>
+        <member name="T:Infrastructure.Email.Fakes.StubEmailServiceFactory">
+            <summary>Stub type of Infrastructure.Email.EmailServiceFactory</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubEmailServiceFactory.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubEmailServiceFactory.InitializeStub">
+            <summary>Initializes a new instance of type StubEmailServiceFactory</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubEmailServiceFactory.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubEmailServiceFactory.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubEmailServiceFactory.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Infrastructure.Email.Fakes.StubIEmailService">
+            <summary>Stub type of Infrastructure.Email.IEmailService</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubIEmailService.#ctor">
+            <summary>Initializes a new instance of type StubIEmailService</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubIEmailService.i::Infrastructure#Email#IEmailService#SendMail(System.String,System.String,System.String,System.String)">
+            <summary>Sets the stub of IEmailService.SendMail(String from, String to, String subject, String body)</summary>
+        </member>
+        <member name="F:Infrastructure.Email.Fakes.StubIEmailService.SendMailStringStringStringString">
+            <summary>Sets the stub of IEmailService.SendMail(String from, String to, String subject, String body)</summary>
+        </member>
+        <member name="T:Infrastructure.Email.Fakes.StubNullEmailService">
+            <summary>Stub type of Infrastructure.Email.NullEmailService</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubNullEmailService.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubNullEmailService.InitializeStub">
+            <summary>Initializes a new instance of type StubNullEmailService</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubNullEmailService.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubNullEmailService.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubNullEmailService.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Infrastructure.Email.Fakes.StubSMTPService">
+            <summary>Stub type of Infrastructure.Email.SMTPService</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubSMTPService.#ctor(Infrastructure.Logging.ILogger)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Email.Fakes.StubSMTPService.InitializeStub">
+            <summary>Initializes a new instance of type StubSMTPService</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubSMTPService.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubSMTPService.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Email.Fakes.StubSMTPService.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Infrastructure.Exceptions.Fakes.ShimNotFoundException">
+            <summary>Shim type of Infrastructure.Exceptions.NotFoundException</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.ShimNotFoundException.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.ShimNotFoundException.#ctor(Infrastructure.Exceptions.NotFoundException)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.ShimNotFoundException.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.ShimNotFoundException.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.ShimNotFoundException.Bind(System.Runtime.Serialization.ISerializable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:Infrastructure.Exceptions.Fakes.ShimNotFoundException.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Exceptions.Fakes.ShimNotFoundException.Constructor">
+            <summary>Sets the shim of NotFoundException.NotFoundException()</summary>
+        </member>
+        <member name="P:Infrastructure.Exceptions.Fakes.ShimNotFoundException.ConstructorSerializationInfoStreamingContext">
+            <summary>Sets the shim of NotFoundException.NotFoundException(SerializationInfo info, StreamingContext context)</summary>
+        </member>
+        <member name="P:Infrastructure.Exceptions.Fakes.ShimNotFoundException.ConstructorString">
+            <summary>Sets the shim of NotFoundException.NotFoundException(String message)</summary>
+        </member>
+        <member name="P:Infrastructure.Exceptions.Fakes.ShimNotFoundException.ConstructorStringException">
+            <summary>Sets the shim of NotFoundException.NotFoundException(String message, Exception inner)</summary>
+        </member>
+        <member name="T:Infrastructure.Exceptions.Fakes.ShimNotFoundException.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Infrastructure.Exceptions.Fakes.StubNotFoundException">
+            <summary>Stub type of Infrastructure.Exceptions.NotFoundException</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.StubNotFoundException.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.StubNotFoundException.#ctor(System.String)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.StubNotFoundException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.StubNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.StubNotFoundException.AttachBackingFieldToHelpLink">
+            <summary>Attaches delegates to emulate StubNotFoundException.HelpLink as a property with a backing field.</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.StubNotFoundException.AttachBackingFieldToSource">
+            <summary>Attaches delegates to emulate StubNotFoundException.Source as a property with a backing field.</summary>
+        </member>
+        <member name="F:Infrastructure.Exceptions.Fakes.StubNotFoundException.DataGet">
+            <summary>Sets the stub of Exception.get_Data()</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.StubNotFoundException.GetBaseException">
+            <summary>Sets the stub of Exception.GetBaseException()</summary>
+        </member>
+        <member name="F:Infrastructure.Exceptions.Fakes.StubNotFoundException.GetBaseException01">
+            <summary>Sets the stub of Exception.GetBaseException()</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.StubNotFoundException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Sets the stub of Exception.GetObjectData(SerializationInfo info, StreamingContext context)</summary>
+        </member>
+        <member name="F:Infrastructure.Exceptions.Fakes.StubNotFoundException.GetObjectDataSerializationInfoStreamingContext">
+            <summary>Sets the stub of Exception.GetObjectData(SerializationInfo info, StreamingContext context)</summary>
+        </member>
+        <member name="F:Infrastructure.Exceptions.Fakes.StubNotFoundException.HelpLinkGet">
+            <summary>Sets the stub of Exception.get_HelpLink()</summary>
+        </member>
+        <member name="F:Infrastructure.Exceptions.Fakes.StubNotFoundException.HelpLinkSetString">
+            <summary>Sets the stub of Exception.set_HelpLink(String value)</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.StubNotFoundException.InitializeStub">
+            <summary>Initializes a new instance of type StubNotFoundException</summary>
+        </member>
+        <member name="F:Infrastructure.Exceptions.Fakes.StubNotFoundException.MessageGet">
+            <summary>Sets the stub of Exception.get_Message()</summary>
+        </member>
+        <member name="F:Infrastructure.Exceptions.Fakes.StubNotFoundException.SourceGet">
+            <summary>Sets the stub of Exception.get_Source()</summary>
+        </member>
+        <member name="F:Infrastructure.Exceptions.Fakes.StubNotFoundException.SourceSetString">
+            <summary>Sets the stub of Exception.set_Source(String value)</summary>
+        </member>
+        <member name="F:Infrastructure.Exceptions.Fakes.StubNotFoundException.StackTraceGet">
+            <summary>Sets the stub of Exception.get_StackTrace()</summary>
+        </member>
+        <member name="M:Infrastructure.Exceptions.Fakes.StubNotFoundException.ToString">
+            <summary>Sets the stub of Exception.ToString()</summary>
+        </member>
+        <member name="F:Infrastructure.Exceptions.Fakes.StubNotFoundException.ToString01">
+            <summary>Sets the stub of Exception.ToString()</summary>
+        </member>
+        <member name="P:Infrastructure.Exceptions.Fakes.StubNotFoundException.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Exceptions.Fakes.StubNotFoundException.Data">
+            <summary>Sets the stub of Exception.get_Data()</summary>
+        </member>
+        <member name="P:Infrastructure.Exceptions.Fakes.StubNotFoundException.HelpLink">
+            <summary>Sets the stub of Exception.get_HelpLink()</summary>
+        </member>
+        <member name="P:Infrastructure.Exceptions.Fakes.StubNotFoundException.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Exceptions.Fakes.StubNotFoundException.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:Infrastructure.Exceptions.Fakes.StubNotFoundException.Message">
+            <summary>Sets the stub of Exception.get_Message()</summary>
+        </member>
+        <member name="P:Infrastructure.Exceptions.Fakes.StubNotFoundException.Source">
+            <summary>Sets the stub of Exception.get_Source()</summary>
+        </member>
+        <member name="P:Infrastructure.Exceptions.Fakes.StubNotFoundException.StackTrace">
+            <summary>Sets the stub of Exception.get_StackTrace()</summary>
+        </member>
+        <member name="T:Infrastructure.Extensions.Fakes.ShimAppTaskExtensions">
+            <summary>Shim type of Infrastructure.Extensions.AppTaskExtensions</summary>
+        </member>
+        <member name="M:Infrastructure.Extensions.Fakes.ShimAppTaskExtensions.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Extensions.Fakes.ShimAppTaskExtensions.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Extensions.Fakes.ShimAppTaskExtensions.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Extensions.Fakes.ShimAppTaskExtensions.RunAsyncAsSyncOf1FuncOfTaskOfM0``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.Func{System.Threading.Tasks.Task{``0}},``0})">
+            <summary>Sets the shim of AppTaskExtensions.RunAsyncAsSync(Func`1&lt;Task`1&lt;!!0&gt;&gt; asyncFunc)</summary>
+        </member>
+        <member name="P:Infrastructure.Extensions.Fakes.ShimAppTaskExtensions.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Extensions.Fakes.ShimAppTaskExtensions.RunAsyncAsSyncFuncOfTask">
+            <summary>Sets the shim of AppTaskExtensions.RunAsyncAsSync(Func`1&lt;Task&gt; asyncFunc)</summary>
+        </member>
+        <member name="T:Infrastructure.Extensions.Fakes.ShimDateTimeExtensions">
+            <summary>Shim type of Infrastructure.Extensions.DateTimeExtensions</summary>
+        </member>
+        <member name="M:Infrastructure.Extensions.Fakes.ShimDateTimeExtensions.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Extensions.Fakes.ShimDateTimeExtensions.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Extensions.Fakes.ShimDateTimeExtensions.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Extensions.Fakes.ShimDateTimeExtensions.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Extensions.Fakes.ShimDateTimeExtensions.EndOfDayDateTime">
+            <summary>Sets the shim of DateTimeExtensions.EndOfDay(DateTime date)</summary>
+        </member>
+        <member name="P:Infrastructure.Extensions.Fakes.ShimDateTimeExtensions.StartOfDayDateTime">
+            <summary>Sets the shim of DateTimeExtensions.StartOfDay(DateTime date)</summary>
+        </member>
+        <member name="T:Infrastructure.Helpers.Fakes.ShimURLHelper">
+            <summary>Shim type of Infrastructure.Helpers.URLHelper</summary>
+        </member>
+        <member name="M:Infrastructure.Helpers.Fakes.ShimURLHelper.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Helpers.Fakes.ShimURLHelper.#ctor(Infrastructure.Helpers.URLHelper)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Helpers.Fakes.ShimURLHelper.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Helpers.Fakes.ShimURLHelper.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Helpers.Fakes.ShimURLHelper.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Helpers.Fakes.ShimURLHelper.Constructor">
+            <summary>Sets the shim of URLHelper.URLHelper()</summary>
+        </member>
+        <member name="P:Infrastructure.Helpers.Fakes.ShimURLHelper.GetIdFromStringString">
+            <summary>Sets the shim of URLHelper.GetIdFromString(String url)</summary>
+        </member>
+        <member name="P:Infrastructure.Helpers.Fakes.ShimURLHelper.ToFriendlyUrlString">
+            <summary>Sets the shim of URLHelper.ToFriendlyUrl(String urlToEncode)</summary>
+        </member>
+        <member name="P:Infrastructure.Helpers.Fakes.ShimURLHelper.ToFriendlyUrlStringString">
+            <summary>Sets the shim of URLHelper.ToFriendlyUrl(String urlToEncode, String id)</summary>
+        </member>
+        <member name="P:Infrastructure.Helpers.Fakes.ShimURLHelper.UrlSlugString">
+            <summary>Sets the shim of URLHelper.UrlSlug(String val)</summary>
+        </member>
+        <member name="P:Infrastructure.Helpers.Fakes.ShimURLHelper.UrlSlugWithIdStringString">
+            <summary>Sets the shim of URLHelper.UrlSlugWithId(String val, String id)</summary>
+        </member>
+        <member name="T:Infrastructure.Helpers.Fakes.ShimURLHelper.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Infrastructure.Helpers.Fakes.StubURLHelper">
+            <summary>Stub type of Infrastructure.Helpers.URLHelper</summary>
+        </member>
+        <member name="M:Infrastructure.Helpers.Fakes.StubURLHelper.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Helpers.Fakes.StubURLHelper.InitializeStub">
+            <summary>Initializes a new instance of type StubURLHelper</summary>
+        </member>
+        <member name="P:Infrastructure.Helpers.Fakes.StubURLHelper.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Helpers.Fakes.StubURLHelper.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Helpers.Fakes.StubURLHelper.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Infrastructure.Logging.Fakes.ShimLog4NetAdapter">
+            <summary>Shim type of Infrastructure.Logging.Log4NetAdapter</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.#ctor(Infrastructure.Logging.Log4NetAdapter)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.Bind(Infrastructure.Logging.ILogger)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.Constructor">
+            <summary>Sets the shim of Log4NetAdapter.Log4NetAdapter()</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.ErrorString">
+            <summary>Sets the shim of Log4NetAdapter.Error(String message)</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.ErrorStringException">
+            <summary>Sets the shim of Log4NetAdapter.Error(String message, Exception e)</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.LogString">
+            <summary>Sets the shim of Log4NetAdapter.Log(String message)</summary>
+        </member>
+        <member name="T:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.AllInstances.ErrorString">
+            <summary>Sets the shim of Log4NetAdapter.Error(String message)</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.AllInstances.ErrorStringException">
+            <summary>Sets the shim of Log4NetAdapter.Error(String message, Exception e)</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.ShimLog4NetAdapter.AllInstances.LogString">
+            <summary>Sets the shim of Log4NetAdapter.Log(String message)</summary>
+        </member>
+        <member name="T:Infrastructure.Logging.Fakes.ShimLoggingFactory">
+            <summary>Shim type of Infrastructure.Logging.LoggingFactory</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.ShimLoggingFactory.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.ShimLoggingFactory.#ctor(Infrastructure.Logging.LoggingFactory)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.ShimLoggingFactory.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.ShimLoggingFactory.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.ShimLoggingFactory.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.ShimLoggingFactory.Constructor">
+            <summary>Sets the shim of LoggingFactory.LoggingFactory()</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.ShimLoggingFactory.GetLogger">
+            <summary>Sets the shim of LoggingFactory.GetLogger()</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.ShimLoggingFactory.InitializeLogFactoryILogger">
+            <summary>Sets the shim of LoggingFactory.InitializeLogFactory(ILogger logger)</summary>
+        </member>
+        <member name="T:Infrastructure.Logging.Fakes.ShimLoggingFactory.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Infrastructure.Logging.Fakes.StubILogger">
+            <summary>Stub type of Infrastructure.Logging.ILogger</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.StubILogger.#ctor">
+            <summary>Initializes a new instance of type StubILogger</summary>
+        </member>
+        <member name="F:Infrastructure.Logging.Fakes.StubILogger.ErrorString">
+            <summary>Sets the stub of ILogger.Error(String message)</summary>
+        </member>
+        <member name="F:Infrastructure.Logging.Fakes.StubILogger.ErrorStringException">
+            <summary>Sets the stub of ILogger.Error(String message, Exception e)</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.StubILogger.i::Infrastructure#Logging#ILogger#Error(System.String)">
+            <summary>Sets the stub of ILogger.Error(String message)</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.StubILogger.i::Infrastructure#Logging#ILogger#Error(System.String,System.Exception)">
+            <summary>Sets the stub of ILogger.Error(String message, Exception e)</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.StubILogger.i::Infrastructure#Logging#ILogger#Log(System.String)">
+            <summary>Sets the stub of ILogger.Log(String message)</summary>
+        </member>
+        <member name="F:Infrastructure.Logging.Fakes.StubILogger.LogString">
+            <summary>Sets the stub of ILogger.Log(String message)</summary>
+        </member>
+        <member name="T:Infrastructure.Logging.Fakes.StubLog4NetAdapter">
+            <summary>Stub type of Infrastructure.Logging.Log4NetAdapter</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.StubLog4NetAdapter.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.StubLog4NetAdapter.InitializeStub">
+            <summary>Initializes a new instance of type StubLog4NetAdapter</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.StubLog4NetAdapter.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.StubLog4NetAdapter.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.StubLog4NetAdapter.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Infrastructure.Logging.Fakes.StubLoggingFactory">
+            <summary>Stub type of Infrastructure.Logging.LoggingFactory</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.StubLoggingFactory.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Fakes.StubLoggingFactory.InitializeStub">
+            <summary>Initializes a new instance of type StubLoggingFactory</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.StubLoggingFactory.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.StubLoggingFactory.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Fakes.StubLoggingFactory.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter">
+            <summary>Shim type of Infrastructure.Mapping.AutoMapperAdapter</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.#ctor(Infrastructure.Mapping.AutoMapperAdapter)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.Bind(Infrastructure.Mapping.IMapper)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.CreateMapOf2``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Action)">
+            <summary>Sets the shim of AutoMapperAdapter.CreateMap()</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.MapOf2IEnumerableOfM0``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}})">
+            <summary>Sets the shim of AutoMapperAdapter.Map(IEnumerable`1&lt;!!0&gt; source)</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.MapOf2M0``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{``0,``1})">
+            <summary>Sets the shim of AutoMapperAdapter.Map(!!0 source)</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.MapOf2M0M1``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{``0,``1,``1})">
+            <summary>Sets the shim of AutoMapperAdapter.Map(!!0 source, !!1 destination)</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter._Mapb__0Of2M0``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{``0,``1})">
+            <summary>Sets the shim of AutoMapperAdapter.&lt;Map&gt;b__0(!!0 m)</summary>
+        </member>
+        <member name="P:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.Constructor">
+            <summary>Sets the shim of AutoMapperAdapter.AutoMapperAdapter()</summary>
+        </member>
+        <member name="T:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.AllInstances.CreateMapOf2``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Action{Infrastructure.Mapping.AutoMapperAdapter})">
+            <summary>Sets the shim of AutoMapperAdapter.CreateMap()</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.AllInstances.MapOf2IEnumerableOfM0``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Infrastructure.Mapping.AutoMapperAdapter,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}})">
+            <summary>Sets the shim of AutoMapperAdapter.Map(IEnumerable`1&lt;!!0&gt; source)</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.AllInstances.MapOf2M0``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Infrastructure.Mapping.AutoMapperAdapter,``0,``1})">
+            <summary>Sets the shim of AutoMapperAdapter.Map(!!0 source)</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.AllInstances.MapOf2M0M1``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Infrastructure.Mapping.AutoMapperAdapter,``0,``1,``1})">
+            <summary>Sets the shim of AutoMapperAdapter.Map(!!0 source, !!1 destination)</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.ShimAutoMapperAdapter.AllInstances._Mapb__0Of2M0``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Infrastructure.Mapping.AutoMapperAdapter,``0,``1})">
+            <summary>Sets the shim of AutoMapperAdapter.&lt;Map&gt;b__0(!!0 m)</summary>
+        </member>
+        <member name="T:Infrastructure.Mapping.Fakes.StubAutoMapperAdapter">
+            <summary>Stub type of Infrastructure.Mapping.AutoMapperAdapter</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.StubAutoMapperAdapter.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.StubAutoMapperAdapter.InitializeStub">
+            <summary>Initializes a new instance of type StubAutoMapperAdapter</summary>
+        </member>
+        <member name="P:Infrastructure.Mapping.Fakes.StubAutoMapperAdapter.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Infrastructure.Mapping.Fakes.StubAutoMapperAdapter.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Infrastructure.Mapping.Fakes.StubAutoMapperAdapter.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Infrastructure.Mapping.Fakes.StubIMapper">
+            <summary>Stub type of Infrastructure.Mapping.IMapper</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.StubIMapper.#ctor">
+            <summary>Initializes a new instance of type StubIMapper</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.StubIMapper.CreateMapOf2``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Action)">
+            <summary>Sets stubs of CreateMap()</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.StubIMapper.i::Infrastructure#Mapping#IMapper#CreateMap``2">
+            <summary>Sets the stub of IMapper.CreateMap()</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.StubIMapper.i::Infrastructure#Mapping#IMapper#Map``2(System.Collections.Generic.IEnumerable{``0})">
+            <summary>Sets the stub of IMapper.Map(IEnumerable`1&lt;!!0&gt; source)</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.StubIMapper.i::Infrastructure#Mapping#IMapper#Map``2(``0)">
+            <summary>Sets the stub of IMapper.Map(!!0 source)</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.StubIMapper.i::Infrastructure#Mapping#IMapper#Map``2(``0,``1)">
+            <summary>Sets the stub of IMapper.Map(!!0 source, !!1 destination)</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.StubIMapper.MapOf2IEnumerableOfM0``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}})">
+            <summary>Sets stubs of Map(IEnumerable`1&lt;!!0&gt; source)</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.StubIMapper.MapOf2M0``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{``0,``1})">
+            <summary>Sets stubs of Map(!!0 source)</summary>
+        </member>
+        <member name="M:Infrastructure.Mapping.Fakes.StubIMapper.MapOf2M0M1``2(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{``0,``1,``1})">
+            <summary>Sets stubs of Map(!!0 source, !!1 destination)</summary>
+        </member>
+        <member name="T:Infrastructure.Repository.Fakes.StubIReadOnlyRepository`2">
+            <summary>Stub type of Infrastructure.Repository.IReadOnlyRepository`2</summary>
+        </member>
+        <member name="M:Infrastructure.Repository.Fakes.StubIReadOnlyRepository`2.#ctor">
+            <summary>Initializes a new instance of type StubIReadOnlyRepository</summary>
+        </member>
+        <member name="F:Infrastructure.Repository.Fakes.StubIReadOnlyRepository`2.Count">
+            <summary>Sets the stub of IReadOnlyRepository`2.Count()</summary>
+        </member>
+        <member name="F:Infrastructure.Repository.Fakes.StubIReadOnlyRepository`2.FindByT1Boolean">
+            <summary>Sets the stub of IReadOnlyRepository`2.FindBy(!1 id, Boolean hydrate)</summary>
+        </member>
+        <member name="F:Infrastructure.Repository.Fakes.StubIReadOnlyRepository`2.GetQuery">
+            <summary>Sets the stub of IReadOnlyRepository`2.GetQuery()</summary>
+        </member>
+        <member name="M:Infrastructure.Repository.Fakes.StubIReadOnlyRepository`2.i::Infrastructure#Repository#IReadOnlyRepository{T@TId}#Count">
+            <summary>Sets the stub of IReadOnlyRepository`2.Count()</summary>
+        </member>
+        <member name="M:Infrastructure.Repository.Fakes.StubIReadOnlyRepository`2.i::Infrastructure#Repository#IReadOnlyRepository{T@TId}#FindBy(`1,System.Boolean)">
+            <summary>Sets the stub of IReadOnlyRepository`2.FindBy(!1 id, Boolean hydrate)</summary>
+        </member>
+        <member name="M:Infrastructure.Repository.Fakes.StubIReadOnlyRepository`2.i::Infrastructure#Repository#IReadOnlyRepository{T@TId}#GetQuery">
+            <summary>Sets the stub of IReadOnlyRepository`2.GetQuery()</summary>
+        </member>
+        <member name="T:Infrastructure.Repository.Fakes.StubIRepository`2">
+            <summary>Stub type of Infrastructure.Repository.IRepository`2</summary>
+        </member>
+        <member name="M:Infrastructure.Repository.Fakes.StubIRepository`2.#ctor">
+            <summary>Initializes a new instance of type StubIRepository</summary>
+        </member>
+        <member name="F:Infrastructure.Repository.Fakes.StubIRepository`2.Count">
+            <summary>Sets the stub of IReadOnlyRepository`2.Count()</summary>
+        </member>
+        <member name="F:Infrastructure.Repository.Fakes.StubIRepository`2.CreateT0">
+            <summary>Sets the stub of IRepository`2.Create(!0 entity)</summary>
+        </member>
+        <member name="F:Infrastructure.Repository.Fakes.StubIRepository`2.DeleteT1">
+            <summary>Sets the stub of IRepository`2.Delete(!1 Id)</summary>
+        </member>
+        <member name="F:Infrastructure.Repository.Fakes.StubIRepository`2.FindByT1Boolean">
+            <summary>Sets the stub of IReadOnlyRepository`2.FindBy(!1 id, Boolean hydrate)</summary>
+        </member>
+        <member name="F:Infrastructure.Repository.Fakes.StubIRepository`2.GetQuery">
+            <summary>Sets the stub of IReadOnlyRepository`2.GetQuery()</summary>
+        </member>
+        <member name="M:Infrastructure.Repository.Fakes.StubIRepository`2.i::Infrastructure#Repository#IReadOnlyRepository{T@TId}#Count">
+            <summary>Sets the stub of IReadOnlyRepository`2.Count()</summary>
+        </member>
+        <member name="M:Infrastructure.Repository.Fakes.StubIRepository`2.i::Infrastructure#Repository#IReadOnlyRepository{T@TId}#FindBy(`1,System.Boolean)">
+            <summary>Sets the stub of IReadOnlyRepository`2.FindBy(!1 id, Boolean hydrate)</summary>
+        </member>
+        <member name="M:Infrastructure.Repository.Fakes.StubIRepository`2.i::Infrastructure#Repository#IReadOnlyRepository{T@TId}#GetQuery">
+            <summary>Sets the stub of IReadOnlyRepository`2.GetQuery()</summary>
+        </member>
+        <member name="M:Infrastructure.Repository.Fakes.StubIRepository`2.i::Infrastructure#Repository#IRepository{T@TId}#Create(`0)">
+            <summary>Sets the stub of IRepository`2.Create(!0 entity)</summary>
+        </member>
+        <member name="M:Infrastructure.Repository.Fakes.StubIRepository`2.i::Infrastructure#Repository#IRepository{T@TId}#Delete(`1)">
+            <summary>Sets the stub of IRepository`2.Delete(!1 Id)</summary>
+        </member>
+        <member name="M:Infrastructure.Repository.Fakes.StubIRepository`2.i::Infrastructure#Repository#IRepository{T@TId}#Update(`0)">
+            <summary>Sets the stub of IRepository`2.Update(!0 entity)</summary>
+        </member>
+        <member name="F:Infrastructure.Repository.Fakes.StubIRepository`2.UpdateT0">
+            <summary>Sets the stub of IRepository`2.Update(!0 entity)</summary>
+        </member>
+        <member name="T:Infrastructure.Unit_Of_Work.Fakes.StubIUnitOfWork">
+            <summary>Stub type of Infrastructure.Unit_Of_Work.IUnitOfWork</summary>
+        </member>
+        <member name="M:Infrastructure.Unit_Of_Work.Fakes.StubIUnitOfWork.#ctor">
+            <summary>Initializes a new instance of type StubIUnitOfWork</summary>
+        </member>
+        <member name="M:Infrastructure.Unit_Of_Work.Fakes.StubIUnitOfWork.i::Infrastructure#Unit_Of_Work#IUnitOfWork#Save">
+            <summary>Sets the stub of IUnitOfWork.Save()</summary>
+        </member>
+        <member name="M:Infrastructure.Unit_Of_Work.Fakes.StubIUnitOfWork.i::Infrastructure#Unit_Of_Work#IUnitOfWork#SaveAsync">
+            <summary>Sets the stub of IUnitOfWork.SaveAsync()</summary>
+        </member>
+        <member name="F:Infrastructure.Unit_Of_Work.Fakes.StubIUnitOfWork.Save">
+            <summary>Sets the stub of IUnitOfWork.Save()</summary>
+        </member>
+        <member name="F:Infrastructure.Unit_Of_Work.Fakes.StubIUnitOfWork.SaveAsync">
+            <summary>Sets the stub of IUnitOfWork.SaveAsync()</summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,26 @@
+﻿@model WebUi.Models.Blog.BlogPageDataViewModel
+
+
+<div class="well">
+    <h4>Latest Posts</h4>
+    <div class="row">
+        <ul class="list-unstyled">
+            @foreach (var item in Model.RecentLinkList)
+            {
+                <li class="post-link"><a href="@Url.RouteUrl("ViewPost", new { id = item.UrlSlug })" class="">@item.Title</a></li>
+            }
+        </ul>
+
+    </div>
+</div>
+
+<div class="well">
+    <h4>Tags</h4>
+    <div class="row">
+
+        @foreach (var item in Model.TagCountList)
+        {
+            <a href="@Url.RouteUrl("PostsByTag", new { tag = item.UrlSlug })" class="label label-primary tag" style="margin:10px;">@item.Name<span class="badge">@item.Count</span></a>
+        }
+    </div>
+</div>

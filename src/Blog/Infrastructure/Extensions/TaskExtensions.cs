@@ -12,5 +12,10 @@ namespace Infrastructure.Extensions
         {
             return Task.Run<T>(() => asyncFunc.Invoke().Result).Result;
         }
+
+        public static Task RunAsyncAsSync(Func<Task> asyncFunc)
+        {
+            return Task.Run(() => asyncFunc.Invoke());
+        }
     }
 }

@@ -18,11 +18,13 @@ namespace WebUi.Controllers
             : base(logger, mapper, appSettings)
         { }
 
+        [Route]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Route("About")]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -30,6 +32,7 @@ namespace WebUi.Controllers
             return View();
         }
 
+        [Route("Contact")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

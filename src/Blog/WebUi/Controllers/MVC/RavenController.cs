@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Config._Settings;
+using Infrastructure.Extensions;
 using Infrastructure.Mapping;
 using Raven.Client;
 using System;
@@ -41,20 +42,34 @@ namespace WebUi.Controllers
             }
         }
 
-        //protected override void OnActionExecuted(ActionExecutedContext filterContext)
-        //{
-        //    if (filterContext.IsChildAction)
-        //        return;
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            if (filterContext.IsChildAction)
+                return;
 
-        //    using (RavenSession)
-        //    {
-        //        if (filterContext.Exception != null)
-        //            return;
+            using (RavenSession)
+            {
+                if (filterContext.Exception != null)
+                    return;
 
-        //        if (RavenSession != null)
-        //            RavenSession.SaveChangesAsync();
-        //    }
+                if (RavenSession != null)
+                    AppTaskExtensions.RunAsyncAsSync(RavenSession.SaveChangesAsync);
+            }
 
-        //}
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (RavenSession != null)
+                {
+                    RavenSession.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+
     }
 }

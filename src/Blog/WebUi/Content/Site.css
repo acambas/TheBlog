@@ -51,3 +51,10 @@ table.mceLayout, textarea.tinyMCE {
     }
 }
 
+.post-link {
+    display: block;
+    float: left;
+    width:100%;
+    margin-left:10%;
+    margin-bottom:5px;
+}

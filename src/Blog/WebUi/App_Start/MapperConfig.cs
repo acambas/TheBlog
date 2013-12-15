@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WebUi.Models.Blog;
+using WebUi.Models.RavenDB;
 
 namespace WebUi.App_Start
 {
@@ -19,6 +20,9 @@ namespace WebUi.App_Start
 
             Mapper.CreateMap<TagViewModel, Tag>();
             Mapper.CreateMap<Tag, TagViewModel>();
+
+            Mapper.CreateMap<TagCountIndex.ReduceResult, TagCountViewModel>();
+            Mapper.CreateMap<Post, PostLinkViewModel>();
         }
 
     }

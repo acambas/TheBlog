@@ -1,67 +1,30 @@
-﻿@model WebInfrastructure.ViewModels.PostViewModel
+﻿@model WebUi.Models.Blog.PostViewModel
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>PostViewModel</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShortDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShortDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Published)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Published)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PostedOn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PostedOn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Modified)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Modified)
-        </dd>
-
-    </dl>
+<div class="row box">
+    <div class=" col-lg-12 " id="posts">
+        <div class=" ">
+            <h2 class="text-center">
+                @Model.Title
+                <br>
+                <small>
+                    <i class="fa fa-calendar"></i> @Model.PostedOn.ToString("dd MMM yyyy")
+                    @foreach (var item in Model.Tags)
+                    {
+                        <a href="@Url.Action("FilterByTag", "Blog", new { id = @item.Name , name=@item.Name})">
+                            <i class="fa fa-tag"></i>
+                            @item.Name
+                        </a>
+                    }
+                </small>
+            </h2>
+            <img class="img-responsive img-border img-full" src="~/img/blog-2.jpg" />
+            @Html.Raw(Model.Description)
+            <hr>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
