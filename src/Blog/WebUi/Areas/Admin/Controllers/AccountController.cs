@@ -13,13 +13,14 @@ using Thinktecture.IdentityModel.Authorization.Mvc;
 using WebUi.App_Start;
 using WebUi.Controllers;
 using WebUi.Models;
-
+using Raven.Client;
+using AspNet.Identity.RavenDB.Entities;
+using System.Security.Claims;
 namespace WebUi.Areas.Admin.Controllers
 {
     [Authorize]
     public class AccountController : RavenController
     {
-
         public UserManager<ApplicationUser> UserManager { get; private set; }
 
         public AccountController(Infrastructure.Logging.ILogger logger,
@@ -35,72 +36,64 @@ namespace WebUi.Areas.Admin.Controllers
                 (new RavenUserStore<ApplicationUser>(RavenSession));
         }
 
+        [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
+        public async Task<ActionResult> Index()
+        {
+            IEnumerable<ApplicationUserViewModel> viewModel;
+            var data = await RavenSession.Query<ApplicationUser>().ToListAsync();
+            viewModel = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(data);
+            return View(viewModel);
+        }
 
+        [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
+        public async Task<ActionResult> Edit(string userName)
+        {
+            ApplicationUserViewModel viewModel;
+            var data = await RavenSession.Query<ApplicationUser>().FirstAsync(m => m.UserName == userName);
+            viewModel = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(data);
+            return View(viewModel);
+        }
 
+        [HttpPost]
+        [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
+        public async Task<ActionResult> Edit(ApplicationUserViewModel viewModel)
+        {
+            return View(viewModel);
+        }
 
-
-
-
-        //
-        // GET: /Account/Login
         [AllowAnonymous]
+        [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return RedirectToAction("Login", "Login", new { Area=""});
         }
 
-        //
-        // POST: /Account/Login
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        {
 
-            throw new NotImplementedException();
-            if (ModelState.IsValid)
-            {
-                var user = await UserManager.FindAsync(model.UserName, model.Password);
-                if (user != null)
-                {
-                    await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid username or password.");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
-
-        //
-        // GET: /Account/Register
         [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
         public ActionResult Register()
         {
-            return View();
+
+            return View(new RegisterViewModel());
         }
 
-        //
-        // POST: /Account/Register
+
         [HttpPost]
-        [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
+        [ClaimsAuthorize(AppAuthorizationType.RoleAuth, AppRoles.Admin)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && AppRoles.AppRoleList.Contains(model.Role))
             {
                 var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Name = model.Name };
                 user = Mapper.Map<RegisterViewModel, ApplicationUser>(model);
+                user.Claims = new List<RavenUserClaim> {new RavenUserClaim(new Claim(ClaimTypes.Role, model.Role)) };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    //await SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Index", "Account", new {Area="Admin" });
                 }
                 else
                 {
@@ -112,8 +105,7 @@ namespace WebUi.Areas.Admin.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Account/Disassociate
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Disassociate(string loginProvider, string providerKey)
@@ -146,8 +138,6 @@ namespace WebUi.Areas.Admin.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Manage
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Manage(ManageUserViewModel model)
@@ -197,8 +187,7 @@ namespace WebUi.Areas.Admin.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Account/ExternalLogin
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -208,8 +197,7 @@ namespace WebUi.Areas.Admin.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
-        //
-        // GET: /Account/ExternalLoginCallback
+
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
@@ -235,8 +223,7 @@ namespace WebUi.Areas.Admin.Controllers
             }
         }
 
-        //
-        // POST: /Account/LinkLogin
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
@@ -245,8 +232,7 @@ namespace WebUi.Areas.Admin.Controllers
             return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), User.Identity.GetUserId());
         }
 
-        //
-        // GET: /Account/LinkLoginCallback
+
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
@@ -262,8 +248,7 @@ namespace WebUi.Areas.Admin.Controllers
             return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
         }
 
-        //
-        // POST: /Account/ExternalLoginConfirmation
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -300,8 +285,7 @@ namespace WebUi.Areas.Admin.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Account/LogOff
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -310,8 +294,7 @@ namespace WebUi.Areas.Admin.Controllers
             return RedirectToAction("Index", "Home", new { Area = "" });
         }
 
-        //
-        // GET: /Account/ExternalLoginFailure
+
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {

@@ -5,16 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Infrastructure.Domain
 {
-    public abstract class EntityBase<TId>
+    public abstract class EntityBase<TId> : IEntityBase<TId>
     {
         public EntityBase()
         {
             LastEdit = DateTime.Now;
+            Active = true;
         }
+
+        public bool Active { get; set; }
 
         public TId Id { get; set; }
 
-        protected abstract bool Validate();
+        public abstract bool Validate();
 
         public DateTime LastEdit { get; set; }
 

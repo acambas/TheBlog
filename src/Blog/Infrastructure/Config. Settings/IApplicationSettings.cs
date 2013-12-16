@@ -10,5 +10,6 @@ namespace Infrastructure.Config._Settings
     {
         string ConnectionStringName { get; }
         string AdminPassword { get; }
+        string AdminUsername { get; }
     }
 }

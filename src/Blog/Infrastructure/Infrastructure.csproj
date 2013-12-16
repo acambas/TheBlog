@@ -62,6 +62,7 @@
     <Compile Include="Database config\IBootstrapDatabase.cs" />
     <Compile Include="Database config\NullBootstrapDatabase.cs" />
     <Compile Include="Domain\EntityBase.cs" />
+    <Compile Include="Domain\IEntityBase.cs" />
     <Compile Include="Domain\ValueObjectIsInvalidException.cs" />
     <Compile Include="Email\EmailException.cs" />
     <Compile Include="Email\EmailServiceFactory.cs" />

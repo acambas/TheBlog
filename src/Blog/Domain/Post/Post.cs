@@ -41,7 +41,7 @@ namespace Domain.Post
         public virtual ICollection<Tag.Tag> Tags
         { get; set; }
 
-        protected override bool Validate()
+        public override bool Validate()
         {
             return true;
         }
