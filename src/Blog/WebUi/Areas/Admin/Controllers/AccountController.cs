@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Thinktecture.IdentityModel.Authorization.Mvc;
+using WebUi.App_Start;
 using WebUi.Controllers;
 using WebUi.Models;
 
@@ -33,6 +35,12 @@ namespace WebUi.Areas.Admin.Controllers
                 (new RavenUserStore<ApplicationUser>(RavenSession));
         }
 
+
+
+
+
+
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -49,6 +57,8 @@ namespace WebUi.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+
+            throw new NotImplementedException();
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
@@ -69,7 +79,7 @@ namespace WebUi.Areas.Admin.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
         public ActionResult Register()
         {
             return View();
@@ -78,13 +88,14 @@ namespace WebUi.Areas.Admin.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Name = model.Name };
+                user = Mapper.Map<RegisterViewModel, ApplicationUser>(model);
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

@@ -1,7 +1,90 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
+using WebUi.App_Start;
+using System.Linq;
 namespace WebUi.Models
 {
+
+    public class ApplicationUserViewModel
+    {
+        List<string> roles;
+        public ApplicationUserViewModel()
+        {
+            roles = AppRoles.AppRoleList;
+        }
+
+        [Required]
+        [Display(Name = "User name")]
+        public string UserName { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
+        [Display(Name = "User real name")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "User email address")]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
+        [Required]
+        public string Role { get; set; }
+
+        public string Id { get; set; }
+
+        public IEnumerable<System.Web.Mvc.SelectListItem> RoleSelectListItems()
+        {
+            return roles.Select(m => new System.Web.Mvc.SelectListItem { Text = m, Value = m });
+        }
+    }
+
+    public class RegisterViewModel
+    {
+        List<string> roles;
+        public RegisterViewModel()
+        {
+            roles = AppRoles.AppRoleList;
+        }
+
+        [Required]
+        [Display(Name = "User name")]
+        public string UserName { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
+        [Display(Name = "User real name")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "User email address")]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+
+        [Required]
+        public string Role { get; set; }
+
+        public IEnumerable<System.Web.Mvc.SelectListItem> RoleSelectListItems()
+        {
+            return roles.Select(m => new System.Web.Mvc.SelectListItem { Text = m, Value = m });
+        }
+    }
+
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
@@ -43,21 +126,5 @@ namespace WebUi.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
-    {
-        [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
-    }
 }

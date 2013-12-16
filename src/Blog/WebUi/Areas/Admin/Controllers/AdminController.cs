@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace WebUi.Areas.Admin.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         //
