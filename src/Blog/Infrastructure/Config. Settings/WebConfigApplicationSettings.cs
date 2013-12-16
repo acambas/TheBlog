@@ -15,5 +15,11 @@ namespace Infrastructure.Config._Settings
             get { return ConfigurationManager.AppSettings["DefaultConnection"]; }
         }
 
+
+
+        public string AdminPassword
+        {
+            get { return ConfigurationManager.AppSettings["AdminPassword"]; }
+        }
     }
 }

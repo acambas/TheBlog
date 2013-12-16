@@ -3,8 +3,11 @@ using Infrastructure.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using Thinktecture.IdentityModel.Authorization.Mvc;
+using WebUi.App_Start;
 
 
 namespace WebUi.Controllers
@@ -18,12 +21,14 @@ namespace WebUi.Controllers
             : base(logger, mapper, appSettings)
         { }
 
+        //[ClaimsAuthorize(AppAuthorizationType.RoleAuth, AppRoles.Read)]
         [Route]
         public ActionResult Index()
         {
             return View();
         }
 
+        //[ClaimsAuthorize(AppAuthorizationType.RoleAuth, AppRoles.Edit)]
         [Route("About")]
         public ActionResult About()
         {
@@ -32,6 +37,8 @@ namespace WebUi.Controllers
             return View();
         }
 
+        //[ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
+        //[Authorize]
         [Route("Contact")]
         public ActionResult Contact()
         {

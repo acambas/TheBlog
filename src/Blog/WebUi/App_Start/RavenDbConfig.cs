@@ -2,6 +2,7 @@
 using Domain.Tag;
 using Infrastructure.Helpers;
 using Raven.Abstractions.Data;
+using Raven.Client;
 using Raven.Client.Embedded;
 using Raven.Client.Indexes;
 using System;
@@ -10,6 +11,14 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using WebUi.Models.RavenDB;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using WebUi.Models;
+using AspNet.Identity.RavenDB.Stores;
+using System.Threading.Tasks;
+using System.Configuration;
+using AspNet.Identity.RavenDB.Entities;
+using System.Security.Claims;
 
 namespace WebUi.App_Start
 {
@@ -59,6 +68,60 @@ namespace WebUi.App_Start
 
                 session.SaveChanges();
             }
+            UserInit();
+        }
+
+        private static void UserInit()
+        {
+            using (var session = MvcApplication.Store.OpenAsyncSession())
+            {
+                UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(new RavenUserStore<ApplicationUser>(MvcApplication.Store.OpenAsyncSession()));
+                
+                var userAdmin = UserManager.FindByName("Admin");
+                if (userAdmin == null)
+                {
+                    ApplicationUser addUser = new ApplicationUser()
+                    {
+                        UserName = "Admin",
+                        Claims = new List<RavenUserClaim> 
+                        { 
+                            new RavenUserClaim(new Claim(ClaimTypes.Role, AppRoles.Admin)) 
+                        }
+                    };
+                    var userAfterCreate = UserManager.CreateAsync(addUser, ConfigurationManager.AppSettings["AdminPassword"]).Result;
+                    
+                }
+
+                var userEditor = UserManager.FindByName("Editor");
+                if (userEditor == null)
+                {
+                    ApplicationUser addUser = new ApplicationUser()
+                    {
+                        UserName = "Editor",
+                        Claims = new List<RavenUserClaim> 
+                        { 
+                            new RavenUserClaim(new Claim(ClaimTypes.Role, AppRoles.Edit)) 
+                        }
+                    };
+                    var userAfterCreate = UserManager.CreateAsync(addUser, ConfigurationManager.AppSettings["AdminPassword"]).Result;
+
+                }
+
+                var userReader = UserManager.FindByName("Reader");
+                if (userReader == null)
+                {
+                    ApplicationUser addUser = new ApplicationUser()
+                    {
+                        UserName = "Reader",
+                        Claims = new List<RavenUserClaim> 
+                        { 
+                            new RavenUserClaim(new Claim(ClaimTypes.Role, AppRoles.Read)) 
+                        }
+                    };
+                    var userAfterCreate = UserManager.CreateAsync(addUser, ConfigurationManager.AppSettings["AdminPassword"]).Result;
+
+                }
+            }
         }
 
         public static void RavenDBInit()
@@ -70,7 +133,6 @@ namespace WebUi.App_Start
             MvcApplication.Store.Initialize();
             RavenDbIndexes.SetUpIndexes(MvcApplication.Store);
             IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), MvcApplication.Store);
-
             seedData();
 
 #else

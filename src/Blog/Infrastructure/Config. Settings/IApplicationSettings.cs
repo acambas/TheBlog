@@ -9,5 +9,6 @@ namespace Infrastructure.Config._Settings
     public interface IApplicationSettings
     {
         string ConnectionStringName { get; }
+        string AdminPassword { get; }
     }
 }

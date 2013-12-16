@@ -16,9 +16,7 @@ using WebUi.App_Start;
 using WebUi.Models.Blog;
 using Raven.Client;
 using WebUi.Models.RavenDB;
-using Infrastructure.Logging.Fakes;
-using Infrastructure.Config._Settings.Fakes;
-
+using Moq;
 namespace Bloog.Tests.ControllersTests
 {
     [TestClass]
@@ -36,9 +34,9 @@ namespace Bloog.Tests.ControllersTests
         {
 
             BlogController controller1 = new BlogController(
-                new StubILogger(),
+                new Mock<ILogger>().Object,
                 new AutoMapperAdapter(),
-                new StubIApplicationSettings());
+                new Mock<IApplicationSettings>().Object);
             controller1.RavenSession = RavenSession;
 
             var post = new Post()

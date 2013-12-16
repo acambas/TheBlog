@@ -37,42 +37,9 @@ namespace WebUi
             IocConfig.Initialise();
 
             //Handle RavenDB
-
             RavenDbConfig.RavenDBInit();
 
         }
-
         public static DocumentStore Store;
-
-//        private static void RavenDBInit()
-//        {
-//#if DEBUG
-//            //Store = new EmbeddableDocumentStore {  ConnectionStringName = "RavenDBEmbedded" };
-
-//            Store = new EmbeddableDocumentStore() { RunInMemory = true };
-//            Store.Initialize();
-//            using (var session = Store.OpenSession())
-//            {
-//                var post = new Post()
-//                {
-//                    Title = "Post 1",
-//                    ShortDescription = "asdasfsa asfasf asf asd asf asf safsa fasfsa saf",
-//                    Description = "asdasfsa asfasf asf asd asf asf safsa fasfsa saf asdasfsa asfasf asf asd asf asf safsa fasfs",
-//                    UrlSlug= "Post-1__1__",
-//                    LastEdit = DateTime.Now,
-//                    PostedOn = DateTime.Now,
-//                    Published = true,
-//                    Tags = new List<Tag> { new Tag { Name = "mvc" , UrlSlug = "mvc"}}
-//                };
-
-//                session.Store(post);
-//                session.SaveChanges();
-//            }
-//#else
-//            Store = new DocumentStore { ConnectionStringName = "RavenDB" };
-//            Store.Initialize();
-//#endif
-//            IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), Store);
-//        }
     }
 }

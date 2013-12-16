@@ -25,6 +25,10 @@ namespace WebUi.Areas.Admin.Controllers
             IApplicationSettings appSettings)
             : base(logger, mapper, appSettings)
         {
+            if (RavenSession == null)
+            {
+                RavenSession = MvcApplication.Store.OpenAsyncSession();
+            }
             UserManager = new UserManager<ApplicationUser>
                 (new RavenUserStore<ApplicationUser>(RavenSession));
         }
@@ -35,7 +39,7 @@ namespace WebUi.Areas.Admin.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return RedirectToAction("Login", "Login", new { Area=""});
         }
 
         //
