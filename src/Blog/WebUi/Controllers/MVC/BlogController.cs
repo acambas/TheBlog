@@ -35,7 +35,8 @@ namespace WebUi.Controllers.MVC
         public async Task<ViewResult> Index()
         {
             IList<Post> data = await RavenSession.Query<Post>()
-                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5))).ToListAsync();
+                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
+                .ToListAsync();
             var viewModel = Mapper.Map<Post, PostViewModel>(data);
             return View(viewModel);
         }
@@ -49,6 +50,7 @@ namespace WebUi.Controllers.MVC
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var data = await RavenSession.Query<Post>()
+                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
                 .FirstOrDefaultAsync(m => m.UrlSlug == id);
             PostViewModel postviewmodel = Mapper.Map<Post, PostViewModel>(data);
 

@@ -12,6 +12,7 @@ namespace WebUi.Models
         public ApplicationUser()
         {
             LastEdit = DateTime.Now;
+            Active = true;
         }
 
         public string Email { get; set; }

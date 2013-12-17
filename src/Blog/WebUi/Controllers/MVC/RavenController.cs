@@ -52,8 +52,8 @@ namespace WebUi.Controllers
                 if (filterContext.Exception != null)
                     return;
 
-                if (RavenSession != null)
-                    AppTaskExtensions.RunAsyncAsSync(RavenSession.SaveChangesAsync);
+                //if (RavenSession != null)
+                //    AppTaskExtensions.RunAsyncAsSync(RavenSession.SaveChangesAsync);
             }
 
         }

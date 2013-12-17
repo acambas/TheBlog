@@ -3,15 +3,19 @@ using System.ComponentModel.DataAnnotations;
 
 using WebUi.App_Start;
 using System.Linq;
+using System;
+using System.Security.Claims;
+using AspNet.Identity.RavenDB.Entities;
 namespace WebUi.Models
 {
 
     public class ApplicationUserViewModel
     {
-        List<string> roles;
+        string[] roles;
+        string selectedRole;
         public ApplicationUserViewModel()
         {
-            roles = AppRoles.AppRoleList;
+            roles = AppRoles.AppRoleList.ToArray();
         }
 
         [Required]
@@ -32,17 +36,34 @@ namespace WebUi.Models
         [Required]
         public string Role { get; set; }
 
+        [Required]
         public string Id { get; set; }
+
+        public void SelectedRole(string role)
+        {
+            if (!roles.Contains(role))
+                throw new ArgumentException("role doesn't exist");
+
+            selectedRole = role;
+                
+        }
+
+        public static string GetRoleFromClaim(RavenUserClaim claim)
+        {
+            if (claim == null || claim.ClaimType==null || claim.ClaimValue == null || claim.ClaimType != ClaimTypes.Role)
+                throw new ArgumentException();
+            return claim.ClaimValue;
+        }
 
         public IEnumerable<System.Web.Mvc.SelectListItem> RoleSelectListItems()
         {
-            return roles.Select(m => new System.Web.Mvc.SelectListItem { Text = m, Value = m });
+            return roles.Select(m => new System.Web.Mvc.SelectListItem { Text = m, Value = m, Selected = (m == selectedRole) });
         }
     }
 
     public class RegisterViewModel
     {
-        List<string> roles;
+        string[] roles;
         public RegisterViewModel()
         {
             roles = AppRoles.AppRoleList;

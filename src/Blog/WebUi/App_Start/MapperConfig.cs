@@ -4,6 +4,7 @@ using Domain.Tag;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using WebUi.Models;
 using WebUi.Models.Blog;
@@ -26,6 +27,8 @@ namespace WebUi.App_Start
             Mapper.CreateMap<Post, PostLinkViewModel>();
 
             Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();
+
+
             Mapper.CreateMap<ApplicationUserViewModel, ApplicationUser>();
 
             Mapper.CreateMap<ApplicationUser, RegisterViewModel>();

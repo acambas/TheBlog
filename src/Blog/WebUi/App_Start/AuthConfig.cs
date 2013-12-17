@@ -16,7 +16,7 @@ namespace WebUi.App_Start
         public const string Admin = "Admin";
         public const string Edit = "Edit";
         public const string Read = "Read";
-        public static readonly List<String> AppRoleList = new List<string>() { Admin, Edit, Read };
+        public static readonly string[] AppRoleList = new string []{ Admin, Edit, Read };
     }
 
     public class AuthorizationManager : ClaimsAuthorizationManager

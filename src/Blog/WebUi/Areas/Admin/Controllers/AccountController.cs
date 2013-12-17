@@ -40,25 +40,79 @@ namespace WebUi.Areas.Admin.Controllers
         public async Task<ActionResult> Index()
         {
             IEnumerable<ApplicationUserViewModel> viewModel;
-            var data = await RavenSession.Query<ApplicationUser>().ToListAsync();
+            var data = await RavenSession.Query<ApplicationUser>()
+                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
+                .Where(m => m.Active == true)
+                .ToListAsync();
+
             viewModel = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(data);
             return View(viewModel);
         }
 
+        //[Route("Admin/Account/Edit/{userName}")]
         [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
-        public async Task<ActionResult> Edit(string userName)
+        public async Task<ActionResult> Edit(string id)
         {
             ApplicationUserViewModel viewModel;
-            var data = await RavenSession.Query<ApplicationUser>().FirstAsync(m => m.UserName == userName);
+            var data = await RavenSession.Query<ApplicationUser>()
+                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
+                .FirstAsync(m => m.UserName == id);
             viewModel = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(data);
-            return View(viewModel);
+
+            var claimRole = data.Claims.FirstOrDefault(m => m.ClaimType == ClaimTypes.Role);
+            if (claimRole != null)
+            {
+                viewModel.SelectedRole(claimRole.ClaimValue);
+            }
+
+            return View("EditUser", viewModel);
         }
 
         [HttpPost]
         [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
         public async Task<ActionResult> Edit(ApplicationUserViewModel viewModel)
         {
-            return View(viewModel);
+
+            if (ModelState.IsValid && AppRoles.AppRoleList.Contains(viewModel.Role))
+            {
+                var data = await RavenSession.Query<ApplicationUser>()
+                    .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
+                    .FirstAsync(m => m.UserName == viewModel.UserName);
+
+                //Check for id match
+                if (data.Id != viewModel.Id || data.UserName != viewModel.UserName)
+                    throw new ArgumentException("User Id does not match");
+                data.Active = true;
+                data = Mapper.Map<ApplicationUserViewModel, ApplicationUser>(viewModel, data);
+
+                //Change role
+                var claimRole = data.Claims.FirstOrDefault(m => m.ClaimType == ClaimTypes.Role);
+                if (claimRole!=null)
+                    claimRole.ClaimValue = viewModel.Role;
+                else
+                {
+                    if (data.Claims == null)
+                        data.Claims = new List<RavenUserClaim>();
+
+                    data.Claims.Add(new RavenUserClaim(new Claim(ClaimTypes.Role, viewModel.Role)));
+                }
+                await RavenSession.StoreAsync(data);
+                await SaveAsync();
+            }
+
+            return View("EditUser", viewModel);
+        }
+
+        [HttpPost]
+        [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
+        public async Task<ActionResult> Delete(string id)
+        {
+            ApplicationUserViewModel viewModel;
+            var data = await RavenSession.Query<ApplicationUser>()
+                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
+                .FirstAsync(m => m.UserName == id);
+            viewModel = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(data);
+            return View("EditUser", viewModel);
         }
 
         [AllowAnonymous]
@@ -66,7 +120,7 @@ namespace WebUi.Areas.Admin.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return RedirectToAction("Login", "Login", new { Area=""});
+            return RedirectToAction("Login", "Login", new { Area = "" });
         }
 
 
@@ -87,13 +141,13 @@ namespace WebUi.Areas.Admin.Controllers
             {
                 var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Name = model.Name };
                 user = Mapper.Map<RegisterViewModel, ApplicationUser>(model);
-                user.Claims = new List<RavenUserClaim> {new RavenUserClaim(new Claim(ClaimTypes.Role, model.Role)) };
+                user.Claims = new List<RavenUserClaim> { new RavenUserClaim(new Claim(ClaimTypes.Role, model.Role)) };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     //await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Account", new {Area="Admin" });
+                    return RedirectToAction("Index", "Account", new { Area = "Admin" });
                 }
                 else
                 {
@@ -378,7 +432,8 @@ namespace WebUi.Areas.Admin.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 
