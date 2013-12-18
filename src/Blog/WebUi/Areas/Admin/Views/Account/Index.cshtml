@@ -10,39 +10,62 @@
 <p>
     @Html.ActionLink("Register New", "Register")
 </p>
-<div class="table-responsive">
+<div id="users" class="table-responsive">
+
+    <div class="form-group col-lg-2">
+        <div class="">
+            <input type="text" class="form-control search" placeholder="Search users">
+        </div>
+    </div>
+
     <table class="table table-bordered table-hover table-striped tablesorter">
         <thead>
             <tr>
-                <th>UserName <i class="fa fa-sort"></i></th>
-                <th>Name <i class="fa fa-sort"></i></th>
-                <th>Email <i class="fa fa-sort"></i></th>
+                <th class="sort" data-sort="username" >UserName <i class="fa fa-sort"></i></th>
+                <th class="sort" data-sort="name1" >Name <i class="fa fa-sort"></i></th>
+                <th class="sort" data-sort="email" >Email <i class="fa fa-sort"></i></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="list">
             @foreach (var item in Model)
             {
                 <tr>
                     <td>
-                        @Html.ActionLink(@item.UserName, "Edit", "Account", new { id = item.UserName, Area = "Admin" }, new { })
+                        @Html.ActionLink(@item.UserName, "Edit", "Account", new { id = item.UserName, Area = "Admin" }, new { @class = "username" })
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                    <td >
+                        <div class="name1">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </div>
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
+                    <td >
+                        <div class="email">
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </div>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-@section scripts{
+
+
+@section headscripts{
     <script src="~/Scripts/jquery.tablesorter.min.js"></script>
+    <script src="~/Scripts/list.js"></script>
+}
+
+@section scripts{
+    
     <script type="text/javascript">
         $(function () {
-            $(".tablesorter").tablesorter();
-            
+            var options = {
+                valueNames: ['username', 'name1', 'email']
+            };
+
+            var userList = new List('users', options);
+
+
         });
     </script>
 }

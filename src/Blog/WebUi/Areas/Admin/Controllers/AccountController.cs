@@ -49,7 +49,6 @@ namespace WebUi.Areas.Admin.Controllers
             return View(viewModel);
         }
 
-        //[Route("Admin/Account/Edit/{userName}")]
         [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
         public async Task<ActionResult> Edit(string id)
         {
@@ -61,9 +60,7 @@ namespace WebUi.Areas.Admin.Controllers
 
             var claimRole = data.Claims.FirstOrDefault(m => m.ClaimType == ClaimTypes.Role);
             if (claimRole != null)
-            {
                 viewModel.SelectedRole(claimRole.ClaimValue);
-            }
 
             return View("EditUser", viewModel);
         }
@@ -98,6 +95,7 @@ namespace WebUi.Areas.Admin.Controllers
                 }
                 await RavenSession.StoreAsync(data);
                 await SaveAsync();
+                return RedirectToAction("Index");
             }
 
             return View("EditUser", viewModel);

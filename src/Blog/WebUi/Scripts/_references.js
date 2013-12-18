@@ -112,3 +112,4 @@
 /// <reference path="tinymce/plugins/table/classes/tablegrid.js" />
 /// <reference path="jquery.tablesorter.pager.js" />
 /// <reference path="jquery.tablesorter.js" />
+/// <reference path="list.js" />
