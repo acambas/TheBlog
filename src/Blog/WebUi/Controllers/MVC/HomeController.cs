@@ -1,21 +1,12 @@
 ﻿using Infrastructure.Config._Settings;
 using Infrastructure.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Web;
 using System.Web.Mvc;
-using Thinktecture.IdentityModel.Authorization.Mvc;
-using WebUi.App_Start;
-
 
 namespace WebUi.Controllers
 {
     public class HomeController : RavenController
     {
-
-        public HomeController( Infrastructure.Logging.ILogger logger,
+        public HomeController(Infrastructure.Logging.ILogger logger,
             IMapper mapper,
             IApplicationSettings appSettings)
             : base(logger, mapper, appSettings)

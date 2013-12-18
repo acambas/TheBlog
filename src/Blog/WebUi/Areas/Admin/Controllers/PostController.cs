@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using WebUi.Models.Blog;
-using WebUi.Models;
-using WebUi.Controllers;
-using Domain.Post;
+﻿using Domain.Post;
 using Infrastructure.Config._Settings;
-using Infrastructure.Mapping;
 using Infrastructure.Helpers;
+using Infrastructure.Mapping;
 using Raven.Client;
+using System;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using WebUi.Controllers;
+using WebUi.Models.Blog;
+
 namespace WebUi.Areas.Admin.Controllers
 {
     [Authorize]
     public class PostController : RavenController
     {
-
         public PostController(Infrastructure.Logging.ILogger logger,
             IMapper mapper,
             IApplicationSettings appSettings)
@@ -37,17 +33,15 @@ namespace WebUi.Areas.Admin.Controllers
             return View(viewModel);
         }
 
-
         public ViewResult Create()
         {
             PostViewModel viewModel = new PostViewModel();
             return View(viewModel);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Title,ShortDescription,Description,Tags")] PostViewModel postviewmodel)
+        public async Task<ActionResult> Create([Bind(Include = "Title,ShortDescription,Description,Tags")] PostViewModel postviewmodel)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +89,6 @@ namespace WebUi.Areas.Admin.Controllers
             return View(postviewmodel);
         }
 
-
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)
@@ -106,7 +99,5 @@ namespace WebUi.Areas.Admin.Controllers
             await SaveAsync();
             return RedirectToAction("Index");
         }
-
-
     }
 }

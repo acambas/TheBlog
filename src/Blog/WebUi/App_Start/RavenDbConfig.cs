@@ -1,30 +1,23 @@
-﻿using Domain.Post;
+﻿using AspNet.Identity.RavenDB.Entities;
+using AspNet.Identity.RavenDB.Stores;
+using Domain.Post;
 using Domain.Tag;
-using Infrastructure.Helpers;
-using Raven.Abstractions.Data;
-using Raven.Client;
+using Microsoft.AspNet.Identity;
 using Raven.Client.Embedded;
 using Raven.Client.Indexes;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Reflection;
-using System.Web;
-using WebUi.Models.RavenDB;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
-using WebUi.Models;
-using AspNet.Identity.RavenDB.Stores;
-using System.Threading.Tasks;
-using System.Configuration;
-using AspNet.Identity.RavenDB.Entities;
 using System.Security.Claims;
+using WebUi.Models;
+using WebUi.Models.RavenDB;
 
 namespace WebUi.App_Start
 {
     public class RavenDbConfig
     {
-
         private static void seedData()
         {
             string description = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus diam ut malesuada mattis. Praesent ultricies, nunc vel semper gravida, tellus leo consectetur orci, eget accumsan elit ligula non mi. Integer et tellus eget ante lacinia dictum. Sed quis semper massa. Donec varius ultricies felis, volutpat commodo neque iaculis nec. Curabitur at lacus porttitor, tincidunt dui vitae, ullamcorper sem. Nulla elit mi, tincidunt id orci eget, mattis pulvinar orci. Ut mattis placerat condimentum. Mauris neque enim, mollis at justo ac, tristique aliquet mauris. Etiam lacinia venenatis ullamcorper. Sed a elit non ligula pellentesque faucibus. Integer et massa mauris. Sed luctus venenatis tortor, sed imperdiet urna consectetur id. Suspendisse sed elementum massa, id feugiat tortor. Pellentesque gravida, nibh eu imperdiet ornare, est arcu egestas dolor, eget sagittis metus lorem eget arcu. Curabitur id scelerisque orci.</p>";
@@ -45,10 +38,10 @@ namespace WebUi.App_Start
                 {
                     var post = new Post()
                     {
-                        Title = "Post "+(i+1),
+                        Title = "Post " + (i + 1),
                         ShortDescription = shortDescription,
                         Description = description,
-                        UrlSlug = "Post-"+(i+1)+"__"+(i+1)+"__",
+                        UrlSlug = "Post-" + (i + 1) + "__" + (i + 1) + "__",
                         LastEdit = DateTime.Now,
                         PostedOn = DateTime.Now,
                         Published = true,
@@ -56,10 +49,10 @@ namespace WebUi.App_Start
                     };
 
                     int numOfTagForPost = r.Next(1, tagsArray.Length);
-                    
+
                     for (int j = 0; j < numOfTagForPost; j++)
                     {
-                        post.Tags = tagsArray.Take(r.Next(1,tagsArray.Length)).ToList();
+                        post.Tags = tagsArray.Take(r.Next(1, tagsArray.Length)).ToList();
                         //post.Tags.Add(tagsArray[r.Next(tagsArray.Length)]);
                     }
 
@@ -76,20 +69,19 @@ namespace WebUi.App_Start
             using (var session = MvcApplication.Store.OpenAsyncSession())
             {
                 UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(new RavenUserStore<ApplicationUser>(MvcApplication.Store.OpenAsyncSession()));
-                
+
                 var userAdmin = UserManager.FindByName("Admin");
                 if (userAdmin == null)
                 {
                     ApplicationUser addUser = new ApplicationUser()
                     {
                         UserName = "Admin",
-                        Claims = new List<RavenUserClaim> 
-                        { 
-                            new RavenUserClaim(new Claim(ClaimTypes.Role, AppRoles.Admin)) 
+                        Claims = new List<RavenUserClaim>
+                        {
+                            new RavenUserClaim(new Claim(ClaimTypes.Role, AppRoles.Admin))
                         }
                     };
                     var userAfterCreate = UserManager.CreateAsync(addUser, ConfigurationManager.AppSettings["AdminPassword"]).Result;
-                    
                 }
 
                 var userEditor = UserManager.FindByName("Editor");
@@ -98,13 +90,12 @@ namespace WebUi.App_Start
                     ApplicationUser addUser = new ApplicationUser()
                     {
                         UserName = "Editor",
-                        Claims = new List<RavenUserClaim> 
-                        { 
-                            new RavenUserClaim(new Claim(ClaimTypes.Role, AppRoles.Edit)) 
+                        Claims = new List<RavenUserClaim>
+                        {
+                            new RavenUserClaim(new Claim(ClaimTypes.Role, AppRoles.Edit))
                         }
                     };
                     var userAfterCreate = UserManager.CreateAsync(addUser, ConfigurationManager.AppSettings["AdminPassword"]).Result;
-
                 }
 
                 var userReader = UserManager.FindByName("Reader");
@@ -113,13 +104,12 @@ namespace WebUi.App_Start
                     ApplicationUser addUser = new ApplicationUser()
                     {
                         UserName = "Reader",
-                        Claims = new List<RavenUserClaim> 
-                        { 
-                            new RavenUserClaim(new Claim(ClaimTypes.Role, AppRoles.Read)) 
+                        Claims = new List<RavenUserClaim>
+                        {
+                            new RavenUserClaim(new Claim(ClaimTypes.Role, AppRoles.Read))
                         }
                     };
                     var userAfterCreate = UserManager.CreateAsync(addUser, ConfigurationManager.AppSettings["AdminPassword"]).Result;
-
                 }
             }
         }
@@ -141,9 +131,6 @@ namespace WebUi.App_Start
             RavenDbIndexes.SetUpIndexes(MvcApplication.Store);
             IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), MvcApplication.Store);
 #endif
-
-
         }
-
     }
 }

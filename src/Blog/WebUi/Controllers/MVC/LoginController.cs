@@ -1,19 +1,16 @@
-﻿using System;
+﻿using AspNet.Identity.RavenDB.Entities;
+using AspNet.Identity.RavenDB.Stores;
+using Infrastructure.Config._Settings;
+using Infrastructure.Mapping;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
-using WebUi.Models;
-using AspNet.Identity.RavenDB.Stores;
-using Infrastructure.Mapping;
-
-using Infrastructure.Config._Settings;
-using AspNet.Identity.RavenDB.Entities;
 using WebUi.App_Start;
+using WebUi.Models;
 
 namespace WebUi.Controllers
 {
@@ -52,7 +49,7 @@ namespace WebUi.Controllers
                     {
                         Id = "ApplicationUsers/1",
                         UserName = model.UserName,
-                        Claims = new List<RavenUserClaim> {new RavenUserClaim(new Claim(ClaimTypes.Role, AppRoles.Admin)) }
+                        Claims = new List<RavenUserClaim> { new RavenUserClaim(new Claim(ClaimTypes.Role, AppRoles.Admin)) }
                     };
 
                     AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
@@ -69,7 +66,7 @@ namespace WebUi.Controllers
                         ClaimTypes.Role);
                     AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, identity);
                     return RedirectToLocal(returnUrl);
-                } 
+                }
 
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
@@ -111,6 +108,7 @@ namespace WebUi.Controllers
         }
 
         #region Helpers
+
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -169,7 +167,8 @@ namespace WebUi.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 
@@ -181,7 +180,9 @@ namespace WebUi.Controllers
             }
 
             public string LoginProvider { get; set; }
+
             public string RedirectUri { get; set; }
+
             public string UserId { get; set; }
 
             public override void ExecuteResult(ControllerContext context)
@@ -194,6 +195,7 @@ namespace WebUi.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
-        #endregion
+
+        #endregion Helpers
     }
 }

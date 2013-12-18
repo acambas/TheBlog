@@ -2,10 +2,6 @@
 using Infrastructure.Logging;
 using Infrastructure.Mapping;
 using Microsoft.Practices.Unity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Unity.Mvc4;
 
@@ -18,12 +14,11 @@ namespace WebUi.App_Start
             var container = BuildUnityContainer();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
-
         }
 
         private static IUnityContainer BuildUnityContainer()
         {
-            var container = new UnityContainer();   
+            var container = new UnityContainer();
             RegisterTypes(container);
             return container;
         }
@@ -37,6 +32,4 @@ namespace WebUi.App_Start
             ;
         }
     }
-
-
 }

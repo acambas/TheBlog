@@ -1,22 +1,18 @@
 ﻿using AutoMapper;
+using Domain.HTMLPage;
 using Domain.Post;
 using Domain.Tag;
-using System;
-using System.Collections.Generic;
+using Infrastructure.Helpers;
 using System.Linq;
-using System.Security.Claims;
-using System.Web;
 using WebUi.Models;
 using WebUi.Models.Blog;
-using WebUi.Models.RavenDB;
-using Infrastructure.Helpers;
-using Domain.HTMLPage;
 using WebUi.Models.HTMLPage;
+using WebUi.Models.RavenDB;
+
 namespace WebUi.App_Start
 {
     public class MapperConfig
     {
-
         public static void ConfigureMappings()
         {
             Mapper.CreateMap<Post, PostViewModel>();
@@ -30,7 +26,7 @@ namespace WebUi.App_Start
             //PostListItemViewModel
 
             Mapper.CreateMap<TagViewModel, Tag>()
-                .ForMember(m=>m.UrlSlug , x=>x.MapFrom(s => URLHelper.ToFriendlyUrl(s.Name)));
+                .ForMember(m => m.UrlSlug, x => x.MapFrom(s => URLHelper.ToFriendlyUrl(s.Name)));
             Mapper.CreateMap<Tag, TagViewModel>();
 
             Mapper.CreateMap<TagCountIndex.ReduceResult, TagCountViewModel>();
@@ -45,6 +41,5 @@ namespace WebUi.App_Start
             Mapper.CreateMap<HTMLPage, HTMLPageViewModel>();
             Mapper.CreateMap<HTMLPageViewModel, HTMLPage>();
         }
-
     }
 }

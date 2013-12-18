@@ -1,40 +1,34 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Bloog.Tests.Base;
+﻿using Bloog.Tests.Base;
 using Domain.Post;
 using Domain.Tag;
-using System.Collections.Generic;
-using WebUi.Controllers.MVC;
+using Infrastructure.Config._Settings;
 using Infrastructure.Logging;
 using Infrastructure.Mapping;
-using Infrastructure.Config._Settings;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Raven.Client;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using WebUi.App_Start;
-using WebUi.Models.Blog;
-using Raven.Client;
-using WebUi.Models.RavenDB;
-using Moq;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using WebUi.Areas.Admin.Controllers;
-using WebUi;
+using WebUi.Models.Blog;
+
 namespace Bloog.Tests.ControllersTests
 {
     [TestClass]
-    public class PostControllerTest:RavenBaseControllerTest
+    public class PostControllerTest : RavenBaseControllerTest
     {
-        //BlogController controller1;
-        static string postTitle1 = "Post 1";
-        static string postTitle2 = "Post 2";
+        private static string postTitle1 = "Post 1";
+        private static string postTitle2 = "Post 2";
 
-        string postUrlSlug1 = Infrastructure.Helpers.URLHelper.ToUniqueFriendlyUrl(postTitle1);
-        string postUrlSlug2 = Infrastructure.Helpers.URLHelper.ToUniqueFriendlyUrl(postTitle2);
-
+        private string postUrlSlug1 = Infrastructure.Helpers.URLHelper.ToUniqueFriendlyUrl(postTitle1);
+        private string postUrlSlug2 = Infrastructure.Helpers.URLHelper.ToUniqueFriendlyUrl(postTitle2);
 
         private async Task<PostController> CreateController()
         {
-
             PostController controller1 = new PostController(
                 new Mock<ILogger>().Object,
                 new AutoMapperAdapter(),
@@ -66,7 +60,7 @@ namespace Bloog.Tests.ControllersTests
             };
 
             await RavenSession.StoreAsync(post1);
-            await  RavenSession.StoreAsync(post2);
+            await RavenSession.StoreAsync(post2);
             await RavenSession.SaveChangesAsync();
             controller1.RavenSession = RavenSession;
 
@@ -90,10 +84,10 @@ namespace Bloog.Tests.ControllersTests
         {
             //Arange
             var controller = CreateController().Result;
-            
+
             // Act
             ViewResult result = await controller.Index();
-            
+
             // Assert
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Model);
@@ -106,8 +100,8 @@ namespace Bloog.Tests.ControllersTests
         public void Create_View()
         {
             //Arange
-            var controller =  CreateController().Result;
-            
+            var controller = CreateController().Result;
+
             //Act
             var result = controller.Create();
 
@@ -128,12 +122,12 @@ namespace Bloog.Tests.ControllersTests
                 Title = "Post 3",
                 ShortDescription = "asdsaf",
                 Description = "asdasfss",
-                Tags = new List<string> { "tag1", "tag2", "tag3"}
+                Tags = new List<string> { "tag1", "tag2", "tag3" }
             };
 
             //Act
             await controller.Create(viewModel);
-         
+
             //Asert
             var findPost = await controller.RavenSession.Query<Post>()
                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
@@ -150,7 +144,6 @@ namespace Bloog.Tests.ControllersTests
             controller.ModelState.AddModelError("key", "model is invalid");
             PostViewModel viewModel = new PostViewModel()
             {
-
             };
 
             //Act
@@ -219,7 +212,7 @@ namespace Bloog.Tests.ControllersTests
                 UrlSlug = postUrlSlug1,
                 Description = "aa",
                 ShortDescription = "a",
-                Tags = new List<string>{ "tag 5","tag4"}
+                Tags = new List<string> { "tag 5", "tag4" }
             };
 
             // Act
@@ -235,6 +228,5 @@ namespace Bloog.Tests.ControllersTests
             Assert.IsNotNull(findEditPost);
             Assert.IsTrue(findEditPost.Description == viewModel.Description);
         }
-
     }
 }

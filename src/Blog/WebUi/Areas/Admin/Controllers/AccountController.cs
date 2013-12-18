@@ -1,11 +1,14 @@
-﻿using AspNet.Identity.RavenDB.Stores;
+﻿using AspNet.Identity.RavenDB.Entities;
+using AspNet.Identity.RavenDB.Stores;
 using Infrastructure.Config._Settings;
 using Infrastructure.Mapping;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using Raven.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -13,9 +16,7 @@ using Thinktecture.IdentityModel.Authorization.Mvc;
 using WebUi.App_Start;
 using WebUi.Controllers;
 using WebUi.Models;
-using Raven.Client;
-using AspNet.Identity.RavenDB.Entities;
-using System.Security.Claims;
+
 namespace WebUi.Areas.Admin.Controllers
 {
     [Authorize]
@@ -69,7 +70,6 @@ namespace WebUi.Areas.Admin.Controllers
         [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
         public async Task<ActionResult> Edit(ApplicationUserViewModel viewModel)
         {
-
             if (ModelState.IsValid && AppRoles.AppRoleList.Contains(viewModel.Role))
             {
                 var data = await RavenSession.Query<ApplicationUser>()
@@ -84,7 +84,7 @@ namespace WebUi.Areas.Admin.Controllers
 
                 //Change role
                 var claimRole = data.Claims.FirstOrDefault(m => m.ClaimType == ClaimTypes.Role);
-                if (claimRole!=null)
+                if (claimRole != null)
                     claimRole.ClaimValue = viewModel.Role;
                 else
                 {
@@ -121,14 +121,11 @@ namespace WebUi.Areas.Admin.Controllers
             return RedirectToAction("Login", "Login", new { Area = "" });
         }
 
-
         [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
         public ActionResult Register()
         {
-
             return View(new RegisterViewModel());
         }
-
 
         [HttpPost]
         [ClaimsAuthorize(AppAuthorizationType.RoleAuth, AppRoles.Admin)]
@@ -156,7 +153,6 @@ namespace WebUi.Areas.Admin.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -239,7 +235,6 @@ namespace WebUi.Areas.Admin.Controllers
             return View(model);
         }
 
-
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -248,7 +243,6 @@ namespace WebUi.Areas.Admin.Controllers
             // Request a redirect to the external login provider
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
-
 
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
@@ -275,7 +269,6 @@ namespace WebUi.Areas.Admin.Controllers
             }
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
@@ -283,7 +276,6 @@ namespace WebUi.Areas.Admin.Controllers
             // Request a redirect to the external login provider to link a login for the current user
             return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), User.Identity.GetUserId());
         }
-
 
         public async Task<ActionResult> LinkLoginCallback()
         {
@@ -299,7 +291,6 @@ namespace WebUi.Areas.Admin.Controllers
             }
             return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
         }
-
 
         [HttpPost]
         [AllowAnonymous]
@@ -337,7 +328,6 @@ namespace WebUi.Areas.Admin.Controllers
             return View(model);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -345,7 +335,6 @@ namespace WebUi.Areas.Admin.Controllers
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home", new { Area = "" });
         }
-
 
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
@@ -372,6 +361,7 @@ namespace WebUi.Areas.Admin.Controllers
         }
 
         #region Helpers
+
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -443,7 +433,9 @@ namespace WebUi.Areas.Admin.Controllers
             }
 
             public string LoginProvider { get; set; }
+
             public string RedirectUri { get; set; }
+
             public string UserId { get; set; }
 
             public override void ExecuteResult(ControllerContext context)
@@ -456,6 +448,7 @@ namespace WebUi.Areas.Admin.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
-        #endregion
+
+        #endregion Helpers
     }
 }

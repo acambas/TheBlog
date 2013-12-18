@@ -1,30 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using WebUi.Models;
-using Domain.Post;
+﻿using Domain.Post;
 using Infrastructure.Config._Settings;
+using Infrastructure.Extensions;
 using Infrastructure.Mapping;
-using Raven.Abstractions.Data;
-using Raven.Client.Document;
-using Raven.Client.Linq;
 using Raven.Client;
+using Raven.Client.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using WebUi.Models.Blog;
 using WebUi.Models.RavenDB;
-using Infrastructure.Extensions;
-
 
 namespace WebUi.Controllers.MVC
 {
-
     public class BlogController : RavenController
     {
-
         public BlogController(Infrastructure.Logging.ILogger logger,
             IMapper mapper,
             IApplicationSettings appSettings)
@@ -40,7 +32,6 @@ namespace WebUi.Controllers.MVC
             var viewModel = Mapper.Map<Post, PostViewModel>(data);
             return View(viewModel);
         }
-
 
         [Route("Blog/{id}", Name = "ViewPost")]
         public async Task<ActionResult> Details(string id)
@@ -92,7 +83,7 @@ namespace WebUi.Controllers.MVC
                 .Where(m => m.Title.StartsWith(term))
                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
                 .ToListAsync();
-                ;
+            ;
 
             var postviewmodel = Mapper.Map<Post, PostViewModel>(data);
 
@@ -105,7 +96,7 @@ namespace WebUi.Controllers.MVC
             BlogPageDataViewModel viewModel = new BlogPageDataViewModel();
 
             //Get Tag Count
-            var queryTagCount =  RavenSession.Query<TagCountIndex.ReduceResult, TagCountIndex>()
+            var queryTagCount = RavenSession.Query<TagCountIndex.ReduceResult, TagCountIndex>()
             .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)));
             var dataTagCount = AppTaskExtensions.RunAsyncAsSync<IList<TagCountIndex.ReduceResult>>(queryTagCount.ToListAsync);
             viewModel.TagCountList = Mapper.Map<TagCountIndex.ReduceResult, TagCountViewModel>(dataTagCount);
@@ -113,13 +104,12 @@ namespace WebUi.Controllers.MVC
             //Get last 5 post links
             var lastPostsQuery = RavenSession.Query<Post>()
             .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
-            .Select(m => new Post { Title = m.Title, UrlSlug = m.UrlSlug})
+            .Select(m => new Post { Title = m.Title, UrlSlug = m.UrlSlug })
             .Take(5);
             var postLinks = AppTaskExtensions.RunAsyncAsSync<IList<Post>>(lastPostsQuery.ToListAsync);
             viewModel.RecentLinkList = Mapper.Map<Post, PostLinkViewModel>(postLinks);
 
             return PartialView("_BlogPageData", viewModel);
         }
-
     }
 }

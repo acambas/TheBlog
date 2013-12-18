@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Claims;
-using System.Web;
 
 namespace WebUi.App_Start
 {
@@ -16,7 +13,7 @@ namespace WebUi.App_Start
         public const string Admin = "Admin";
         public const string Edit = "Edit";
         public const string Read = "Read";
-        public static readonly string[] AppRoleList = new string []{ Admin, Edit, Read };
+        public static readonly string[] AppRoleList = new string[] { Admin, Edit, Read };
     }
 
     public class AuthorizationManager : ClaimsAuthorizationManager
@@ -42,7 +39,7 @@ namespace WebUi.App_Start
             var roleClaims = context.Resource;
 
             //If no role is specified user can perform the action
-            if (roleClaims == null || roleClaims.Count == 0 )
+            if (roleClaims == null || roleClaims.Count == 0)
             {
                 return true;
             }
@@ -81,8 +78,5 @@ namespace WebUi.App_Start
 
             return false;
         }
-
     }
-
-
 }

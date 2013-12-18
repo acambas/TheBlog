@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Infrastructure.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Infrastructure.Helpers;
+
 namespace Infrastructure.Tests
 {
     [TestClass]
@@ -10,7 +10,7 @@ namespace Infrastructure.Tests
         public void Create_url_slug()
         {
             // Arrange
-            string nonFriendlyUrl= "sasa/ &sasa@_";
+            string nonFriendlyUrl = "sasa/ &sasa@_";
 
             // Act
             var frienlyUrl = URLHelper.ToFriendlyUrl(nonFriendlyUrl);
@@ -23,7 +23,5 @@ namespace Infrastructure.Tests
             Assert.IsFalse(frienlyUrl.Contains("&"));
             Assert.IsFalse(frienlyUrl.Contains("_"));
         }
-
-
     }
 }
