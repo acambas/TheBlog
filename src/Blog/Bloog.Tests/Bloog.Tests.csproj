@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\RavenBaseControllerTest.cs" />
+    <Compile Include="ControllersTests\PostControllerTest.cs" />
     <Compile Include="ControllersTests\BlogControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControllersTests\HomeControllerTest.cs" />

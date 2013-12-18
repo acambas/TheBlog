@@ -8,34 +8,6 @@ namespace Infrastructure.Helpers
 {
     public class URLHelper
     {
-        public static string UrlSlug(string val)
-        {
-            string result = val;
-            if (result.Contains("."))
-            {
-                result = result.Replace(".", "dot");
-            }
-            if (result.Contains(" "))
-            {
-                result = result.Replace(" ", "_");
-            }
-            if (result.Contains("@"))
-            {
-                result = result.Replace("@", "et");
-            }
-            if (result.Contains("#"))
-            {
-                result = result.Replace("#", "hash");
-            }
-
-            return result;
-        }
-
-        public static string UrlSlugWithId(string val, string id)
-        {
-            return UrlSlug(val) + "_" + id + "_";
-        }
-
         public static string ToFriendlyUrl(string urlToEncode)
         {
             urlToEncode = (urlToEncode ?? "").Trim().ToLower();
@@ -73,38 +45,42 @@ namespace Infrastructure.Helpers
             return url.ToString();
         }
 
-        public static string ToFriendlyUrl(string urlToEncode, string id)
+        public static string ToUniqueFriendlyUrl(string urlToEncode)
         {
-            if (id.Contains("__"))
-            {
+            urlToEncode = (urlToEncode ?? "").Trim().ToLower();
 
-                throw new ArgumentException("Id can't containt __ ");
+            StringBuilder url = new StringBuilder();
+
+            foreach (char ch in urlToEncode)
+            {
+                switch (ch)
+                {
+                    case ' ':
+                        url.Append('-');
+                        break;
+                    case '&':
+                        url.Append("and");
+                        break;
+                    case '\'':
+                        break;
+                    case '/':
+                        break;
+                    default:
+                        if ((ch >= '0' && ch <= '9') ||
+                            (ch >= 'a' && ch <= 'z'))
+                        {
+                            url.Append(ch);
+                        }
+                        else
+                        {
+                            url.Append('-');
+                        }
+                        break;
+                }
             }
-            string result = string.Format("{0}__{1}__", ToFriendlyUrl(urlToEncode), id);
-            return result;
+            Random r = new Random();
+            url.Append("_"+r.Next(100, 999).ToString());
+            return url.ToString();
         }
-
-        public static string GetIdFromString(string url)
-        {
-            if (string.IsNullOrEmpty(url))
-            {
-                throw new ArgumentNullException("UrlIsNull");
-            }
-            if (!url.EndsWith("__"))
-            {
-                throw new InvalidOperationException("This is not URL with Id");
-            }
-            var startOfId = url.IndexOf("__");
-            var endOfId = url.IndexOf("__", startOfId + 2);
-
-            if (endOfId < startOfId || endOfId == startOfId)
-            {
-                throw new InvalidOperationException("This is not URL with Id");
-            }
-            var extractedId = url.Substring(startOfId + 2, endOfId - startOfId - 2);
-
-            return extractedId;
-        }
-
     }
 }

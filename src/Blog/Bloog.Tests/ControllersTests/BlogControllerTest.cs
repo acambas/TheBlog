@@ -23,11 +23,11 @@ namespace Bloog.Tests.ControllersTests
     public class BlogControllerTest:RavenBaseControllerTest
     {
         //BlogController controller1;
-        string postTitle1 = "Post 1";
-        string postTitle2 = "Post 2";
+        static string postTitle1 = "Post 1";
+        static string postTitle2 = "Post 2";
 
-        string postUrlSlug1 = "Post 1__1__";
-        string postUrlSlug2 = "Post 2__2__";
+        string postUrlSlug1 = Infrastructure.Helpers.URLHelper.ToUniqueFriendlyUrl(postTitle1);
+        string postUrlSlug2 = Infrastructure.Helpers.URLHelper.ToUniqueFriendlyUrl(postTitle2);
 
 
         private async Task<BlogController> CreateController()
@@ -39,7 +39,7 @@ namespace Bloog.Tests.ControllersTests
                 new Mock<IApplicationSettings>().Object);
             controller1.RavenSession = RavenSession;
 
-            var post = new Post()
+            var post1 = new Post()
             {
                 Title = postTitle1,
                 ShortDescription = "asdsaf",
@@ -51,7 +51,7 @@ namespace Bloog.Tests.ControllersTests
                 Tags = new List<Tag> { new Tag { Name = "mvc", UrlSlug = "mvc" } }
             };
 
-            var post1 = new Post()
+            var post2 = new Post()
             {
                 Title = postTitle2,
                 ShortDescription = "asdaf",
@@ -63,8 +63,8 @@ namespace Bloog.Tests.ControllersTests
                 Tags = new List<Tag> { new Tag { Name = "it", UrlSlug = "it" }, new Tag { Name = "mvc", UrlSlug = "mvc" } }
             };
 
-            await RavenSession.StoreAsync(post);
-            await  RavenSession.StoreAsync(post1);
+            await RavenSession.StoreAsync(post1);
+            await  RavenSession.StoreAsync(post2);
             await RavenSession.SaveChangesAsync();
             controller1.RavenSession = RavenSession;
 
@@ -99,7 +99,6 @@ namespace Bloog.Tests.ControllersTests
             var viewModel = (IEnumerable<PostViewModel>)result.Model;
             Assert.IsTrue(viewModel.Count() == 2);
         }
-
 
         [TestMethod]
         public async Task Details_when_id_exists()
