@@ -33,7 +33,7 @@ namespace WebUi.Areas.Admin.Controllers
             var data = await RavenSession.Query<Post>()
                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
                 .Where(m => m.Active == true).ToListAsync();
-            var viewModel = Mapper.Map<Post, PostViewModel>(data);
+            var viewModel = Mapper.Map<Post, PostListItemViewModel>(data);
             return View(viewModel);
         }
 

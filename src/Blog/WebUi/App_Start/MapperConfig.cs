@@ -24,6 +24,11 @@ namespace WebUi.App_Start
                 .ForMember(m => m.Tags,
                 x => x.MapFrom(s => s.Tags.Select(z => new TagViewModel() { Name = z, UrlSlug = URLHelper.ToFriendlyUrl(z) })));
 
+            Mapper.CreateMap<Post, PostListItemViewModel>()
+                .ForMember(m => m.Tags,
+                x => x.MapFrom(s => s.Tags.Select(z => z.Name)));
+            //PostListItemViewModel
+
             Mapper.CreateMap<TagViewModel, Tag>()
                 .ForMember(m=>m.UrlSlug , x=>x.MapFrom(s => URLHelper.ToFriendlyUrl(s.Name)));
             Mapper.CreateMap<Tag, TagViewModel>();

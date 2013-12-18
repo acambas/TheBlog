@@ -266,6 +266,7 @@
     <Compile Include="Models\Account\AccountViewModels.cs" />
     <Compile Include="Models\Blog\BlogPageDataViewModel.cs" />
     <Compile Include="Models\Blog\PostLinkViewModel.cs" />
+    <Compile Include="Models\Blog\PostListItemViewModel.cs" />
     <Compile Include="Models\Blog\PostViewModel.cs" />
     <Compile Include="Models\Blog\TagCountViewModel.cs" />
     <Compile Include="Models\Blog\TagViewModel.cs" />
@@ -400,7 +401,6 @@
     <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Account\EditUser.cshtml" />
     <Content Include="Areas\Admin\Views\Post\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Post\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Post\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Post\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Post\Index.cshtml" />

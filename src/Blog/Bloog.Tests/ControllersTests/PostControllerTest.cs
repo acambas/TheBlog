@@ -97,8 +97,8 @@ namespace Bloog.Tests.ControllersTests
             // Assert
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Model);
-            Assert.IsInstanceOfType(result.Model, typeof(IEnumerable<PostViewModel>));
-            var viewModel = (IEnumerable<PostViewModel>)result.Model;
+            Assert.IsInstanceOfType(result.Model, typeof(IEnumerable<PostListItemViewModel>));
+            var viewModel = (IEnumerable<PostListItemViewModel>)result.Model;
             Assert.IsTrue(viewModel.Count() == 2);
         }
 
