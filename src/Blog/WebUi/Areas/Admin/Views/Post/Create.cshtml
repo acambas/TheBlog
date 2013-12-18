@@ -1,4 +1,4 @@
-﻿@model WebUi.Models.Blog.PostViewModel
+﻿@model WebUi.Models.Blog.CreatePostViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -8,7 +8,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Post", new { Area = "Admin" }, FormMethod.Post, new { id = "target" }))
 {
     @Html.AntiForgeryToken()
     
@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Title)
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Title)
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ShortDescription, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ShortDescription)
+                @Html.TextAreaFor(model => model.ShortDescription, new { @class = "tinyMCE" })
                 @Html.ValidationMessageFor(model => model.ShortDescription)
             </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description)
+                @Html.TextAreaFor(model => model.Description, new { @class = "tinyMCE" })
                 @Html.ValidationMessageFor(model => model.Description)
             </div>
         </div>
@@ -53,6 +53,78 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
+@section headscripts{
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/tinymce/tinymce.js"></script>
+}
+
+@section scripts {
+   <script type="text/javascript">
+    $(document).ready(function () {
+        tinymce.init({
+            selector: "#Description",
+            theme: "modern",
+            //width: 600,
+            height: 450,
+            plugins: [
+                 "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                 "save table contextmenu directionality emoticons template paste textcolor"
+            ],
+
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+            style_formats: [
+                 { title: 'Bold text', inline: 'b' },
+                 { title: 'Red text', inline: 'span', styles: { color: '#ff0000' } },
+                 { title: 'Red header', block: 'h1', styles: { color: '#ff0000' } },
+                 { title: 'Example 1', inline: 'span', classes: 'example1' },
+                 { title: 'Example 2', inline: 'span', classes: 'example2' },
+                 { title: 'Table styles' },
+                 { title: 'Table row 1', selector: 'tr', classes: 'tablerow1' }
+            ]
+        });
+
+        tinymce.init({
+            selector: "#ShortDescription",
+            theme: "modern",
+            //width: 600,
+            height: 200,
+            plugins: [
+                 "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                 "save table contextmenu directionality emoticons template paste textcolor"
+            ],
+
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+            style_formats: [
+                 { title: 'Bold text', inline: 'b' },
+                 { title: 'Red text', inline: 'span', styles: { color: '#ff0000' } },
+                 { title: 'Red header', block: 'h1', styles: { color: '#ff0000' } },
+                 { title: 'Example 1', inline: 'span', classes: 'example1' },
+                 { title: 'Example 2', inline: 'span', classes: 'example2' },
+                 { title: 'Table styles' },
+                 { title: 'Table row 1', selector: 'tr', classes: 'tablerow1' }
+            ]
+        });
+
+        //$("#Category").select2({
+        //    placeholder: "Select category",
+        //    allowClear: true
+        //});
+        //$("#Tags").select2({
+        //    placeholder: "Select tags"
+        //});
+
+
+
+        $("#target").submit(function (event) {
+            tinymce.get('Description').save();
+            tinymce.get('ShortDescription').save();
+            if (!$(this).valid()) {
+                return false;
+            }
+
+        });
+    });
+</script>
 }

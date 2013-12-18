@@ -22,18 +22,20 @@
             @Html.DisplayNameFor(model => model.Published)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.PostedOn)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Modified)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Tags)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.ActionLink(item.Title, "Edit", "Post", new { id = item.UrlSlug, Area="Admin" }, new { })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.User)
@@ -41,17 +43,20 @@
         <td>
             @Html.DisplayFor(modelItem => item.Published)
         </td>
+        <th>
+            @item.PostedOn.ToString("dd/MMM/yyyy")
+        </th>
         <td>
-            @Html.DisplayFor(modelItem => item.Modified)
+            @if (item.Modified.HasValue)
+            {
+                <span>@item.Modified.Value.ToString("dd/MMM/yyyy")</span>
+            }
         </td>
         <td>
            @foreach (var tag in item.Tags)
            {
                <span class="label label-primary tag" >@tag</span>
            }
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UrlSlug }) |
         </td>
     </tr>
 }

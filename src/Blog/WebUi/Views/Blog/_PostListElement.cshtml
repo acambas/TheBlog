@@ -14,7 +14,7 @@
         <br />
         @foreach (var item in Model.Tags)
         {
-            <a href="@Url.Action("FilterByTag", "Blog", new { id = @item.Name , name=@item.Name})">
+            <a href="@Url.RouteUrl("PostsByTag", new { tag = item.UrlSlug })">
                 <i class="fa fa-tag"></i>
                 @item.Name
             </a>

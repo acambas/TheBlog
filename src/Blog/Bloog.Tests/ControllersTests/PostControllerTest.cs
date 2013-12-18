@@ -109,7 +109,7 @@ namespace Bloog.Tests.ControllersTests
             Assert.IsNotNull(result);
 
             Assert.IsNotNull(result.Model);
-            Assert.IsInstanceOfType(result.Model, typeof(PostViewModel));
+            Assert.IsInstanceOfType(result.Model, typeof(CreatePostViewModel));
         }
 
         [TestMethod]
@@ -117,7 +117,7 @@ namespace Bloog.Tests.ControllersTests
         {
             //Arange
             var controller = await CreateController();
-            PostViewModel viewModel = new PostViewModel()
+            CreatePostViewModel viewModel = new CreatePostViewModel()
             {
                 Title = "Post 3",
                 ShortDescription = "asdsaf",
@@ -142,7 +142,7 @@ namespace Bloog.Tests.ControllersTests
             //Arange
             var controller = await CreateController();
             controller.ModelState.AddModelError("key", "model is invalid");
-            PostViewModel viewModel = new PostViewModel()
+            CreatePostViewModel viewModel = new CreatePostViewModel()
             {
             };
 
@@ -152,7 +152,7 @@ namespace Bloog.Tests.ControllersTests
             //Asert
             Assert.IsInstanceOfType(data, typeof(ViewResult));
             var viewResult = (ViewResult)data;
-            Assert.IsInstanceOfType(viewResult.Model, typeof(PostViewModel));
+            Assert.IsInstanceOfType(viewResult.Model, typeof(CreatePostViewModel));
         }
 
         [TestMethod]
@@ -195,8 +195,8 @@ namespace Bloog.Tests.ControllersTests
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             var viewResult = (ViewResult)result;
 
-            Assert.IsInstanceOfType(viewResult.Model, typeof(PostViewModel));
-            var viewModel = (PostViewModel)viewResult.Model;
+            Assert.IsInstanceOfType(viewResult.Model, typeof(EditPostViewModel));
+            var viewModel = (EditPostViewModel)viewResult.Model;
             Assert.IsTrue(viewModel.Title == postTitle1);
         }
 
@@ -206,7 +206,7 @@ namespace Bloog.Tests.ControllersTests
             //Arange
             var controller1 = await CreateController();
 
-            var viewModel = new PostViewModel()
+            var viewModel = new EditPostViewModel()
             {
                 Title = "new Post 1",
                 UrlSlug = postUrlSlug1,

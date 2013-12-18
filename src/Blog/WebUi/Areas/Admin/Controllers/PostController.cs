@@ -35,17 +35,17 @@ namespace WebUi.Areas.Admin.Controllers
 
         public ViewResult Create()
         {
-            PostViewModel viewModel = new PostViewModel();
+            CreatePostViewModel viewModel = new CreatePostViewModel();
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Title,ShortDescription,Description,Tags")] PostViewModel postviewmodel)
+        public async Task<ActionResult> Create([Bind(Include = "Title,ShortDescription,Description,Tags")] CreatePostViewModel postviewmodel)
         {
             if (ModelState.IsValid)
             {
-                var data = Mapper.Map<PostViewModel, Post>(postviewmodel);
+                var data = Mapper.Map<CreatePostViewModel, Post>(postviewmodel);
                 data.PostedOn = DateTime.Now;
                 data.UrlSlug = URLHelper.ToUniqueFriendlyUrl(data.Title);
                 await RavenSession.StoreAsync(data);
@@ -66,7 +66,7 @@ namespace WebUi.Areas.Admin.Controllers
             var postData = await RavenSession.Query<Post>()
                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
                 .FirstOrDefaultAsync(m => m.UrlSlug == id);
-            var postviewmodel = Mapper.Map<Post, PostViewModel>(postData);
+            var postviewmodel = Mapper.Map<Post, EditPostViewModel>(postData);
             if (postviewmodel == null)
             {
                 return HttpNotFound();
@@ -76,12 +76,12 @@ namespace WebUi.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Title,ShortDescription,Description,UrlSlug")] PostViewModel postviewmodel)
+        public async Task<ActionResult> Edit([Bind(Include = "Title,ShortDescription,Description,UrlSlug")] EditPostViewModel postviewmodel)
         {
             if (ModelState.IsValid)
             {
                 var data = await RavenSession.Query<Post>().FirstAsync(m => m.UrlSlug == postviewmodel.UrlSlug);
-                var editData = Mapper.Map<PostViewModel, Post>(postviewmodel, data);
+                var editData = Mapper.Map<EditPostViewModel, Post>(postviewmodel, data);
                 await RavenSession.StoreAsync(editData);
                 await SaveAsync();
                 return RedirectToAction("Index");

@@ -16,14 +16,22 @@ namespace WebUi.App_Start
         public static void ConfigureMappings()
         {
             Mapper.CreateMap<Post, PostViewModel>();
-            Mapper.CreateMap<PostViewModel, Post>()
-                .ForMember(m => m.Tags,
-                x => x.MapFrom(s => s.Tags.Select(z => new TagViewModel() { Name = z, UrlSlug = URLHelper.ToFriendlyUrl(z) })));
+            Mapper.CreateMap<PostViewModel, Post>();
+            Mapper.CreateMap<CreatePostViewModel, Post>()
+               .ForMember(m => m.Tags,
+               x => x.MapFrom(s => s.Tags.Select(z => new TagViewModel() { Name = z, UrlSlug = URLHelper.ToFriendlyUrl(z) })));
+
+            Mapper.CreateMap<EditPostViewModel, Post>()
+               .ForMember(m => m.Tags,
+               x => x.MapFrom(s => s.Tags.Select(z => new TagViewModel() { Name = z, UrlSlug = URLHelper.ToFriendlyUrl(z) })));
+
+            Mapper.CreateMap<Post, EditPostViewModel>()
+               .ForMember(m => m.Tags,
+               x => x.MapFrom(s => s.Tags.Select(z => z.Name)));
 
             Mapper.CreateMap<Post, PostListItemViewModel>()
                 .ForMember(m => m.Tags,
                 x => x.MapFrom(s => s.Tags.Select(z => z.Name)));
-            //PostListItemViewModel
 
             Mapper.CreateMap<TagViewModel, Tag>()
                 .ForMember(m => m.UrlSlug, x => x.MapFrom(s => URLHelper.ToFriendlyUrl(s.Name)));
