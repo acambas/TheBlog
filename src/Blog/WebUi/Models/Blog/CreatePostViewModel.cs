@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using WebUi.App_Start;
 
 namespace WebUi.Models.Blog
 {
     public class CreatePostViewModel
     {
+        protected IEnumerable<string> allTags = new List<string>();
+
         public CreatePostViewModel()
         {
+            allTags = new List<string>();
             Tags = new List<string>();
         }
 
@@ -29,5 +35,23 @@ namespace WebUi.Models.Blog
         public virtual string Description { get; set; }
 
         public virtual IEnumerable<string> Tags { get; set; }
+
+
+        public virtual IEnumerable<SelectListItem> SelectItemsForTags()
+        {
+            return allTags
+                .Select(m => new SelectListItem { Text = m, Value = m });
+        }
+
+        public virtual void FillAllTags(IEnumerable<TagViewModel> tags)
+        {
+            allTags = tags.Select(m => m.Name);
+        }
+
+        public virtual string[] ArrayOfAllTags()
+        {
+            return allTags.ToArray();
+        }
+
     }
 }

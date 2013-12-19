@@ -1,4 +1,5 @@
-﻿using Infrastructure.Config._Settings;
+﻿using Domain.Image;
+using Infrastructure.Config._Settings;
 using Infrastructure.Logging;
 using Infrastructure.Mapping;
 using Microsoft.Practices.Unity;
@@ -28,6 +29,7 @@ namespace WebUi.App_Start
             container
             .RegisterType<IApplicationSettings, WebConfigApplicationSettings>(new ContainerControlledLifetimeManager())
             .RegisterType<Infrastructure.Logging.ILogger, Log4NetAdapter>(new ContainerControlledLifetimeManager())
+            .RegisterType<IImageService, StoreOnRavenDBImageService>(new ContainerControlledLifetimeManager())
             .RegisterType<IMapper, AutoMapperAdapter>(new ContainerControlledLifetimeManager())
             ;
         }

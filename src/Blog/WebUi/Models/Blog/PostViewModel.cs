@@ -30,6 +30,8 @@ namespace WebUi.Models.Blog
 
         public virtual IEnumerable<TagViewModel> Tags { get; set; }
 
+        public string ImageId { get; set; }
+
         public virtual bool Published
         { get; set; }
 

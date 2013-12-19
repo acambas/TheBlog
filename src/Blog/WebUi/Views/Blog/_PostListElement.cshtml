@@ -1,9 +1,26 @@
 ﻿@model WebUi.Models.Blog.PostViewModel
-
+@{
+    if (Model.ImageId == null)
+    {
+        Model.ImageId = "blog";
+    }
+}
 <article class=" text-center">
     <header>
-        <h2>@Model.Title<br><small>@Model.PostedOn.ToString("dd MMM yyyy")</small></h2>
-        <img class="img-responsive img-border img-full" src="~/img/blog-3.jpg" />
+        <h2>
+            @Model.Title<br><small>@Model.PostedOn.ToString("dd MMM yyyy")</small>
+
+            @foreach (var item in Model.Tags)
+            {
+                <small>
+                    <a href="@Url.RouteUrl("PostsByTag", new { tag = item.UrlSlug })">
+                        <i class="fa fa-tag"></i>
+                        @item.Name
+                    </a>
+                </small>
+            }
+        </h2>
+        <img class="img-responsive img-border img-full" src="@Url.Action("Image","Blog",new {id = Model.ImageId})" alt="No Image" />
     </header>
     <br />
     <section>
@@ -12,13 +29,6 @@
     <div class="post-footer">
         <a href="@Url.RouteUrl("ViewPost", new { id = Model.UrlSlug })" class="btn btn-default btn-lg">Read More</a>
         <br />
-        @foreach (var item in Model.Tags)
-        {
-            <a href="@Url.RouteUrl("PostsByTag", new { tag = item.UrlSlug })">
-                <i class="fa fa-tag"></i>
-                @item.Name
-            </a>
-        }
         <hr>
     </div>
     <br />

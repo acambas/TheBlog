@@ -1,0 +1,16 @@
+﻿@model String
+@{
+    var formName = ViewData.TemplateInfo.HtmlFieldPrefix;
+    var config = ViewData["Config"] == null ? null : new HtmlString(", " + Json.Encode(ViewData["Config"]));
+}
+<textarea name="@formName">@Model</textarea>
+
+@if (Context.Items["CkeditorScriptRendered"] == null)
+{
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script src="~/Scripts/ckeditor/adapters/jquery.js"></script>
+    Context.Items["CkeditorScriptRendered"] = true;
+}
+<script type="text/javascript">
+    CKEDITOR.replace("@formName" @config);
+</script>

@@ -19,6 +19,9 @@ namespace Domain.Post
         public virtual string Title
         { get; set; }
 
+        public virtual string User
+        { get; set; }
+
         [Required(ErrorMessage = "ShortDescription: Field is required")]
         public virtual string ShortDescription
         { get; set; }
@@ -44,6 +47,8 @@ namespace Domain.Post
 
         public virtual IEnumerable<Tag.Tag> Tags
         { get; set; }
+
+        public string ImageId { get; set; }
 
         public override bool Validate()
         {

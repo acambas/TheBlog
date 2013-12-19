@@ -1,4 +1,5 @@
 ﻿using Bloog.Tests.Base;
+using Domain.Image;
 using Domain.Post;
 using Domain.Tag;
 using Infrastructure.Config._Settings;
@@ -12,7 +13,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using WebUi.Areas.Admin.Controllers;
 using WebUi.Models.Blog;
 
@@ -32,7 +35,8 @@ namespace Bloog.Tests.ControllersTests
             PostController controller1 = new PostController(
                 new Mock<ILogger>().Object,
                 new AutoMapperAdapter(),
-                new Mock<IApplicationSettings>().Object);
+                new Mock<IApplicationSettings>().Object,
+                new Mock<IImageService>().Object);
             controller1.RavenSession = RavenSession;
 
             var post1 = new Post()
@@ -97,13 +101,13 @@ namespace Bloog.Tests.ControllersTests
         }
 
         [TestMethod]
-        public void Create_View()
+        public async Task Create_View()
         {
             //Arange
             var controller = CreateController().Result;
 
             //Act
-            var result = controller.Create();
+            var result = await controller.Create();
 
             //Assert
             Assert.IsNotNull(result);
@@ -125,8 +129,12 @@ namespace Bloog.Tests.ControllersTests
                 Tags = new List<string> { "tag1", "tag2", "tag3" }
             };
 
+
+            controller.ControllerContext = new ControllerContext(new Mock<HttpContextBase>().Object
+                , new RouteData(), controller);
+
             //Act
-            await controller.Create(viewModel);
+            await controller.Create(viewModel, null);
 
             //Asert
             var findPost = await controller.RavenSession.Query<Post>()
@@ -147,7 +155,7 @@ namespace Bloog.Tests.ControllersTests
             };
 
             //Act
-            var data = await controller.Create(viewModel);
+            var data = await controller.Create(viewModel, null);
 
             //Asert
             Assert.IsInstanceOfType(data, typeof(ViewResult));

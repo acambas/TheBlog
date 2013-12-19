@@ -1,5 +1,6 @@
 ﻿@model WebUi.Models.Blog.CreatePostViewModel
-
+@using System.Web.Script.Serialization;
+@using WebUi.App_Start
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
@@ -7,16 +8,14 @@
 
 <h2>Create</h2>
 
-
-@using (Html.BeginForm("Create", "Post", new { Area = "Admin" }, FormMethod.Post, new { id = "target" }))
+@using (Html.BeginForm("Create", "Post", new { Area = "Admin" }, FormMethod.Post, new { id = "target", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
         <h4>PostViewModel</h4>
         <hr />
         @Html.ValidationSummary(true)
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -26,18 +25,36 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ShortDescription, new { @class = "control-label col-md-2" })
+            <label for="file" class="control-label col-md-2">Upload Image:</label> 
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.ShortDescription, new { @class = "tinyMCE" })
+                <input type="file" name="file" id="file" style="width: 100%;" /> 
+            </div>
+        </div>
+
+        <h4 class="text-center">
+            @Html.LabelFor(model => model.ShortDescription)
+        </h4>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.CkeditorFor(model => model.ShortDescription, new { height = 150 })
                 @Html.ValidationMessageFor(model => model.ShortDescription)
             </div>
         </div>
 
+        <h4 class="text-center">
+            @Html.LabelFor(model => model.Description)
+        </h4>
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Description, new { @class = "tinyMCE" })
+            <div class="col-md-12">
+                @Html.CkeditorFor(model => model.Description, new { height = 450 })
                 @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tags, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="hidden" id="Tags" name="Tags" value="" tabindex="-1" class="select2-offscreen col-md-12">
             </div>
         </div>
 
@@ -53,78 +70,34 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+@section css{
+    <link href="~/Content/css/select2.css" rel="stylesheet" />
+    <link href="~/Content/select2-bootstrap.css" rel="stylesheet" />
+}
+
 @section headscripts{
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/tinymce/tinymce.js"></script>
+    @*<script src="~/Scripts/tinymce/tinymce.js"></script>*@
+    <script src="~/Scripts/select2.js"></script>
 }
 
 @section scripts {
-   <script type="text/javascript">
-    $(document).ready(function () {
-        tinymce.init({
-            selector: "#Description",
-            theme: "modern",
-            //width: 600,
-            height: 450,
-            plugins: [
-                 "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                 "save table contextmenu directionality emoticons template paste textcolor"
-            ],
+    <script type="text/javascript">
+        var tags = @Html.Raw(Json.Encode(Model.ArrayOfAllTags()))
+        $(document).ready(function () {
 
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
-            style_formats: [
-                 { title: 'Bold text', inline: 'b' },
-                 { title: 'Red text', inline: 'span', styles: { color: '#ff0000' } },
-                 { title: 'Red header', block: 'h1', styles: { color: '#ff0000' } },
-                 { title: 'Example 1', inline: 'span', classes: 'example1' },
-                 { title: 'Example 2', inline: 'span', classes: 'example2' },
-                 { title: 'Table styles' },
-                 { title: 'Table row 1', selector: 'tr', classes: 'tablerow1' }
-            ]
+            $("#Tags").select2({
+                tags: tags,
+                maximumInputLength: 15,
+                tokenSeparators: [",", " "]
+            });
+
+            $("#target").submit(function (event) {
+                if (!$(this).valid()) {
+                    return false;
+                }
+
+            });
         });
-
-        tinymce.init({
-            selector: "#ShortDescription",
-            theme: "modern",
-            //width: 600,
-            height: 200,
-            plugins: [
-                 "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                 "save table contextmenu directionality emoticons template paste textcolor"
-            ],
-
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
-            style_formats: [
-                 { title: 'Bold text', inline: 'b' },
-                 { title: 'Red text', inline: 'span', styles: { color: '#ff0000' } },
-                 { title: 'Red header', block: 'h1', styles: { color: '#ff0000' } },
-                 { title: 'Example 1', inline: 'span', classes: 'example1' },
-                 { title: 'Example 2', inline: 'span', classes: 'example2' },
-                 { title: 'Table styles' },
-                 { title: 'Table row 1', selector: 'tr', classes: 'tablerow1' }
-            ]
-        });
-
-        //$("#Category").select2({
-        //    placeholder: "Select category",
-        //    allowClear: true
-        //});
-        //$("#Tags").select2({
-        //    placeholder: "Select tags"
-        //});
-
-
-
-        $("#target").submit(function (event) {
-            tinymce.get('Description').save();
-            tinymce.get('ShortDescription').save();
-            if (!$(this).valid()) {
-                return false;
-            }
-
-        });
-    });
-</script>
+    </script>
 }

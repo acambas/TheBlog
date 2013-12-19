@@ -243,9 +243,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AppExtesions.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\ImageService.cs" />
     <Compile Include="App_Start\IocConfig.cs" />
     <Compile Include="App_Start\MapperConfig.cs" />
     <Compile Include="App_Start\RavenDbConfig.cs" />
@@ -1017,10 +1019,12 @@
     <Content Include="Views\Blog\_PostList.cshtml" />
     <Content Include="Views\Blog\_PostListElement.cshtml" />
     <Content Include="Views\Blog\_BlogPageData.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Ckeditor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Controllers\API\" />
     <Folder Include="Views\HTMLPage\" />
   </ItemGroup>
   <ItemGroup>

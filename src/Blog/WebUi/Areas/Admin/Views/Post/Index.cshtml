@@ -19,9 +19,6 @@
             @Html.DisplayNameFor(model => model.User)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Published)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.PostedOn)
         </th>
         <th>
@@ -40,9 +37,6 @@
         <td>
             @Html.DisplayFor(modelItem => item.User)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Published)
-        </td>
         <th>
             @item.PostedOn.ToString("dd/MMM/yyyy")
         </th>
@@ -55,7 +49,8 @@
         <td>
            @foreach (var tag in item.Tags)
            {
-               <span class="label label-primary tag" >@tag</span>
+               <span class="label label-default" >@tag</span>
+               
            }
         </td>
     </tr>

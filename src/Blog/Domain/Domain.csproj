@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HTMLPage\HTMLPage.cs" />
+    <Compile Include="Image\AppImage.cs" />
+    <Compile Include="Image\IImageService.cs" />
     <Compile Include="Post\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag\Tag.cs" />
