@@ -3,6 +3,7 @@ using AspNet.Identity.RavenDB.Stores;
 using Domain.Post;
 using Domain.Tag;
 using Microsoft.AspNet.Identity;
+using Raven.Client.Document;
 using Raven.Client.Embedded;
 using Raven.Client.Indexes;
 using System;
@@ -126,8 +127,8 @@ namespace WebUi.App_Start
             seedData();
 
 #else
-            Store = new DocumentStore { ConnectionStringName = "RavenDB" };
-            Store.Initialize();
+            MvcApplication.Store = new DocumentStore { ConnectionStringName = "RavenDB" };
+            MvcApplication.Store.Initialize();
             RavenDbIndexes.SetUpIndexes(MvcApplication.Store);
             //IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), MvcApplication.Store);
 #endif
