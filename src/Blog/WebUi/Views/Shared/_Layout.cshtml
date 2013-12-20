@@ -6,12 +6,15 @@
     <title>@ViewBag.Title</title>
 
 
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/business-casual.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />*
-    <link href="~/Content/font-awesome.css" rel="stylesheet" />
-
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />*@
+    @Styles.Render("~/Content/css")
     @RenderSection("css", required: false)
+
+    @Scripts.Render("~/bundles/base")
+    @RenderSection("headscripts", required: false)
 
 </head>
 <body>
@@ -38,7 +41,7 @@
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
-                        @Html.Partial("_LoginPartial")
+                        <li>@Html.ActionLink("User", "Login", "Login")</li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container -->
@@ -61,17 +64,6 @@
         </div>
     </footer>
 
-
-    <script src="~/Scripts/jquery-2.0.3.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/respond.js"></script>
-    <script>
-        // Activates the Carousel
-        window.rootUrl = "@Url.Content("~/")";
-        $('.carousel').carousel({
-            interval: 5000
-        })
-    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

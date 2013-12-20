@@ -30,6 +30,11 @@ namespace WebUi.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index","Admin",new {Area = "Admin"});
+            }
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -65,14 +70,14 @@ namespace WebUi.Controllers
                         ClaimTypes.Name,
                         ClaimTypes.Role);
                     AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, identity);
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index","Admin",new {Area = "Admin"});
                 }
 
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index","Admin",new {Area = "Admin"});
                 }
                 else
                 {

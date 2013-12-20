@@ -9,28 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace WebUi.App_Start
+namespace WebUi.Models.RavenDB
 {
-    public class StoreOnServerImageService : IImageService
-    {
-
-        Task IImageService.StoreImage(AppImage image)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<AppImage> IImageService.GetImageData(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<string>> GetAllImageIds()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-
     public class StoreOnRavenDBImageService : IImageService
     {
         DocumentStore store = WebUi.MvcApplication.Store;

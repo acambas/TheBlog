@@ -10,6 +10,8 @@ namespace WebUi.Controllers
 {
     public abstract class RavenController : Controller
     {
+
+
         protected Infrastructure.Logging.ILogger Logger { get; set; }
 
         protected IMapper Mapper { get; set; }

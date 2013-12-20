@@ -19,14 +19,22 @@
         @Html.Action("BlogPageData", "Blog")
     </aside>
 
-    <footer>
-
-    </footer>
+    <footer></footer>
     @*<div class="col-lg-12 text-center">
-      <ul class="pager">
-        <li class="previous"><a href="#">&larr; Older</a></li>
-        <li class="next"><a href="#">Newer &rarr;</a></li>
-      </ul>
-    </div>*@
+          <ul class="pager">
+            <li class="previous"><a href="#">&larr; Older</a></li>
+            <li class="next"><a href="#">Newer &rarr;</a></li>
+          </ul>
+        </div>*@
 
 </section>
+
+@section scripts{
+    <script>
+        // Activates the Carousel
+        window.rootUrl = "@Url.Content("~/")";
+        $('.carousel').carousel({
+            interval: 5000
+        })
+    </script>
+}

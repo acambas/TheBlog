@@ -5,6 +5,7 @@ using Infrastructure.Mapping;
 using Microsoft.Practices.Unity;
 using System.Web.Mvc;
 using Unity.Mvc4;
+using WebUi.Models.RavenDB;
 
 namespace WebUi.App_Start
 {
