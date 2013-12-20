@@ -129,7 +129,7 @@ namespace WebUi.App_Start
             Store = new DocumentStore { ConnectionStringName = "RavenDB" };
             Store.Initialize();
             RavenDbIndexes.SetUpIndexes(MvcApplication.Store);
-            IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), MvcApplication.Store);
+            //IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), MvcApplication.Store);
 #endif
         }
     }
