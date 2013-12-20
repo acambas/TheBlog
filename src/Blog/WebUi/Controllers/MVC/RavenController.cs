@@ -1,4 +1,6 @@
-﻿using Infrastructure.Config._Settings;
+﻿using DevTrends.MvcDonutCaching;
+using DevTrends.MvcDonutCaching.Annotations;
+using Infrastructure.Config._Settings;
 using Infrastructure.Mapping;
 using Raven.Client;
 using System.Threading.Tasks;
@@ -23,7 +25,11 @@ namespace WebUi.Controllers
             Logger = logger;
             Mapper = mapper;
             AppSettings = appSettings;
+            CacheManager = new OutputCacheManager();
         }
+
+
+        protected OutputCacheManager CacheManager { get; set; }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {

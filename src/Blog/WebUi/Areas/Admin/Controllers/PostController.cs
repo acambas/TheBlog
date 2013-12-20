@@ -59,7 +59,8 @@ namespace WebUi.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(
-            [Bind(Include = "Title,ShortDescription,Description,Tags")] CreatePostViewModel postviewmodel, HttpPostedFileBase file)
+            [Bind(Include = "Title,ShortDescription,Description,Tags")] CreatePostViewModel postviewmodel, 
+            HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -80,11 +81,18 @@ namespace WebUi.Areas.Admin.Controllers
                 //Handle image
                 var imageId = await handleImageUpload(file);
                 if (!string.IsNullOrEmpty(imageId))
-                    data.ImageId = imageId;    
+                {
+                    data.ImageId = imageId;
+                }
+                       
 
                 //Save post
                 await RavenSession.StoreAsync(data);
                 await SaveAsync();
+
+                //Handle cache
+                handleCache();
+
                 return RedirectToAction("Index");
             }
 
@@ -126,7 +134,9 @@ namespace WebUi.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Title,ShortDescription,Description,UrlSlug,Tags")] EditPostViewModel postviewmodel, HttpPostedFileBase file)
+        public async Task<ActionResult> Edit(
+            [Bind(Include = "Title,ShortDescription,Description,UrlSlug,Tags")] EditPostViewModel postviewmodel, 
+            HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -140,13 +150,21 @@ namespace WebUi.Areas.Admin.Controllers
                 {
                     var imageId = await handleImageUpload(file);
                     if (!string.IsNullOrEmpty(imageId))
+                    {
                         data.ImageId = imageId;
+                        //Handle image cache
+                        
+                    }
                 }
                 else
                     data.ImageId = oldImageId;
 
                 await RavenSession.StoreAsync(editData);
                 await SaveAsync();
+
+                //Handle post cache
+                handleCache(data.UrlSlug);
+
                 return RedirectToAction("Index");
             }
             //Get All Tags
@@ -168,7 +186,6 @@ namespace WebUi.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-
         public async Task<JsonResult> GetAllTags()
         {
             var dataTagCount = await RavenSession.Query<TagCountIndex.ReduceResult, TagCountIndex>()
@@ -179,7 +196,6 @@ namespace WebUi.Areas.Admin.Controllers
 
             return Json(tags, JsonRequestBehavior.AllowGet);
         }
-
 
         //Private functions------------------------------------------------
         private IEnumerable<string> handleRecivedTags(IEnumerable<string> tags)
@@ -198,6 +214,18 @@ namespace WebUi.Areas.Admin.Controllers
             result = splitTags.ToList();
 
             return result;
+        }
+
+        private void handleCache(string id = null)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                CacheManager.RemoveItem("Blog", "Details", new { id = id });    
+            }
+            CacheManager.RemoveItem("Blog", "BlogPageData");
+            CacheManager.RemoveItem("Blog", "Index");
+            CacheManager.RemoveItems("Blog", "PostsByTag");
+            CacheManager.RemoveItems("Blog", "PostsByTerm");
         }
 
         private async Task<string> handleImageUpload(HttpPostedFileBase file)

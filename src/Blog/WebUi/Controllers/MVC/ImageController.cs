@@ -32,7 +32,7 @@ namespace WebUi.Controllers.MVC
         }
 
 
-        [OutputCache(Duration = 15, VaryByParam = "id")]
+        [OutputCache(CacheProfile = "Image")]
         public async Task<FileContentResult> Image(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -43,7 +43,7 @@ namespace WebUi.Controllers.MVC
 
                 if (imageData == null || imageData.ImageBinaryData == null)
                     throw new Exception();
-
+                
                 return File(imageData.ImageBinaryData, "jpg");
             }
             catch (Exception)
@@ -76,7 +76,7 @@ namespace WebUi.Controllers.MVC
             }
         }
 
-
+        [Authorize]
         public async Task<ViewResult> Gallery()
         {
             var images = await imageService.GetAllImageIds();

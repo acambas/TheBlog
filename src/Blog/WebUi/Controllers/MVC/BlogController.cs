@@ -1,4 +1,5 @@
-﻿using Domain.Image;
+﻿using DevTrends.MvcDonutCaching;
+using Domain.Image;
 using Domain.Post;
 using Infrastructure.Config._Settings;
 using Infrastructure.Extensions;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.UI;
 using WebUi.Models.Blog;
 using WebUi.Models.RavenDB;
 
@@ -31,6 +33,7 @@ namespace WebUi.Controllers.MVC
         }
 
         [Route("Blog")]
+        [DonutOutputCache(CacheProfile = "BlogPage")]
         public async Task<ViewResult> Index()
         {
             IList<Post> data = await RavenSession.Query<Post>()
@@ -41,7 +44,7 @@ namespace WebUi.Controllers.MVC
             return View(viewModel);
         }
 
-        [OutputCache(Duration = 15, VaryByParam = "id")]
+        [DonutOutputCache(CacheProfile = "BlogPost")]
         [Route("Blog/{id}", Name = "ViewPost")]
         public async Task<ActionResult> Details(string id)
         {
@@ -63,6 +66,7 @@ namespace WebUi.Controllers.MVC
             return View(postviewmodel);
         }
 
+        [DonutOutputCache(CacheProfile = "BlogPage")]
         [Route("Blog/{tag}/Tag", Name = "PostsByTag")]
         public async Task<ActionResult> PostsByTag(string tag)
         {
@@ -82,6 +86,7 @@ namespace WebUi.Controllers.MVC
             return View("Index", postviewmodel);
         }
 
+        [DonutOutputCache(CacheProfile = "BlogPage")]
         [Route("Blog/{term}/Term", Name = "PostsByTerm")]
         public async Task<ActionResult> PostsByTerm(string term)
         {
@@ -103,8 +108,8 @@ namespace WebUi.Controllers.MVC
         }
 
         
-
-        [OutputCache(Duration = 15, VaryByParam = "none")]
+        //Child actions---------------------------------------------
+        [DonutOutputCache(CacheProfile = "BlogPageData")]
         [ChildActionOnly]
         public PartialViewResult BlogPageData()
         {

@@ -30,7 +30,7 @@ namespace WebUi.Models.RavenDB
             Map = posts => from post in posts
                            select new { post.Title };
             Index(x => x.Title, FieldIndexing.Analyzed);
-            Sort(x => x.PostedOn, SortOptions.String);
+            
         }
     }
 
