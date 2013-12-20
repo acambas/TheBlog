@@ -120,35 +120,33 @@ namespace WebUi.Controllers.MVC
         
         //Child actions---------------------------------------------
         [DonutOutputCache(CacheProfile = "BlogPageData")]
-        [ChildActionOnly]
+        //[ChildActionOnly]
+        [Authorize]
         public PartialViewResult BlogPageData()
         {
             Logger.Log("Blog page DATA start");
             BlogPageDataViewModel viewModel = new BlogPageDataViewModel();
 
             //Get Tag Count
-            var queryTagCount = RavenSession.Query<TagCountIndex.ReduceResult, TagCountIndex>()
-                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)));
-            Logger.Log("Blog page DATA tag query made");
 
 
-            var dataTagCount = queryTagCount.ToListAsync().Result;
+            //Get last 5 post links
+            var postLinks = RavenSession.Query<Post>()
+                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
+                .OrderByDescending(m => m.PostedOn)
+                .Select(m => new Post { Title = m.Title, UrlSlug = m.UrlSlug })
+                .Take(5)
+                .ToListAsync().Result;
+
+            Logger.Log("Blog page DATA link data received");
+            viewModel.RecentLinkList = Mapper.Map<Post, PostLinkViewModel>(postLinks);
+
+            var dataTagCount = RavenSession.Query<TagCountIndex.ReduceResult, TagCountIndex>()
+                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5))).ToListAsync().Result;
             Logger.Log("Blog page DATA tag data received");
 
             viewModel.TagCountList = Mapper.Map<TagCountIndex.ReduceResult, TagCountViewModel>(dataTagCount);
 
-            //Get last 5 post links
-            Logger.Log("Blog page DATA tag query made");
-            var lastPostsQuery = RavenSession.Query<Post>()
-                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
-                .OrderByDescending(m => m.PostedOn)
-                .Select(m => new Post { Title = m.Title, UrlSlug = m.UrlSlug })
-                .Take(5);
-            Logger.Log("Blog page DATA link query made");
-            var postLinks = lastPostsQuery.ToListAsync().Result;
-
-            Logger.Log("Blog page DATA link data received");
-            viewModel.RecentLinkList = Mapper.Map<Post, PostLinkViewModel>(postLinks);
 
             return PartialView("_BlogPageData", viewModel);
         }

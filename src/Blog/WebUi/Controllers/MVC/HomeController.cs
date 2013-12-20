@@ -41,15 +41,6 @@ namespace WebUi.Controllers
         [Route("Contact")]
         public ActionResult Contact()
         {
-            //Get Tag Count
-            var queryTagCount = RavenSession.Query<TagCountIndex.ReduceResult, TagCountIndex>()
-                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)));
-            Logger.Log("Contact Blog page DATA tag query made");
-
-
-            var dataTagCount = queryTagCount.ToListAsync().Result;
-            Logger.Log("Contact Blog page DATA tag data received");
-
             ViewBag.Message = "Your contact page.";
             return View();
         }
