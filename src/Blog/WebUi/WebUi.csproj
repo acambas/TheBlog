@@ -370,10 +370,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="img\bg.jpg" />
-    <Content Include="img\blog-1.png" />
-    <Content Include="img\blog-2-small.jpg" />
     <Content Include="img\blog-2.jpg" />
-    <Content Include="img\blog-3.jpg" />
     <Content Include="img\intro-pic.jpg" />
     <Content Include="img\slide-1.jpg" />
     <Content Include="img\slide-2.jpg" />
