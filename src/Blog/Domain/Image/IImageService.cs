@@ -9,6 +9,9 @@ namespace Domain.Image
 {
     public interface IImageService
     {
+
+        void StoreImage(AppImage image);
+
         void StoreImage(string id, byte[] data);
 
         void StoreImage(string id, Stream data);

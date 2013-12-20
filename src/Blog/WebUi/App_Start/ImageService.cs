@@ -36,6 +36,11 @@ namespace WebUi.App_Start
         {
             throw new NotImplementedException();
         }
+
+        public void StoreImage(AppImage image)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 
@@ -71,7 +76,29 @@ namespace WebUi.App_Start
 
         public string GetImageUrl(string id)
         {
-            throw new NotImplementedException();
+            using (var session = store.OpenSession())
+            {
+                var dbCommands = session.Advanced.DocumentStore.DatabaseCommands;
+                var attachement = dbCommands.GetAttachment(id);
+                AppImage image = new AppImage() { Id = id };
+
+                var input = attachement.Data.Invoke();
+
+                if (input is MemoryStream)
+                {
+                    image.ImageBinaryData = ((MemoryStream)input).ToArray();
+                }
+                else
+                {
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        input.CopyTo(stream);
+                        image.ImageBinaryData = stream.ToArray();
+                    }
+                }
+
+                return "";
+            }
         }
 
         public AppImage GetImageData(string id)
@@ -104,6 +131,28 @@ namespace WebUi.App_Start
         public string GetImageSoureUrl()
         {
             throw new NotImplementedException();
+
+            using (var session = store.OpenSession())
+            {
+                var dbCommands = session.Advanced.DocumentStore.DatabaseCommands;
+               // var attachement = dbCommands.GetAttachmentHeadersStartingWith("BlogImage/");
+
+            }
+        }
+
+        public void StoreImage(AppImage image)
+        {
+            using (var session = store.OpenSession())
+            {
+                var dbCommands = session.Advanced.DocumentStore.DatabaseCommands;
+                var optionalMetaData = new RavenJObject();
+                optionalMetaData["Format"] = "JPG";
+                using (Stream stream = new MemoryStream(image.ImageBinaryData))
+                {
+                    dbCommands.PutAttachment(image.Id, Guid.NewGuid(),
+                    stream, optionalMetaData);
+                }
+            }
         }
     }
 }

@@ -259,6 +259,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Controllers\MVC\BlogController.cs" />
+    <Compile Include="Controllers\MVC\ImageController.cs" />
     <Compile Include="Controllers\MVC\LoginController.cs" />
     <Compile Include="Controllers\MVC\HomeController.cs" />
     <Compile Include="Controllers\MVC\RavenController.cs" />
