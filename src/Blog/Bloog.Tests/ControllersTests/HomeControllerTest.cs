@@ -33,18 +33,18 @@ namespace Bloog.Tests.Controllers
             Assert.AreEqual("Your application description page.", result.ViewBag.Message);
         }
 
-        [TestMethod]
-        public void Contact()
-        {
-            // Arrange
-            HomeController controller = new HomeController(null, null, null);
+        //[TestMethod]
+        //public void Contact()
+        //{
+        //    // Arrange
+        //    HomeController controller = new HomeController(null, null, null);
 
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
+        //    // Act
+        //    ViewResult result = controller.Contact() as ViewResult;
 
-            //some change 1
-            // Assert
-            Assert.IsNotNull(result);
-        }
+        //    //some change 1
+        //    // Assert
+        //    Assert.IsNotNull(result);
+        //}
     }
 }
