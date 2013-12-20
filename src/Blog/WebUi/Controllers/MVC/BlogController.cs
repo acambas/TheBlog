@@ -120,38 +120,38 @@ namespace WebUi.Controllers.MVC
         
         //Child actions---------------------------------------------
         [DonutOutputCache(CacheProfile = "BlogPageData")]
-        //[ChildActionOnly]
+        [ChildActionOnly]
         [Authorize]
         public PartialViewResult BlogPageData()
         {
             Logger.Log("Blog page DATA start");
             BlogPageDataViewModel viewModel = new BlogPageDataViewModel();
+            using (var session = MvcApplication.Store.OpenSession())
+            {
+                //Get last 5 post links
+                var postLinks1 = session.Query<Post>()
+                    .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
+                    .OrderByDescending(m => m.PostedOn)
+                    .Take(5)
+                    .Select(m => new Post { Title = m.Title, UrlSlug = m.UrlSlug })
+                    .ToList();
 
-            //Get Tag Count
+                var postLinks = postLinks1.Select(m => new Post { Title = m.Title, UrlSlug = m.UrlSlug });
+
+                Logger.Log("Blog page DATA link data received");
+                viewModel.RecentLinkList = Mapper.Map<Post, PostLinkViewModel>(postLinks);
+
+                var dataTagCount = session.Query<TagCountIndex.ReduceResult, TagCountIndex>()
+                    .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5))).ToList();
+                Logger.Log("Blog page DATA tag data received");
+
+                viewModel.TagCountList = Mapper.Map<TagCountIndex.ReduceResult, TagCountViewModel>(dataTagCount);
 
 
-            //Get last 5 post links
-            var postLinks = RavenSession.Query<Post>()
-                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
-                .OrderByDescending(m => m.PostedOn)
-                .Select(m => new Post { Title = m.Title, UrlSlug = m.UrlSlug })
-                .Take(5)
-                .ToListAsync().Result;
+                return PartialView("_BlogPageData", viewModel);
+            }
 
-            Logger.Log("Blog page DATA link data received");
-            viewModel.RecentLinkList = Mapper.Map<Post, PostLinkViewModel>(postLinks);
-
-            var dataTagCount = RavenSession.Query<TagCountIndex.ReduceResult, TagCountIndex>()
-                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5))).ToListAsync().Result;
-            Logger.Log("Blog page DATA tag data received");
-
-            viewModel.TagCountList = Mapper.Map<TagCountIndex.ReduceResult, TagCountViewModel>(dataTagCount);
-
-
-            return PartialView("_BlogPageData", viewModel);
         }
-
-        
 
     }
 }
