@@ -26,7 +26,7 @@ namespace WebUi
                         "~/Scripts/modernizr-*"));
 
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/Css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/business-casual.css",
                       "~/Content/Site.css",
