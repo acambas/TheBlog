@@ -25,7 +25,7 @@
                 </small>
             </h2>
 
-            <img class="img-responsive img-border img-full" src="@Url.Action("Image","Blog",new {id = Model.ImageId})" alt="No Image" style="height:600px;" />
+            <img class="img-responsive img-border img-full" src="@Url.Action("Image", "Image", new { id = Model.ImageId })" alt="No Image" style="height:600px;" />
             <br />
             <br />
             @Html.Raw(Model.Description)

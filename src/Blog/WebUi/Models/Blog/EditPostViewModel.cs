@@ -11,6 +11,9 @@ namespace WebUi.Models.Blog
     public class EditPostViewModel : CreatePostViewModel
     {
 
+        public string ImageId
+        { get; set; }
+
         public string getTagsValue()
         {
             StringBuilder b = new StringBuilder();

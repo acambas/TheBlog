@@ -33,19 +33,22 @@ namespace WebUi.Controllers.MVC
 
 
         [OutputCache(Duration = 15, VaryByParam = "id")]
-        public async Task<ActionResult> Image(string id)
+        public async Task<FileContentResult> Image(string id)
         {
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentNullException();
             try
             {
-                var imageData = await Task<byte[]>.Run(() => imageService.GetImageData(id));
+                var imageData = await imageService.GetImageData(id);
+
                 if (imageData == null || imageData.ImageBinaryData == null)
-                {
                     throw new Exception();
-                }
+
                 return File(imageData.ImageBinaryData, "jpg");
             }
             catch (Exception)
             {
+                //Gets some base image from img folder
                 string basePath = Server.MapPath("~/img");
                 var files = Directory.GetFiles(basePath);
                 var blogImagePath = files.First(m => m.Contains("blog-2.jpg"));
@@ -58,11 +61,26 @@ namespace WebUi.Controllers.MVC
         [HttpPost]
         public async Task Upload(string id, HttpPostedFileBase file)
         {
-            if (file != null && !string.IsNullOrEmpty(id))
+            if (file != null && file.InputStream != null && !string.IsNullOrEmpty(id))
             {
-                imageService.StoreImage(id, file.InputStream);
-                await Task.Run(() => imageService.StoreImage(id, file.InputStream));
+                AppImage image = new AppImage();
+                image.Id = id;
+
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    file.InputStream.CopyTo(stream);
+                    image.ImageBinaryData = stream.ToArray();
+                }
+
+                await imageService.StoreImage(image);
             }
+        }
+
+
+        public async Task<ViewResult> Gallery()
+        {
+            var images = await imageService.GetAllImageIds();
+            return View(images);
         }
 
     }

@@ -48,7 +48,8 @@ namespace Domain.Post
         public virtual IEnumerable<Tag.Tag> Tags
         { get; set; }
 
-        public string ImageId { get; set; }
+        public string ImageId 
+        { get; set; }
 
         public override bool Validate()
         {

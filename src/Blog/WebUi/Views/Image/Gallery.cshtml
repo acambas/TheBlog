@@ -1,0 +1,18 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Gallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<section class="box row">
+    <h2 class="text-center">Gallery</h2>
+
+    @foreach (var id in Model)
+    {
+        <img class="col-md-4 img-responsive img-border img-thumbnail" src="@Url.Action("Image", "Image", new { id = id })" alt="No Image"  />
+    }
+</section>

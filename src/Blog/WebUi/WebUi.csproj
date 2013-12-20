@@ -1021,6 +1021,7 @@
     <Content Include="Views\Blog\_PostListElement.cshtml" />
     <Content Include="Views\Blog\_BlogPageData.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Ckeditor.cshtml" />
+    <Content Include="Views\Image\Gallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

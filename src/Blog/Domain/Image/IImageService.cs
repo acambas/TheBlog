@@ -9,17 +9,10 @@ namespace Domain.Image
 {
     public interface IImageService
     {
+        Task StoreImage(AppImage image);
 
-        void StoreImage(AppImage image);
+        Task<AppImage> GetImageData(string id);
 
-        void StoreImage(string id, byte[] data);
-
-        void StoreImage(string id, Stream data);
-
-        string GetImageUrl(string id);
-
-        AppImage GetImageData(string id);
-
-        string GetImageSoureUrl();
+        Task<IEnumerable<string>> GetAllImageIds();
     }
 }

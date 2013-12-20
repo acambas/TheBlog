@@ -32,7 +32,6 @@ namespace WebUi.Areas.Admin.Controllers
             this.imageService = imageService;
         }
 
-        //private WebUiContext db = new WebUiContext();
 
         public async Task<ViewResult> Index()
         {
@@ -64,7 +63,10 @@ namespace WebUi.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Handle tahs
                 postviewmodel.Tags = handleRecivedTags(postviewmodel.Tags);
+
+                //Map to data object
                 var data = Mapper.Map<CreatePostViewModel, Post>(postviewmodel);
                 data.PostedOn = DateTime.Now;
                 data.UrlSlug = URLHelper.ToUniqueFriendlyUrl(data.Title);
@@ -74,21 +76,19 @@ namespace WebUi.Areas.Admin.Controllers
                     data.User = ControllerContext.HttpContext.User.Identity.Name;
                 }
                 catch (Exception){ }
-                
-                
-                if (file != null)
-                {
-                    var id = Guid.NewGuid().ToString();
-                    imageService.StoreImage(id, file.InputStream);
-                    data.ImageId = id;
-                }
 
+                //Handle image
+                var imageId = await handleImageUpload(file);
+                if (!string.IsNullOrEmpty(imageId))
+                    data.ImageId = imageId;    
 
+                //Save post
                 await RavenSession.StoreAsync(data);
                 await SaveAsync();
                 return RedirectToAction("Index");
             }
 
+            //Fill viewmodel with tags
             var dataTagCount = await RavenSession.Query<TagCountIndex.ReduceResult, TagCountIndex>()
                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
                 .ToListAsync();
@@ -113,7 +113,8 @@ namespace WebUi.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            //Get All Tags
+            
+            //Fill viewmodel with tags
             var dataTagCount = await RavenSession.Query<TagCountIndex.ReduceResult, TagCountIndex>()
                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
                 .ToListAsync();
@@ -125,13 +126,25 @@ namespace WebUi.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Title,ShortDescription,Description,UrlSlug,Tags")] EditPostViewModel postviewmodel)
+        public async Task<ActionResult> Edit([Bind(Include = "Title,ShortDescription,Description,UrlSlug,Tags")] EditPostViewModel postviewmodel, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
                 postviewmodel.Tags = handleRecivedTags(postviewmodel.Tags);
                 var data = await RavenSession.Query<Post>().FirstAsync(m => m.UrlSlug == postviewmodel.UrlSlug);
+                var oldImageId = data.ImageId;
                 var editData = Mapper.Map<EditPostViewModel, Post>(postviewmodel, data);
+
+                //Handle image
+                if (file != null && file.InputStream != null)
+                {
+                    var imageId = await handleImageUpload(file);
+                    if (!string.IsNullOrEmpty(imageId))
+                        data.ImageId = imageId;
+                }
+                else
+                    data.ImageId = oldImageId;
+
                 await RavenSession.StoreAsync(editData);
                 await SaveAsync();
                 return RedirectToAction("Index");
@@ -167,6 +180,8 @@ namespace WebUi.Areas.Admin.Controllers
             return Json(tags, JsonRequestBehavior.AllowGet);
         }
 
+
+        //Private functions------------------------------------------------
         private IEnumerable<string> handleRecivedTags(IEnumerable<string> tags)
         {
             List<string> result = new List<string>();
@@ -183,6 +198,27 @@ namespace WebUi.Areas.Admin.Controllers
             result = splitTags.ToList();
 
             return result;
+        }
+
+        private async Task<string> handleImageUpload(HttpPostedFileBase file)
+        {
+            if (file != null && file.InputStream != null)
+            {
+                var id = Guid.NewGuid().ToString();
+                AppImage image = new AppImage { Id = id };
+                
+                using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+                {
+                    await file.InputStream.CopyToAsync(stream);
+                    image.ImageBinaryData = stream.ToArray();
+                }
+
+                await imageService.StoreImage(image);
+
+                return id;
+            }
+
+            return null;
         }
     }
 }

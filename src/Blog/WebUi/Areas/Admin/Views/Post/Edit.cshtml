@@ -8,7 +8,7 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm(Html.BeginForm("Edit", "Post", new { Area = "Admin" }, FormMethod.Post, new { id = "target" })))
+@using (Html.BeginForm(Html.BeginForm("Edit", "Post", new { Area = "Admin" }, FormMethod.Post, new { id = "target", enctype = "multipart/form-data" })))
 {
     @Html.AntiForgeryToken()
     
@@ -24,6 +24,23 @@
                 @Html.ValidationMessageFor(model => model.Title)
             </div>
         </div>
+
+
+        <div class="form-group">
+            <label for="file" class="control-label col-md-2">Old Image</label>
+            <div class="col-md-10">
+                <img class="col-md-4 img-responsive img-border img-thumbnail" src="@Url.Action("Image", "Image", new { id = Model.ImageId , Area = ""})" alt="No Image" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="file" class="control-label col-md-2">Upload New Image:</label>
+            <div class="col-md-10">
+                <input type="file" name="file" id="file" style="width: 100%;" />
+            </div>
+        </div>
+
+
 
         <h4 class="text-center">
             @Html.LabelFor(model => model.ShortDescription)

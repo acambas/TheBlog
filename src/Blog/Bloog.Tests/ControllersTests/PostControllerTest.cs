@@ -224,7 +224,7 @@ namespace Bloog.Tests.ControllersTests
             };
 
             // Act
-            ActionResult result = await controller1.Edit(viewModel);
+            ActionResult result = await controller1.Edit(viewModel, null);
 
             // Assert
             var findEditPost = await controller1.RavenSession.Query<Post>()

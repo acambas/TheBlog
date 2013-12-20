@@ -102,30 +102,7 @@ namespace WebUi.Controllers.MVC
             return View("Index", postviewmodel);
         }
 
-        [OutputCache(Duration = 15, VaryByParam = "id")]
-        [Route("Blog/Image/{id}", Name = "BlogImage")]
-        public async Task<ActionResult> Image(string id)
-        {
-
-            try
-            {
-                var imageData = imageService.GetImageData(id);
-                if (imageData == null || imageData.ImageBinaryData == null)
-                {
-                    throw new Exception();
-                }
-                return File(imageData.ImageBinaryData, "jpg");
-            }
-            catch (Exception)
-            {
-                string basePath = Server.MapPath("~/img");
-                var files = Directory.GetFiles(basePath);
-                var blogImagePath = files.First(m => m.Contains("blog-2.jpg"));
-                var data = System.IO.File.ReadAllBytes(blogImagePath);
-                return File(data, "jpg");
-            }
-
-        }
+        
 
         [OutputCache(Duration = 15, VaryByParam = "none")]
         [ChildActionOnly]

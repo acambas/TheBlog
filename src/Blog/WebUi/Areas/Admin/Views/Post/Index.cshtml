@@ -10,50 +10,71 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Modified)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tags)
-        </th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.Title, "Edit", "Post", new { id = item.UrlSlug, Area="Admin" }, new { })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User)
-        </td>
-        <th>
-            @item.PostedOn.ToString("dd/MMM/yyyy")
-        </th>
-        <td>
-            @if (item.Modified.HasValue)
+<div id="users" class="table-responsive">
+
+    <div class="form-group col-lg-2">
+        <div>
+            <input type="text" class="form-control search" placeholder="Search posts">
+        </div>
+    </div>
+
+    <table class="table table-bordered table-hover table-striped tablesorter">
+        <thead>
+            <tr>
+                <th class="sort" data-sort="Title">Title <i class="fa fa-sort"></i></th>
+                <th class="sort" data-sort="User">User <i class="fa fa-sort"></i></th>
+                <th class="sort" data-sort="PostedOn">PostedOn <i class="fa fa-sort"></i></th>
+                <th class="sort" data-sort="Modified">Modified <i class="fa fa-sort"></i></th>
+                <th class="sort" data-sort="Tags">Tags <i class="fa fa-sort"></i></th>
+            </tr>
+        </thead>
+        <tbody class="list">
+            @foreach (var item in Model)
             {
-                <span>@item.Modified.Value.ToString("dd/MMM/yyyy")</span>
-            }
-        </td>
-        <td>
-           @foreach (var tag in item.Tags)
-           {
-               <span class="label label-default" >@tag</span>
-               
-           }
-        </td>
-    </tr>
-}
+                <tr>
+                    <td class="Title">
+                        @Html.ActionLink(item.Title, "Edit", "Post", new { id = item.UrlSlug, Area = "Admin" }, new { })
+                    </td>
+                    <td class="User">
+                        @Html.DisplayFor(modelItem => item.User)
+                    </td>
+                    <td class="PostedOn">
+                        @item.PostedOn.ToString("dd/MMM/yyyy")
+                    </td>
+                    <td class="Modified">
+                        @if (item.Modified.HasValue)
+                        {
+                            <span>@item.Modified.Value.ToString("dd/MMM/yyyy")</span>
+                        }
+                    </td>
+                    <td class="Tags">
+                        @foreach (var tag in item.Tags)
+                        {
+                            <span class="label label-default">@tag</span>
 
-</table>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+    @section headscripts{
+        <script src="~/Scripts/jquery.tablesorter.min.js"></script>
+        <script src="~/Scripts/list.js"></script>
+    }
+
+    @section scripts{
+
+        <script type="text/javascript">
+            $(function () {
+                var options = {
+                    valueNames: ['Title', 'User', 'PostedOn', 'Modified', 'Tags']
+                };
+
+                var userList = new List('users', options);
+            });
+        </script>
+    }

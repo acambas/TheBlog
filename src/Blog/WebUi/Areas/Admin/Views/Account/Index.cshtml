@@ -22,7 +22,7 @@
         <thead>
             <tr>
                 <th class="sort" data-sort="username" >UserName <i class="fa fa-sort"></i></th>
-                <th class="sort" data-sort="name1" >Name <i class="fa fa-sort"></i></th>
+                <th class="sort" data-sort="Name" >Name <i class="fa fa-sort"></i></th>
                 <th class="sort" data-sort="email" >Email <i class="fa fa-sort"></i></th>
             </tr>
         </thead>
@@ -34,7 +34,7 @@
                         @Html.ActionLink(@item.UserName, "Edit", "Account", new { id = item.UserName, Area = "Admin" }, new { @class = "username" })
                     </td>
                     <td >
-                        <div class="name1">
+                        <div class="Name">
                             @Html.DisplayFor(modelItem => item.Name)
                         </div>
                     </td>
@@ -60,7 +60,7 @@
     <script type="text/javascript">
         $(function () {
             var options = {
-                valueNames: ['username', 'name1', 'email']
+                valueNames: ['username', 'Name', 'email']
             };
 
             var userList = new List('users', options);
