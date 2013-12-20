@@ -135,6 +135,7 @@ namespace WebUi.App_Start
         }
     }
 
+
     public class RavenLogMessage
     {
         public RavenLogMessage()
