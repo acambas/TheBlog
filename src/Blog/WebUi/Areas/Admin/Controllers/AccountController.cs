@@ -114,7 +114,7 @@ namespace WebUi.Areas.Admin.Controllers
         }
 
         [AllowAnonymous]
-        [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
+        //[ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -128,7 +128,7 @@ namespace WebUi.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [ClaimsAuthorize(AppAuthorizationType.RoleAuth, AppRoles.Admin)]
+        [ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -236,7 +236,7 @@ namespace WebUi.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
@@ -244,7 +244,7 @@ namespace WebUi.Areas.Admin.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
@@ -293,7 +293,7 @@ namespace WebUi.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
@@ -336,7 +336,7 @@ namespace WebUi.Areas.Admin.Controllers
             return RedirectToAction("Index", "Home", new { Area = "" });
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
             return View();

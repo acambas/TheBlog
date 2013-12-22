@@ -35,6 +35,15 @@ namespace WebUi.Controllers
             return View();
         }
 
+
+        [Route("CV")]
+        [DonutOutputCache(CacheProfile = "StaticPage")]
+        public ActionResult CV()
+        {
+            ViewBag.Message = "Your application description page.";
+            return View();
+        }
+
         //[ClaimsAuthorize(AppAuthorizationType.RoleAuth)]
         //[Authorize]
         [DonutOutputCache(CacheProfile = "StaticPage")]

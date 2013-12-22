@@ -27,6 +27,7 @@
                 <th class="sort" data-sort="PostedOn">PostedOn <i class="fa fa-sort"></i></th>
                 <th class="sort" data-sort="Modified">Modified <i class="fa fa-sort"></i></th>
                 <th class="sort" data-sort="Tags">Tags <i class="fa fa-sort"></i></th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody class="list">
@@ -34,7 +35,7 @@
             {
                 <tr>
                     <td class="Title">
-                        @Html.ActionLink(item.Title, "Edit", "Post", new { id = item.UrlSlug, Area = "Admin" }, new { })
+                        <a href="@Url.RouteUrl("ViewPost", new { id = item.UrlSlug })" >@item.Title</a>
                     </td>
                     <td class="User">
                         @Html.DisplayFor(modelItem => item.User)
@@ -55,6 +56,7 @@
 
                         }
                     </td>
+                    <td>@Html.ActionLink("Edit", "Edit", "Post", new { id = item.UrlSlug, Area = "Admin" }, new { })</td>
                 </tr>
             }
         </tbody>

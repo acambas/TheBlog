@@ -6,7 +6,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
 }
 
-<h2>Edit</h2>
+<h2><a href="@Url.RouteUrl("ViewPost", new { id = Model.UrlSlug })" class="">Link to post</a></h2>
 
 @using (Html.BeginForm(Html.BeginForm("Edit", "Post", new { Area = "Admin" }, FormMethod.Post, new { id = "target", enctype = "multipart/form-data" })))
 {

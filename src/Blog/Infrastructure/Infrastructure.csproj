@@ -76,6 +76,7 @@
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Log4NetAdapter.cs" />
     <Compile Include="Logging\LoggingFactory.cs" />
+    <Compile Include="Logging\NullLogger.cs" />
     <Compile Include="Mapping\AutoMapperAdapter.cs" />
     <Compile Include="Mapping\IMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
