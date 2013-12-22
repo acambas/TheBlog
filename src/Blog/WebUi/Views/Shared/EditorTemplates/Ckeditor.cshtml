@@ -7,8 +7,10 @@
 
 @if (Context.Items["CkeditorScriptRendered"] == null)
 {
-<script src="~/Scripts/ckeditor/ckeditor.js"></script>
-<script src="~/Scripts/ckeditor/adapters/jquery.js"></script>
+@*<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script src="~/Scripts/ckeditor/adapters/jquery.js"></script>*@
+    @Scripts.Render("~/bundles/ckeditor")
+    
     Context.Items["CkeditorScriptRendered"] = true;
 }
 <script type="text/javascript">
