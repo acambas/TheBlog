@@ -352,5 +352,6 @@
 /// <reference path="ckeditor/plugins/a11yhelp/lang/vi.js" />
 /// <reference path="ckeditor/plugins/a11yhelp/lang/zh-cn.js" />
 /// <reference path="ckeditor/themes/default/theme.js" />
-/// <reference path="jquery.tablesorter.js" />
 /// <reference path="ckeditor/plugins/wsc/dialogs/wsc.js" />
+/// <reference path="spin.js" />
+/// <reference path="jquery.tablesorter.js" />

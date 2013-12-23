@@ -72,11 +72,12 @@ namespace WebUi.Areas.Admin.Controllers
 
                 //Map to data object
                 var data = Mapper.Map<CreatePostViewModel, Post>(postviewmodel);
+                //Handle Date
                 data.PostedOn = DateTime.Now;
-                data.UrlSlug = URLHelper.ToUniqueFriendlyUrl(data.Title);
-
-                try
-                {
+                //data.UrlSlug = URLHelper.ToUniqueFriendlyUrl(data.Title);
+                
+                //Handle user name
+                try {
                     var UserManager = new UserManager<ApplicationUser>
                             (new RavenUserStore<ApplicationUser>(RavenSession));
                     var user = UserManager.FindByName(ControllerContext.HttpContext.User.Identity.Name);
@@ -86,19 +87,14 @@ namespace WebUi.Areas.Admin.Controllers
                 catch (Exception) {
                     data.UserName = "anonymus";
                 }
-
                 //Handle image
                 var imageId = await handleImageUpload(file);
                 if (!string.IsNullOrEmpty(imageId))
-                {
                     data.ImageId = imageId;
-                }
-                       
 
                 //Save post
                 await RavenSession.StoreAsync(data);
                 await SaveAsync();
-
                 //Handle cache
                 handleCache();
 
@@ -113,6 +109,7 @@ namespace WebUi.Areas.Admin.Controllers
 
             return View(postviewmodel);
         }
+
 
         public async Task<ActionResult> Edit(string id)
         {
@@ -161,8 +158,6 @@ namespace WebUi.Areas.Admin.Controllers
                     if (!string.IsNullOrEmpty(imageId))
                     {
                         data.ImageId = imageId;
-                        //Handle image cache
-                        
                     }
                 }
                 else

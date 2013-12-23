@@ -17,6 +17,7 @@ namespace WebUi.Models.Blog
         public CreatePostViewModel()
         {
             allTags = new List<string>();
+            
             Tags = new List<string>();
         }
 
