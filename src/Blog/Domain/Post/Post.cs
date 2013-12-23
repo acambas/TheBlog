@@ -19,7 +19,10 @@ namespace Domain.Post
         public virtual string Title
         { get; set; }
 
-        public virtual string User
+        public virtual string UserName
+        { get; set; }
+
+        public virtual string WrittenBy
         { get; set; }
 
         [Required(ErrorMessage = "ShortDescription: Field is required")]

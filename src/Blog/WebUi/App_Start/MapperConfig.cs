@@ -16,6 +16,7 @@ namespace WebUi.App_Start
         public static void ConfigureMappings()
         {
             Mapper.CreateMap<Post, PostViewModel>();
+
             Mapper.CreateMap<PostViewModel, Post>();
             Mapper.CreateMap<CreatePostViewModel, Post>()
                .ForMember(m => m.Tags,

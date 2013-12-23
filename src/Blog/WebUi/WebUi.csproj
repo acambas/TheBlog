@@ -132,7 +132,7 @@
     </Reference>
     <Reference Include="NewRelic.Api.Agent, Version=2.17.268.0, Culture=neutral, PublicKeyToken=06552fced0b33d87, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NewRelicWindowsAzure.2.17.268.0\lib\NewRelic.Api.Agent.dll</HintPath>
+      <HintPath>..\packages\NewRelic.Azure.WebSites.2.17.268.0\lib\NewRelic.Api.Agent.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -385,6 +385,9 @@
     <Content Include="Content\pager\next.png" />
     <Content Include="Content\pager\pager.css" />
     <Content Include="Content\pager\prev.png" />
+    <Content Include="newrelic\extensions\CoreInstrumentation.xml" />
+    <Content Include="newrelic\NewRelic.Agent.Core.dll" />
+    <Content Include="newrelic\NewRelic.Profiler.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\select2-bootstrap-build.scss" />
@@ -419,12 +422,11 @@
     <Content Include="Scripts\ckeditor\ckeditor.asp" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
     <Content Include="Scripts\ckeditor\ckeditor.pack" />
-    <Content Include="NewRelicAgent_x64_2.17.268.0.msi">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="newrelic.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="newrelic\newrelic.config" />
+    <Content Include="newrelic\extensions\extension.xsd" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\ckeditor\ckeditor.php" />
     <Content Include="Scripts\ckeditor\ckeditor_basic.js" />

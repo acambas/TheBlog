@@ -13,15 +13,23 @@
             <h2 class="text-center">
                 @Model.Title
                 <br>
+
                 <small>
-                    <i class="fa fa-calendar"></i> @Model.PostedOn.ToString("dd MMM yyyy")
-                    @foreach (var item in Model.Tags)
-                    {
-                        <a href="@Url.RouteUrl("PostsByTag", new { tag = item.UrlSlug })">
-                            <i class="fa fa-tag"></i>
-                            @item.Name
-                        </a>
-                    }
+                    <span>
+                        <i class="fa fa-user"></i>Written By:@Model.WrittenBy
+                    </span>
+                    <span>
+                        <i class="fa fa-calendar"></i> @Model.PostedOn.ToString("dd MMM yyyy")
+                    </span>
+                    <span>
+                        @foreach (var item in Model.Tags)
+                        {
+                            <a href="@Url.RouteUrl("PostsByTag", new { tag = item.UrlSlug })">
+                                <i class="fa fa-tag"></i>
+                                @item.Name
+                            </a>
+                        }
+                    </span>
                 </small>
             </h2>
         </header>

@@ -1,9 +1,11 @@
-﻿using Domain.Image;
+﻿using AspNet.Identity.RavenDB.Stores;
+using Domain.Image;
 using Domain.Post;
 using Domain.Tag;
 using Infrastructure.Config._Settings;
 using Infrastructure.Helpers;
 using Infrastructure.Mapping;
+using Microsoft.AspNet.Identity;
 using Raven.Client;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebUi.Controllers;
+using WebUi.Models;
 using WebUi.Models.Blog;
 using WebUi.Models.RavenDB;
 
@@ -74,9 +77,15 @@ namespace WebUi.Areas.Admin.Controllers
 
                 try
                 {
-                    data.User = ControllerContext.HttpContext.User.Identity.Name;
+                    var UserManager = new UserManager<ApplicationUser>
+                            (new RavenUserStore<ApplicationUser>(RavenSession));
+                    var user = UserManager.FindByName(ControllerContext.HttpContext.User.Identity.Name);
+                    data.UserName = user.UserName;
+                    data.WrittenBy = user.Name;
                 }
-                catch (Exception){ }
+                catch (Exception) {
+                    data.UserName = "anonymus";
+                }
 
                 //Handle image
                 var imageId = await handleImageUpload(file);

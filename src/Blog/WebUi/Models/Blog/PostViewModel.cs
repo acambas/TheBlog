@@ -32,8 +32,9 @@ namespace WebUi.Models.Blog
 
         public string ImageId { get; set; }
 
-        public virtual bool Published
-        { get; set; }
+        public virtual bool Published { get; set; }
+
+        public virtual string WrittenBy { get; set; }
 
         [Required(ErrorMessage = "PostedOn: Field is required")]
         public virtual DateTime PostedOn
