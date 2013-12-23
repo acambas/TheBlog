@@ -151,6 +151,9 @@ namespace WebUi.Areas.Admin.Controllers
                 var oldImageId = data.ImageId;
                 var editData = Mapper.Map<EditPostViewModel, Post>(postviewmodel, data);
 
+                //Handle date
+                editData.Modified = DateTime.Now;
+                
                 //Handle image
                 if (file != null && file.InputStream != null)
                 {
