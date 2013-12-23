@@ -22,11 +22,11 @@
     <table class="table table-bordered table-hover table-striped tablesorter">
         <thead>
             <tr>
-                <th class="sort" data-sort="Title">Title <i class="fa fa-sort"></i></th>
-                <th class="sort" data-sort="User">User <i class="fa fa-sort"></i></th>
-                <th class="sort" data-sort="PostedOn">PostedOn <i class="fa fa-sort"></i></th>
-                <th class="sort" data-sort="Modified">Modified <i class="fa fa-sort"></i></th>
-                <th class="sort" data-sort="Tags">Tags <i class="fa fa-sort"></i></th>
+                <th class="sort" data-sort="Title">Title<i class="fa fa-sort"></i></th>
+                <th class="sort" data-sort="WrittenBy">Written By<i class="fa fa-sort"></i></th>
+                <th class="sort" data-sort="PostedOn">Posted On<i class="fa fa-sort"></i></th>
+                <th class="sort" data-sort="Modified">Modified<i class="fa fa-sort"></i></th>
+                <th class="sort" data-sort="Tags">Tags<i class="fa fa-sort"></i></th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -38,7 +38,7 @@
                         <a href="@Url.RouteUrl("ViewPost", new { id = item.UrlSlug })" >@item.Title</a>
                     </td>
                     <td class="User">
-                        @Html.DisplayFor(modelItem => item.User)
+                        @Html.DisplayFor(modelItem => item.WrittenBy)
                     </td>
                     <td class="PostedOn">
                         @item.PostedOn.ToString("dd/MMM/yyyy")
