@@ -39,6 +39,7 @@ namespace WebUi.Controllers.MVC
 
             IList<Post> data = await RavenSession.Query<Post>()
                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
+                .Where(m => m.Active == true)
                 .OrderByDescending(m => m.PostedOn)
                 .ToListAsync();
 
@@ -61,7 +62,7 @@ namespace WebUi.Controllers.MVC
             var data = await RavenSession.Query<Post>()
                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
                 .OrderByDescending(m => m.PostedOn)
-                .FirstOrDefaultAsync(m => m.UrlSlug == id);
+                .FirstOrDefaultAsync(m => m.UrlSlug == id && m.Active == true);
             PostViewModel postviewmodel = Mapper.Map<Post, PostViewModel>(data);
 
             if (postviewmodel == null)
@@ -82,7 +83,7 @@ namespace WebUi.Controllers.MVC
             }
 
             var data = await RavenSession.Query<Post>()
-                .Where(m => m.Tags.Any(t => t.UrlSlug == tag))
+                .Where(m => m.Tags.Any(t => t.UrlSlug == tag) && m.Active == true)
                 .OrderByDescending(m => m.PostedOn)
                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
                 .ToListAsync();
@@ -102,7 +103,7 @@ namespace WebUi.Controllers.MVC
             }
             var data = await RavenSession
                 .Query<Post, PostsByTitleIndex>()
-                .Where(m => m.Title.StartsWith(term))
+                .Where(m => m.Title.StartsWith(term) && m.Active == true)
                 .OrderByDescending(m => m.PostedOn)
                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
                 .ToListAsync();
@@ -125,6 +126,7 @@ namespace WebUi.Controllers.MVC
                 //Get last 5 post links
                 var postLinks1 = session.Query<Post>()
                     .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
+                    .Where(m => m.Active == true)
                     .OrderByDescending(m => m.PostedOn)
                     .Take(5)
                     .Select(m => new Post { Title = m.Title, UrlSlug = m.UrlSlug })

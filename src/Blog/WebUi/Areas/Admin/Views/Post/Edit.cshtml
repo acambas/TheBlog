@@ -7,6 +7,7 @@
 }
 
 <h2><a href="@Url.RouteUrl("ViewPost", new { id = Model.UrlSlug })" class="">Link to post</a></h2>
+<button class="btn btn-danger" id="delete">Delete this post</button>
 
 @using (Html.BeginForm(Html.BeginForm("Edit", "Post", new { Area = "Admin" }, FormMethod.Post, new { id = "target", enctype = "multipart/form-data" })))
 {
@@ -103,6 +104,18 @@
     <script type="text/javascript">
         var tags = @Html.Raw(Json.Encode(Model.ArrayOfAllTags()))
         $(document).ready(function () {
+
+            $("#delete").click(function () {
+                var conf = confirm("Are you sure you want to delete this post");
+
+                if (conf == true) {
+
+                    $.post("@Url.Action("Delete")", { id: "@Model.UrlSlug" }).done(function () {
+                        //window.open = "@Url.Action("Index")";
+                        location.href = "@Url.Action("Index")";
+                    });
+                }
+            });
 
             $("#Tags").select2({
                 tags: tags,

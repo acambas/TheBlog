@@ -48,6 +48,7 @@ namespace WebUi.Models.RavenDB
         {
             Map = posts => from post in posts
                            from tag in post.Tags
+                           where post.Active == true
                            select new
                            {
                                Name = tag.Name,

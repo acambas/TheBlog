@@ -180,13 +180,17 @@ namespace WebUi.Areas.Admin.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
             var data = await RavenSession.Query<Post>().FirstAsync(m => m.UrlSlug == id);
             data.Active = false;
             await RavenSession.StoreAsync(data);
             await SaveAsync();
+
+            //HandleCashe
+            handleCache(id);
+
             return RedirectToAction("Index");
         }
 
