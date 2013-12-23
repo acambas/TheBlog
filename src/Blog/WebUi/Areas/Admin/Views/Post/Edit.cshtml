@@ -11,12 +11,12 @@
 @using (Html.BeginForm(Html.BeginForm("Edit", "Post", new { Area = "Admin" }, FormMethod.Post, new { id = "target", enctype = "multipart/form-data" })))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.UrlSlug)
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -24,7 +24,6 @@
                 @Html.ValidationMessageFor(model => model.Title)
             </div>
         </div>
-
 
         <div class="form-group">
             <label for="file" class="control-label col-md-2">Old Image</label>
@@ -39,8 +38,6 @@
                 <input type="file" name="file" id="file" style="width: 100%;" />
             </div>
         </div>
-
-
 
         <h4 class="text-center">
             @Html.LabelFor(model => model.ShortDescription)
@@ -71,11 +68,21 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" id="submitbtn" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+
+
+<div id="loading">
+    <div id="loadingcontent">
+        <p id="loadingspinner">
+            Working...
+        </p>
+    </div>
+</div>
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -89,6 +96,7 @@
 @section headscripts{
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/select2.min.js"></script>
+    <script src="~/Scripts/spin.min.js"></script>
 }
 
 @section scripts {
@@ -106,7 +114,20 @@
                 if (!$(this).valid()) {
                     return false;
                 }
-
+                $("#loading").fadeIn();
+                var opts = {
+                    lines: 12, // The number of lines to draw
+                    length: 7, // The length of each line
+                    width: 4, // The line thickness
+                    radius: 10, // The radius of the inner circle
+                    color: '#000', // #rgb or #rrggbb
+                    speed: 1, // Rounds per second
+                    trail: 60, // Afterglow percentage
+                    shadow: false, // Whether to render a shadow
+                    hwaccel: false // Whether to use hardware acceleration
+                };
+                var target = document.getElementById('loading');
+                var spinner = new Spinner(opts).spin(target);
             });
         });
     </script>

@@ -46,7 +46,7 @@ table.mceLayout, textarea.tinyMCE {
 
 
 @media only screen and (min-width: 800px) {
-     .mce-container-body, .mce-tinymce, .mce-container-body, .mce-panel {
+    .mce-container-body, .mce-tinymce, .mce-container-body, .mce-panel {
         width: 800px !important;
     }
 }
@@ -54,7 +54,39 @@ table.mceLayout, textarea.tinyMCE {
 .post-link {
     display: block;
     float: left;
-    width:100%;
-    margin-left:10%;
-    margin-bottom:5px;
+    width: 100%;
+    margin-left: 10%;
+    margin-bottom: 5px;
+}
+
+
+
+/* -------------------------SPINNER FOR LOADING------------------------------ */
+#loading {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.8);
+    z-index: 1000;
+}
+
+#loadingcontent {
+    display: table;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#loadingspinner {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    text-align: center;
+    font-size: larger;
+    padding-top: 80px;
 }
