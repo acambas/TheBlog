@@ -29,7 +29,7 @@ namespace WebUi.App_Start
         {
             container
             .RegisterType<IApplicationSettings, WebConfigApplicationSettings>(new ContainerControlledLifetimeManager())
-            .RegisterType<Infrastructure.Logging.ILogger, RavenLog>(new ContainerControlledLifetimeManager())
+            .RegisterType<Infrastructure.Logging.ILogger, NullLogger>(new ContainerControlledLifetimeManager())
             .RegisterType<IImageService, StoreOnRavenDBImageService>(new ContainerControlledLifetimeManager())
             .RegisterType<IMapper, AutoMapperAdapter>(new ContainerControlledLifetimeManager())
             ;

@@ -36,19 +36,15 @@ namespace WebUi.Controllers.MVC
         [DonutOutputCache(CacheProfile = "BlogPage")]
         public async Task<ViewResult> Index()
         {
-            Logger.Log("Blog index start");
 
             IList<Post> data = await RavenSession.Query<Post>()
                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
                 .OrderByDescending(m => m.PostedOn)
                 .ToListAsync();
 
-            Logger.Log("Blog page index data received");
 
             var viewModel = Mapper.Map<Post, PostViewModel>(data);
 
-            Logger.Log("Blog page index data mapped to view model");
-            Logger.Log("Blog page index sent");
             return View(viewModel);
         }
 
@@ -121,10 +117,8 @@ namespace WebUi.Controllers.MVC
         //Child actions---------------------------------------------
         [DonutOutputCache(CacheProfile = "BlogPageData")]
         [ChildActionOnly]
-        [Authorize]
         public PartialViewResult BlogPageData()
         {
-            Logger.Log("Blog page DATA start");
             BlogPageDataViewModel viewModel = new BlogPageDataViewModel();
             using (var session = MvcApplication.Store.OpenSession())
             {
@@ -138,12 +132,10 @@ namespace WebUi.Controllers.MVC
 
                 var postLinks = postLinks1.Select(m => new Post { Title = m.Title, UrlSlug = m.UrlSlug });
 
-                Logger.Log("Blog page DATA link data received");
                 viewModel.RecentLinkList = Mapper.Map<Post, PostLinkViewModel>(postLinks);
 
                 var dataTagCount = session.Query<TagCountIndex.ReduceResult, TagCountIndex>()
                     .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5))).ToList();
-                Logger.Log("Blog page DATA tag data received");
 
                 viewModel.TagCountList = Mapper.Map<TagCountIndex.ReduceResult, TagCountViewModel>(dataTagCount);
 

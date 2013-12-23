@@ -32,7 +32,9 @@ namespace WebUi
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication();
+            app.UseGoogleAuthentication();
         }
     }
+
+
 }

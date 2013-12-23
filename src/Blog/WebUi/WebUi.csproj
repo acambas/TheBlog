@@ -130,6 +130,10 @@
     <Reference Include="MoreLinq">
       <HintPath>..\packages\morelinq.1.0.16006\lib\net35\MoreLinq.dll</HintPath>
     </Reference>
+    <Reference Include="NewRelic.Api.Agent, Version=2.17.268.0, Culture=neutral, PublicKeyToken=06552fced0b33d87, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NewRelicWindowsAzure.2.17.268.0\lib\NewRelic.Api.Agent.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -376,11 +380,11 @@
     <Content Include="img\slide-1.jpg" />
     <Content Include="img\slide-2.jpg" />
     <Content Include="img\slide-3.jpg" />
-    <Content Include="pager\first.png" />
-    <Content Include="pager\last.png" />
-    <Content Include="pager\next.png" />
-    <Content Include="pager\pager.css" />
-    <Content Include="pager\prev.png" />
+    <Content Include="Content\pager\first.png" />
+    <Content Include="Content\pager\last.png" />
+    <Content Include="Content\pager\next.png" />
+    <Content Include="Content\pager\pager.css" />
+    <Content Include="Content\pager\prev.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\select2-bootstrap-build.scss" />
@@ -415,6 +419,12 @@
     <Content Include="Scripts\ckeditor\ckeditor.asp" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
     <Content Include="Scripts\ckeditor\ckeditor.pack" />
+    <Content Include="NewRelicAgent_x64_2.17.268.0.msi">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="newrelic.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\ckeditor\ckeditor.php" />
     <Content Include="Scripts\ckeditor\ckeditor_basic.js" />
@@ -979,12 +989,14 @@
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="sorter\asc.gif" />
-    <Content Include="sorter\bg.gif" />
-    <Content Include="sorter\desc.gif" />
-    <Content Include="sorter\style.css" />
+    <Content Include="Content\sorter\asc.gif" />
+    <Content Include="Content\sorter\bg.gif" />
+    <Content Include="Content\sorter\desc.gif" />
+    <Content Include="Content\sorter\style.css" />
     <Content Include="tablesorter.txt" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -998,15 +1010,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Login\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Login\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Login\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Login\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Login\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Login\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Login\Manage.cshtml" />
-    <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
@@ -1023,6 +1027,14 @@
     <Content Include="Views\Blog\_BlogPageData.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Ckeditor.cshtml" />
     <Content Include="Views\Image\Gallery.cshtml" />
+    <Content Include="Views\Home\CV.cshtml" />
+    <Content Include="Views\Login\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Login\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Login\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Login\Manage.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Login\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Login\_SetPasswordPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
