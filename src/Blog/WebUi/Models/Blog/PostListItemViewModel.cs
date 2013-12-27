@@ -23,6 +23,6 @@ namespace WebUi.Models.Blog
 
         public DateTime? Modified { get; set; }
 
-        public string User { get; set; }
+        public string WrittenBy { get; set; }
     }
 }
