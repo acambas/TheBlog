@@ -37,6 +37,7 @@ namespace WebUi.Models.Blog
 
         public virtual IEnumerable<string> Tags { get; set; }
 
+        public string ImageUrl { get; set; }
 
         public virtual IEnumerable<SelectListItem> SelectItemsForTags()
         {

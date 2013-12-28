@@ -31,6 +31,14 @@
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageUrl, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ImageUrl, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ImageUrl)
+            </div>
+        </div>
+
         <h4 class="text-center">
             @Html.LabelFor(model => model.ShortDescription)
         </h4>
@@ -78,39 +86,15 @@
 @section headscripts{
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/select2.min.js"></script>
-    <script src="~/Scripts/spin.min.js"></script>
+    
 }
 
 @section scripts {
+    <script src="~/Scripts/app/CreatePost.js"></script>
     <script type="text/javascript">
-        var tags = @Html.Raw(Json.Encode(Model.ArrayOfAllTags()))
-        $(document).ready(function () {
-
-            $("#Tags").select2({
-                tags: tags,
-                maximumInputLength: 15,
-                tokenSeparators: [",", " "]
-            });
-
-            $("#target").submit(function (event) {
-                if (!$(this).valid()) {
-                    return false;
-                }
-                $("#spinner-loading").fadeIn();
-                var opts = {
-                    lines: 12, // The number of lines to draw
-                    length: 7, // The length of each line
-                    width: 4, // The line thickness
-                    radius: 10, // The radius of the inner circle
-                    color: '#000', // #rgb or #rrggbb
-                    speed: 1, // Rounds per second
-                    trail: 60, // Afterglow percentage
-                    shadow: false, // Whether to render a shadow
-                    hwaccel: false // Whether to use hardware acceleration
-                };
-                var target = document.getElementById('spinner-loading');
-                var spinner = new Spinner(opts).spin(target);
-            });
+        $(function () {
+            var tags = @Html.Raw(Json.Encode(Model.ArrayOfAllTags()))
+            blogNamespace.createPostContext.init(tags, "#target", "#Tags");
         });
     </script>
 }

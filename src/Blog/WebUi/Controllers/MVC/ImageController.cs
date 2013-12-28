@@ -18,7 +18,7 @@ using WebUi.Models.RavenDB;
 
 namespace WebUi.Controllers.MVC
 {
-    public class ImageController:RavenController
+    public class ImageController : RavenController
     {
         IImageService imageService;
 
@@ -43,7 +43,7 @@ namespace WebUi.Controllers.MVC
 
                 if (imageData == null || imageData.ImageBinaryData == null)
                     throw new Exception();
-                
+
                 return File(imageData.ImageBinaryData, "jpg");
             }
             catch (Exception)
@@ -77,11 +77,20 @@ namespace WebUi.Controllers.MVC
         }
 
         [Authorize]
+        public async Task<ActionResult> Delete(string id)
+        {
+            await imageService.DeleteImage(id);
+            return RedirectToAction("Gallery");
+        }
+
+        [Authorize]
         public async Task<ViewResult> Gallery()
         {
             var images = await imageService.GetAllImageIds();
             return View(images);
         }
+
+
 
     }
 }

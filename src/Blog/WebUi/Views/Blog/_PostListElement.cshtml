@@ -22,7 +22,7 @@
 
         </h2>
         <a href="@Url.RouteUrl("ViewPost", new { id = Model.UrlSlug })">
-            <img class="img-responsive img-border img-full" src="@Url.Action("Image", "Image", new { id = Model.ImageId })" alt="No Image" />
+            <img class="img-responsive img-border img-full" src="@Model.ImageId" alt="No Image" />
         </a>
     </header>
     <br />

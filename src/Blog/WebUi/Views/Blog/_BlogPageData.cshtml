@@ -4,10 +4,10 @@
 <div class="well">
     <h4>Latest Posts</h4>
     <div class="row">
-        <ul class="list-unstyled">
+        <ul class="">
             @foreach (var item in Model.RecentLinkList)
             {
-                <li class="post-link"><a href="@Url.RouteUrl("ViewPost", new { id = item.UrlSlug })" class="">@item.Title</a></li>
+                <li><a href="@Url.RouteUrl("ViewPost", new { id = item.UrlSlug })" class="">@item.Title</a></li>
             }
         </ul>
 
