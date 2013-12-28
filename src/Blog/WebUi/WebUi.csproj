@@ -399,6 +399,9 @@
     <Content Include="newrelic\extensions\CoreInstrumentation.xml" />
     <Content Include="newrelic\NewRelic.Agent.Core.dll" />
     <Content Include="newrelic\NewRelic.Profiler.dll" />
+    <Content Include="Scripts\app\common.js" />
+    <Content Include="Scripts\app\CreatePost.js" />
+    <Content Include="Scripts\app\EditPost.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\select2-bootstrap-build.scss" />

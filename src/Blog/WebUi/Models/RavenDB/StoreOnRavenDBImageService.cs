@@ -52,7 +52,7 @@ namespace WebUi.Models.RavenDB
                 //Put or update new image
                 using (Stream stream = new MemoryStream(image.ImageBinaryData))
                 {
-                    await Task.Run(() => dbCommands.PutAttachment(image.Id, Guid.NewGuid(), stream, optionalMetaData));
+                    await Task.Run(() => dbCommands.PutAttachment(image.Id, null, stream, optionalMetaData));
                 }
             }
         }
@@ -70,5 +70,16 @@ namespace WebUi.Models.RavenDB
             }
         }
 
+
+
+        public async Task DeleteImage(string id)
+        {
+            using (var session = store.OpenSession())
+            {
+                var dbCommands = session.Advanced.DocumentStore.DatabaseCommands;
+                //Put or update new image
+                await Task.Run(() => dbCommands.DeleteAttachment(id,null));
+            }
+        }
     }
 }

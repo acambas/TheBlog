@@ -14,10 +14,12 @@
     <!-- Add custom CSS here -->
     <link href="~/Content/sb-admin.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
+
     @RenderSection("css", required: false)
 
     <!-- JavaScript -->
     @Scripts.Render("~/bundles/base")
+    <script src="~/Scripts/spin.min.js"></script>
     @RenderSection("headscripts", required: false)
     <!-- /JavaScript -->
 </head>
@@ -75,8 +77,9 @@
 
     </div><!-- /#wrapper -->
     <!-- JavaScript -->
+    <script src="~/Scripts/app/common.js"></script>
     <script>
-        window.rootUrl = "@Url.Content("~/")";
+        blogNamespace.baseContext.init("@Url.Content("~/")");
     </script>
     @RenderSection("scripts", required: false)
 </body>

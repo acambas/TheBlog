@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Raven.Client;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -62,7 +63,7 @@ namespace WebUi.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(
-            [Bind(Include = "Title,ShortDescription,Description,Tags")] CreatePostViewModel postviewmodel, 
+            [Bind(Include = "Title,ShortDescription,Description,Tags,ImageUrl")] CreatePostViewModel postviewmodel,
             HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
@@ -75,22 +76,32 @@ namespace WebUi.Areas.Admin.Controllers
                 //Handle Date
                 data.PostedOn = DateTime.Now;
                 //data.UrlSlug = URLHelper.ToUniqueFriendlyUrl(data.Title);
-                
+
                 //Handle user name
-                try {
+                try
+                {
                     var UserManager = new UserManager<ApplicationUser>
                             (new RavenUserStore<ApplicationUser>(RavenSession));
                     var user = UserManager.FindByName(ControllerContext.HttpContext.User.Identity.Name);
                     data.UserName = user.UserName;
                     data.WrittenBy = user.Name;
                 }
-                catch (Exception) {
+                catch (Exception)
+                {
                     data.UserName = "anonymus";
                 }
                 //Handle image
-                var imageId = await handleImageUpload(file);
-                if (!string.IsNullOrEmpty(imageId))
-                    data.ImageId = imageId;
+                if (!string.IsNullOrEmpty(postviewmodel.ImageUrl))
+                {
+                    data.ImageId = postviewmodel.ImageUrl;
+                }
+                else
+                {
+                    var imageId = await handleImageUpload(file);
+                    if (!string.IsNullOrEmpty(imageId))
+                        data.ImageId = imageId;
+                }
+
 
                 //Save post
                 await RavenSession.StoreAsync(data);
@@ -122,12 +133,12 @@ namespace WebUi.Areas.Admin.Controllers
                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
                 .FirstOrDefaultAsync(m => m.UrlSlug == id);
             var postviewmodel = Mapper.Map<Post, EditPostViewModel>(postData);
-            
+
             if (postviewmodel == null)
             {
                 return HttpNotFound();
             }
-            
+
             //Fill viewmodel with tags
             var dataTagCount = await RavenSession.Query<TagCountIndex.ReduceResult, TagCountIndex>()
                 .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
@@ -141,7 +152,7 @@ namespace WebUi.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(
-            [Bind(Include = "Title,ShortDescription,Description,UrlSlug,Tags")] EditPostViewModel postviewmodel, 
+            [Bind(Include = "Title,ShortDescription,Description,UrlSlug,Tags,ImageUrl")] EditPostViewModel postviewmodel,
             HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
@@ -153,15 +164,19 @@ namespace WebUi.Areas.Admin.Controllers
 
                 //Handle date
                 editData.Modified = DateTime.Now;
-                
+
                 //Handle image
-                if (file != null && file.InputStream != null)
+                if (file != null && file.InputStream != null && string.IsNullOrEmpty(postviewmodel.ImageUrl))
                 {
+
                     var imageId = await handleImageUpload(file);
                     if (!string.IsNullOrEmpty(imageId))
-                    {
                         data.ImageId = imageId;
-                    }
+
+                }
+                else if (!string.IsNullOrEmpty(postviewmodel.ImageUrl))
+                {
+                    data.ImageId = postviewmodel.ImageUrl;
                 }
                 else
                     data.ImageId = oldImageId;
@@ -214,9 +229,9 @@ namespace WebUi.Areas.Admin.Controllers
             List<string> result = new List<string>();
 
             if (tags == null || tags.Count() == 0)
-                return result;   
+                return result;
 
-            if (tags.Count()>1 || !tags.First().Contains(","))
+            if (tags.Count() > 1 || !tags.First().Contains(","))
             {
                 return tags;
             }
@@ -231,7 +246,7 @@ namespace WebUi.Areas.Admin.Controllers
         {
             if (!string.IsNullOrEmpty(id))
             {
-                CacheManager.RemoveItem("Blog", "Details", new { id = id });    
+                CacheManager.RemoveItem("Blog", "Details", new { id = id });
             }
             CacheManager.RemoveItem("Blog", "BlogPageData");
             CacheManager.RemoveItem("Blog", "Index");
@@ -243,9 +258,13 @@ namespace WebUi.Areas.Admin.Controllers
         {
             if (file != null && file.InputStream != null)
             {
-                var id = Guid.NewGuid().ToString();
+                var fileName = Path.GetFileName(file.FileName);
+                var extension = Path.GetExtension(file.FileName);
+
+                var id = URLHelper.ToUniqueFriendlyUrl(fileName);
+
                 AppImage image = new AppImage { Id = id };
-                
+
                 using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
                 {
                     await file.InputStream.CopyToAsync(stream);
@@ -253,8 +272,8 @@ namespace WebUi.Areas.Admin.Controllers
                 }
 
                 await imageService.StoreImage(image);
-
-                return id;
+                var url = Url.Action("Image", "Image", new { Area = "", id = id });
+                return url;
             }
 
             return null;

@@ -13,6 +13,8 @@ namespace Domain.Image
 
         Task<AppImage> GetImageData(string id);
 
+        Task DeleteImage(string id);
+
         Task<IEnumerable<string>> GetAllImageIds();
     }
 }
