@@ -1,10 +1,11 @@
-﻿using Domain.Image;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using Domain.Image;
 using Infrastructure.Config._Settings;
 using Infrastructure.Logging;
 using Infrastructure.Mapping;
-using Microsoft.Practices.Unity;
+using System.Reflection;
 using System.Web.Mvc;
-using Unity.Mvc4;
 using WebUi.Models.RavenDB;
 
 namespace WebUi.App_Start
@@ -13,26 +14,15 @@ namespace WebUi.App_Start
     {
         public static void Initialise()
         {
-            var container = BuildUnityContainer();
-
-            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
-        }
-
-        private static IUnityContainer BuildUnityContainer()
-        {
-            var container = new UnityContainer();
-            RegisterTypes(container);
-            return container;
-        }
-
-        public static void RegisterTypes(IUnityContainer container)
-        {
-            container
-            .RegisterType<IApplicationSettings, WebConfigApplicationSettings>(new ContainerControlledLifetimeManager())
-            .RegisterType<Infrastructure.Logging.ILogger, TraceLog>(new ContainerControlledLifetimeManager())
-            .RegisterType<IImageService, StoreOnRavenDBImageService>(new ContainerControlledLifetimeManager())
-            .RegisterType<IMapper, AutoMapperAdapter>(new ContainerControlledLifetimeManager())
-            ;
+            var builder = new ContainerBuilder();
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterType<WebConfigApplicationSettings>().As<IApplicationSettings>().InstancePerHttpRequest();
+            builder.RegisterType<TraceLog>().As<ILogger>().InstancePerHttpRequest();
+            builder.RegisterType<StoreOnRavenDBImageService>().As<IImageService>().InstancePerHttpRequest();
+            builder.RegisterType<AutoMapperAdapter>().As<IMapper>().InstancePerHttpRequest();
+            builder.RegisterFilterProvider();
+            var container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
 }
