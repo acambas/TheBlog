@@ -36,17 +36,18 @@
             </h2>
         </header>
 
-        <div class="col-md-10 col-md-offset-1 row">
+        <div class="col-md-8 col-md-offset-2 row">
             <img class="img-responsive img-border img-full" src="@Model.ImageId" alt="No Image" />
         </div>
         <br />
         <br />
 
-        <section class="col-md-12 row">
+        <section class="col-md-10 col-md-offset-1 row">
             <br />
             <br />
             @Html.Raw(Model.Description)
             <hr>
+            @Html.Partial("_Disqus", Model)
         </section>
         
     </article>

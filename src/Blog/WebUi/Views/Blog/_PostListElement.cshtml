@@ -17,6 +17,9 @@
                 <span>
                     <i class="fa fa-calendar"></i>@Model.PostedOn.ToString("dd MMM yyyy")
                 </span>
+                <span>
+                    <i class="fa fa-comment"></i><a href="@Url.RouteUrl("ViewPost", new { id = Model.UrlSlug })#disqus_thread">0 Comment</a>
+                </span>
             </small>
 
 
