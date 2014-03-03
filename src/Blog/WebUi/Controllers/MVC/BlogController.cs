@@ -8,9 +8,11 @@ using Raven.Client;
 using Raven.Client.Linq;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.UI;
@@ -145,6 +147,47 @@ namespace WebUi.Controllers.MVC
                 return PartialView("_BlogPageData", viewModel);
             }
 
+        }
+
+        [Route("Feed", Name = "Feed")]
+        public ActionResult Feed()
+        {
+            var blogTitle = "Acambas blog";
+            var blogDescription = "This is a blog about my personal and professional life";
+            var blogUrl = Request.Url.ToString();
+            IList<Post> data;
+
+            using (var session = MvcApplication.Store.OpenSession())
+            {
+                data = session.Query<Post>()
+                .Customize(x => x.WaitForNonStaleResults(TimeSpan.FromSeconds(5)))
+                .Where(m => m.Active == true)
+                .OrderByDescending(m => m.PostedOn)
+                .ToList();
+            }
+
+            var posts = data.Select
+            (
+              p => new SyndicationItem
+                  (
+                      p.Title,
+                      p.Description,
+                      new Uri(blogUrl + Url.RouteUrl("ViewPost", new { id = p.UrlSlug }))
+                  )
+            );
+
+            // Create an instance of SyndicationFeed class passing the SyndicationItem collection
+            var feed = new SyndicationFeed(blogTitle, blogDescription, new Uri(blogUrl), posts)
+            {
+                Copyright = new TextSyndicationContent(String.Format("Copyright © {0}", blogTitle)),
+                Language = "en-US"
+            };
+
+            // Format feed in RSS format through Rss20FeedFormatter formatter
+            var feedFormatter = new Rss20FeedFormatter(feed);
+
+            // Call the custom action that write the feed to the response
+            return new FeedResult(feedFormatter);
         }
 
     }
