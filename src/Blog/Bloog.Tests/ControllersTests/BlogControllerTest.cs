@@ -98,6 +98,8 @@ namespace Bloog.Tests.ControllersTests
             Assert.IsTrue(viewModel.Count() == 2);
         }
 
+
+
         [TestMethod]
         public async Task Details_when_id_exists()
         {
